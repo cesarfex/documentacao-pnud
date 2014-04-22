@@ -1,0 +1,308 @@
+\documentclass[11pt]{article}
+\renewcommand{\rmdefault}{ptm}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{courier,xcolor,colortbl,listings,parskip,graphicx,fancyvrb,fancyhdr,lastpage}
+\usepackage{float,framed}
+\normalfont
+\usepackage[T1]{fontenc}
+%\setlength{\parskip}{7pt}
+\usepackage[toc,page]{appendix}
+\usepackage[hmargin=2.5cm,vmargin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyvrb}
+\pagestyle{fancy}
+\setlength{\headheight}{120pt}
+\setlength{\headsep}{30pt}
+\setlength{\textheight}{550pt}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{}
+\rhead{}
+\chead{\includegraphics{brasao.jpg}\\
+        \large \textbf{PRESIDÊNCIA DA REPÚBLICA}\\
+        \large SECRETARIA-GERAL\\
+        \large Secretaria-Executiva}
+\cfoot{}
+\rfoot{\thepage /\pageref{LastPage}}
+\hyphenation{par-ti-ci-pa-ção}
+\bibliographystyle{ieeetr}
+
+\newcommand{\MyName}{Joenio Marques da Costa}
+\newcommand{\MyEmail}{joenio@colivre.coop.br}
+\newcommand{\ContractNumber}{2013/000564}
+\newcommand{\ProjectCode}{Projeto PNUD BRA/12/018}
+\newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
+\newcommand{\SiglaSecretaria}{SG/PR}
+\newcommand{\ProductNumber}{02}
+\newcommand{\ProductDescription}{"Documento com análise de arquiteturas de
+        sistemas de identidade distribuída, estratégia de implantação
+        considerando os sites parceiros e contendo propostas de códigos."
+}
+\newcommand{\MesEntrega}{Abril de 2014}
+\newcommand{\DiaEntrega}{21}
+
+\begin{document}
+\lstset{language=Ruby}
+\definecolor{light-gray}{gray}{0.95}
+\lstdefinestyle{codeFrame}{backgroundcolor=\color{light-gray},frame=lines}
+
+\input{aprovacao.tex}
+\clearpage
+\input{identificacao.tex}
+\clearpage
+
+\tableofcontents
+\clearpage
+\listoffigures
+
+\clearpage
+
+\input{apresentacao.tex}
+
+\section{SSO - Single Sign-on}
+
+\subsection{O que é SSO?}
+
+Single Sign-on, ou Web Browser Single Sign-on é a propriedade de controle de
+acesso a sistemas de software relacionados, mas independentes. Com esta
+propriedade o usuário loga apenas uma vez e ganha acesso a outros sistemas que
+façam parte do mesmo ambiente de SSO sem necessidade de fornecer usuário/senha
+diversas vezes. Reciprocamente, single sign-off é a propriedade do usuário
+deslogar e automaticamente deslogar de outros sistemas que façam parte deste
+mesmo ambiente.
+
+Usualmente, ambientes SSO compartilham servidores de autenticação para servir
+cada aplicação, com objetivo de autenticar e garantir que usuários não
+necessitem entrar com usuário/senha mais de uma
+vez~\footnote{http://en.wikipedia.org/wiki/Single\_sign-on}. Estes servidores
+fornecem serviços de autenticação em rede para aplicações externas, a
+autenticação pode ser feita por diversos métodos, mas normalmente usa-se
+usuário/senha~\footnote{http://en.wikipedia.org/wiki/Authentication\_server} em
+aplicações Web.
+
+O uso de SSO aumenta drasticamente o impacto negativo em caso de roubo de
+usuário/senha, uma vez que o acesso a esta informação possibilita acesso a
+diversos sistemas, portanto a proteção dessas informações devem ser redobradas.
+É preciso também ter cuidado com a disponibilidade deste serviço, uma vez
+que sua queda implica em indisponibilidade dos serviços que fazem parte do
+ambiente de SSO.
+
+\subsection{SSO no Noosfero}
+
+O Noosfero não implementa mecanismos de SSO, nem há referências na comunidade
+de utilização dele num ambiente de SSO. O mecanismo de autenticação presente
+no Noosfero está implementado nos seguintes arquivos:
+
+\begin{itemize}
+  \item noosfero/lib/authenticated\_system.rb
+  \item noosfero/app/controllers/public/account\_controller.rb
+  \item noosfero/app/model/user.rb
+\end{itemize}
+
+Esta implementação presente no {\it core} do Noosfero realiza autenticação
+através de usuário/senha, e armazenado estas informações em banco de dados de
+forma encriptada. É possível alterar o método de autenticação através de
+plugins, um exemplo é o plugin Ldap distribuído junto ao Noosfero em:
+
+\begin{itemize}
+  \item noosfero/plugins/ldap
+\end{itemize}
+
+Este plugin possibilita realizar autenticação a partir de um servidor LDAP.
+
+\subsection{Qual problema SSO resolve?}
+
+SSO resolve um problema bem comum e conhecido, o usuário de um serviço Web
+(site, sistema, rede social, etc) quer logar apenas uma vez e manter sua
+sessão entre diversos serviços (outros sites, outras redes, etc) sem
+necessidade de fornecer seus dados de acesso uma segunda vez.
+
+Este problema é resultado de uma política segurança e privacidade implementada
+nos Navegadores Web, esta política, chamada Same Origin
+Policy~\footnote{https://en.wikipedia.org/wiki/Same-origin\_policy} é uma
+recomendação do W3C e previne que documentos em diferentes domínios afetem e
+compartilhem dados com outro domínio, isso previne, por exemplo, ataques de
+cross-site scripting.
+
+Inúmeras soluções foram propostas para contornar esta limitação, JSONP, CORS,
+easyXDM, entre
+outras~\footnote{http://stackoverflow.com/questions/7094967/single-sign-on-with-ajax-in-same-origin-policy-world-effective-solutions}, todas elas se tornaram obsoletas após a recomendação do
+W3C chamada "Web Messaging"~\footnote{http://www.w3.org/TR/webmessaging/}, uma
+técnica que permite documentos em diferentes domínios compartilar dados. A
+maioria dos Navegadores Web atuais implementam Web
+Messaging~\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
+
+% Ver mais em:
+% http://security.stackexchange.com/questions/36753/designing-single-sign-on-with-jsonp-cors
+% Exemplo simples e prático sobre funcionamento do Web Messaging:
+% http://openblog.github.io/2013/02/25/html5-web-messaging-api/
+
+\subsection{Como funciona?}
+
+Existem várias tecnologias para implementar SSO: Kerberos, Smart card, OTP,
+entre outras. Dependendo da solução as seguintes estratégias podem ser
+utilizadas:
+
+\begin{itemize}
+  \item{As credenciais do usuário são passadas para um segundo domínio
+        quando este acessa o segundo domínio.}
+  \item{As credencias do usuário são obtidas de uma base de informação de
+        gerenciamento de single sign-on.}
+  \item{São estabelecidas várias sessões de login com todas as aplicações no
+        momento em que se estabelece a primeira sessão.}
+  \item{Armazenar temporariamente no cache e usar ao fazer requisição num
+        segundo domínio.}
+\end{itemize}
+
+(daqui para baixo são informações anotadas de forma desordenada)
+
+Fonte: http://www.opengroup.org/security/sso/sso\_intro.htm
+
+Exemplo de implementação de SSO para múltiplos domínios da solução SiteMinder (http://www.ca.com/br/products/detail/ca-siteminder.aspx),
+solução da "ca technologies" para implantar SSO, federação, etc.
+
+* Usuário autentica uma vez.
+* O navegador faz cache da autentitação e seta um cookie com informações de single sign-on
+* O cookie fornece informações de sessão, assim o usuário pode acessar outros sites sem re-autenticar
+
+Imagem com diagrama dessa solução:
+http://support.ca.com/cadocs/0/CA\%20SiteMinder\%20r12\%205-ENU/Bookshelf\_Files/HTML/idocs/256303.png
+
+Fonte:
+http://support.ca.com/cadocs/0/CA\%20SiteMinder\%20r12\%205-ENU/Bookshelf\_Files/HTML/idocs/256655.html
+
+\subsection{Quais soluções existem?}
+
+Lista de implementações para SSO:
+   * http://en.wikipedia.org/wiki/List\_of\_single\_sign-on\_implementations
+
+Abaixo apenas as soluções livres.
+
+Accounts \& SSO - Solução de SSO para computadores (apenas cliente)
+http://en.wikipedia.org/wiki/Accounts\_\%26\_SSO
+
+Central Authentication Service (CAS) - Protocolo Web (servidor) de SSO
+http://en.wikipedia.org/wiki/Central\_Authentication\_Service
+
+Como funciona:
+http://rubycas.github.io/images/basic\_cas\_single\_signon\_mechanism\_diagram.png
+
+(tem pacote Debian)
+
+Distributed Access Control System (DACS) - SSO leve e controle de acesso basead em papéis para WEB
+http://en.wikipedia.org/wiki/Distributed\_Access\_Control\_System\_(DACS)
+
+(não inclui sistema de autenticação mas suporta muitos métodos, X.509, PAM, LDAP, etc...)
+
+
+Enterprise Sign On Engine - Plataforma de SSO, controle de acesso e federação
+http://en.wikipedia.org/wiki/Enterprise\_Sign\_On\_Engine
+
+FreeIPA - Solução da RedHat para SSO, Policy and Audit, ...
+http://en.wikipedia.org/wiki/FreeIPA
+
+IBM Enterprise Identity Mapping - 
+http://en.wikipedia.org/wiki/IBM\_Enterprise\_Identity\_Mapping
+
+JBoss SSO - single sign-on, sign-off, federação
+http://en.wikipedia.org/wiki/JBoss\_SSO
+
+JOSSO - SSO para aplicações web, Java EE
+http://en.wikipedia.org/wiki/JOSSO
+
+Kerberos - Protocolo de autenticação em rede
+http://en.wikipedia.org/wiki/Kerberos\_(protocol)
+
+OpenAM - controle de acesso e federação, engloba uma série de soluções
+http://en.wikipedia.org/wiki/OpenAM
+
+Mozilla Persona - Não é SSO, mas sim sistema de autenticação descentralizado
+http://en.wikipedia.org/wiki/Mozilla\_Persona
+
+Pubcookie - Protocolo (e software) de SSO
+http://en.wikipedia.org/wiki/Pubcookie
+
+SAML - Linguagem de marcação para definir comunicação sobre autenticação e autorização
+http://en.wikipedia.org/wiki/Security\_Assertion\_Markup\_Language
+
+Shibboleth - SSO e autenticação
+http://en.wikipedia.org/wiki/Shibboleth\_(Internet2)
+
+ZXID - kit de gerenciamento de identidade SAML 2.0
+http://en.wikipedia.org/wiki/ZXID
+
+
+* Ler sobre protocolo CAS: http://www.jasig.org/cas/protocol
+
+
+Existe um protocolo para implementar SSO:
+   * http://en.wikipedia.org/wiki/Central\_Authentication\_Service
+
+Thread sobre SSO com Persona:
+   * https://groups.google.com/forum/\#!topic/mozilla.dev.identity/oNseXZxbVUQ
+
+
+\subsection{Discussão sobre vantagens desvantagens de cada solução}
+
+Riscos:
+* https://blog.perfectcloud.io/does-facebook-federation-have-your-best-interests-at-heart-2/
+
+Falha grave de segurança:
+* http://research.microsoft.com/apps/pubs/default.aspx?id=160659
+
+2. Identidade Digital / Autenticação
+
+Uma solução de SSO não implica em serviço de identidade centralizada, ou seja, os sites envolvidos em SSO não
+necessariamente utilizam um sistema de autenticação em de um servidor de identidade contralizada
+
+
+O que é?
+Resolve qual problema?
+Como funciona?
+Quais soluções existem?
+
+OAuth
+OpenID
+OpenID Connect
+Etc...
+
+Comparativo entre soluções (vantagens desvantagens)
+
+3. Iniciativas em andamento (Governo e Comunidade)
+
+4. Proposta de solução para o Participa.BR (qual caminho tomar)
+
+4.1 Objetivo
+
+Nosso objetivo é que esse arranjo de confiança do Participa.br possa ser utilizado por plataformas de participação social do governo (gov) e da sociedade (org). Assim que implementado conectaríamos:
+
+* Participatório (gov)
+* Cidade Democrática (org)
+* Cultura Educa (cc/org)
+
+O caminho de implementação pode ser SLTI (gov) ou Serpro (gov/com).
+
+
+\section{Considerações finais}
+
+Neste documento foi apresentado um \ProductDescription
+
+Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
+consulta e participação popular na discussão e na definição da agenda
+prioritária do país, é necessário que além de documentação faça-se um esforço
+de movimentar as pessoar fora do ambiente virtual, para que haja um
+engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+\vspace{1cm}
+
+Sem mais nada a acrescentar, coloco-me à disposição.
+
+\vspace{1cm}
+
+\begin{minipage}{\textwidth}
+  Brasília/DF, \DiaEntrega \ de \MesEntrega\\[1cm]
+  \textbf{\MyName}\\
+  \small Consultor do PNUD
+\end{minipage}
+
+\end{document}
