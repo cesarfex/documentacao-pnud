@@ -671,10 +671,18 @@ Mais em:
   \item{http://en.wikipedia.org/wiki/Athens\_access\_and\_identity\_management}
 \end{itemize}
 
-\subsection{Windows Live ID}
+\subsection{Microsoft account}
 
-Referencias importantes não-livres:
-* http://en.wikipedia.org/wiki/Windows\_Live\_ID
+O Microsoft account, anteriormente conhecido como Windows Live ID é um
+provedor de identidade para os serviços da Microsoft, está sendo cidado aqui
+apenas para exemplificar uma solução não-livre em produção, existem outras,
+como o próprio Facebook Connect. O Microsoft account implementa OpenID e é
+também um provedor de identidade OpenID.
+
+Mais em:
+\begin{itemize}
+  \item{http://en.wikipedia.org/wiki/Microsoft\_account}
+\end{itemize}
 
 \subsection{Liberty Alliance}
 
@@ -683,18 +691,39 @@ serviços de identidade, etc... submeteu para o OASIS Group a especificação do
 SAML 2.0, propôs uma séries de soluções como: OpenAz, ZXID, etc... As
 iniciativas deste grupo hoje estão sendo mantidas pelo Kantara Initiative.
 
-Etc...
+Mais em:
+\begin{itemize}
+  \item{http://en.wikipedia.org/wiki/Liberty\_Alliance}
+  \item{https://en.wikipedia.org/wiki/Kantara\_Initiative}
+\end{itemize}
 
 \section{Discussão}
 
 Discussao sobre CAS x OAuth:
 * http://stackoverflow.com/questions/2033026/sso-with-cas-or-oauth/3181557\#3181557
 
-Na pagina do RubyCAS o autor fala sobre CAS x OpenID:
-* http://rubycas.github.io/
+CAS centraliza a autenticação, deve ser usado quando todas as aplicações
+autenticam numa mesma base de credenciais usuário/senha de usuários.
 
-Riscos:
-* https://blog.perfectcloud.io/does-facebook-federation-have-your-best-interests-at-heart-2/
+OpenID decentraliza a autenticação, deve ser usado para aceitar login de
+qualquer provedor OpenID, mas a aplicação pode restringir quais provedores
+OpenID aceitar no entando.
+
+Nem CAS nem OpenID lidam com autorização nativamente.
+
+OAuth lida com autorização, autoriza por exemplo que um site X possa efetuar
+autenticação a partir de um serviço de autenticação de terceiros Y. OAuth é
+sobre permitir usuário controlar como seus recursos serão acessados por
+terceiros.
+
+CAS a partir da versão 3.5 suporta OAuth cliente e
+servidor~\footnote{https://wiki.jasig.org/display/CASUM/OAuth}.
+
+CASE: OpenSSO foi utilizado pela CPqD para implantas SSO entre diversar aplicações
+da empresa https://blogs.oracle.com/superpat/entry/opensso\_at\_cpqd
+
+CAS é geralmente a escolhe preferida para grande organizações, onde se quer
+centralizar a base de usuários, exemplo universidades.
 
 Falha grave de segurança:
 * http://research.microsoft.com/apps/pubs/default.aspx?id=160659
@@ -705,25 +734,60 @@ geral:
 
 \subsection{Iniciativas (Governo e Comunidade)}
 
-Login Cidadão
-https://meu.rs.gov.br/
+\subsubsection{Login Cidadão}
 
-MinC
-https://github.com/hacklabr/iddacultura-provider
+Projeto piloto desenvolvido pela PROCERGS de um provedor de identidade com
+base em OAuth para os serviços do governo do estado do Rio Grande do Sul.
+
+Instancia do Login Cidadão rodandm em:
+\begin{itemize}
+  \item{https://meu.rs.gov.br}
+\end{itemize}
+
+Código fonte, projeto desenvolvido em PHP com framework symfony:
+\begin{itemize}
+  \item{https://github.com/PROCERGS/login-cidadao}
+\end{itemize}
+
+A equipe responsável pelo Login Cidadão esteve no Fisl15 apresentando a
+palestra "Login Cidadão: Uma conta. Tudo o que o governo oferece", o vídeo
+está disponível através do link abaixo:
+\begin{itemize}
+  \item{http://hemingway.softwarelivre.org/fisl15/high/41f/sala41f-high-201405081612.ogv}
+\end{itemize}
+
+\subsubsection{Id da Cultura}
+
+O MinC (Ministério da Cultura) iniciou um projeto de provedor OpenID para
+fornecer identidade centralizada para os serviços Web do MinC e parceiros, o
+projeto é desenvolvido em Python e o código-fonte está disponível em:
+\begin{itemize}
+  \item{https://github.com/hacklabr/iddacultura-provider}
+\end{itemize}
+
+Esta implementação foi posteriormente aproveitada pelo projeto Mapas Culturais
+do Estado de São Paulo e hoje está sendo utilizado neste projeto, o código
+utilizado neste projeto está em:
+\begin{itemize}
+  \item{https://github.com/hacklabr/mapasculturais-openid}
+\end{itemize}
 
 \subsection{Proposta para o Participa.BR}
 
 Qual caminho tomar?
 
-O objetivo é que esse arranjo de confiança do Participa.br possa ser utilizado
-por plataformas de participação social do governo (gov) e da sociedade (org).
-Assim que implementado conectaríamos:
+Neste contexto de SSO, o Participa.BR tem a necessidade de criar um
+arranjo de confiança entre alguns sites relacionados ao projeto, inicialmente
+estes os sites que farão parte deste arranjo são, além do próprio Participa.br
+são:
 
 \begin{itemize}
   \item{Participatório (gov)}
   \item{Cidade Democrática (org)}
   \item{Cultura Educa (cc/org)}
 \end{itemize}
+
+Assim que implementado conectaríamos:
 
 O caminho de implementação pode ser SLTI (gov) ou Serpro (gov/com).
 
