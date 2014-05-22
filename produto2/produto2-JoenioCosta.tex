@@ -64,16 +64,18 @@
 \subsection{O que é SSO?}
 
 Single Sign-on, ou Web Browser Single Sign-on é a propriedade de controle de
-acesso a sistemas de software relacionados, mas independentes. Com esta
-propriedade o usuário loga apenas uma vez e ganha acesso a outros sistemas que
-façam parte do mesmo ambiente de SSO sem necessidade de fornecer usuário/senha
-diversas vezes. Reciprocamente, single sign-off é a propriedade do usuário
-deslogar e automaticamente deslogar de outros sistemas que façam parte deste
-mesmo ambiente.
+acesso a sistemas Web onde usuários efetuam login apenas uma vez e ganham acesso a
+outros sistemas que tenham relação com tal sistema sem a necessidade de fornecer
+suas credenciais de autenticação uma segunda vez. Os sistemas que possuem
+relação são definidos previamente pela implementação e configuração do
+ambiente de SSO e é feito pelos desenvolvedores e administradores dos sistemas envolvidos.
+Analogamente, single sign-off é a propriedade inversa, onde o usuário finaliza
+sua sessão de login em um sistema e de forma automática ele é deslogado também
+dos outros sistemas que façam parte deste mesmo ambiente.
 
 Usualmente, ambientes SSO compartilham servidores de autenticação para servir
 cada aplicação, com objetivo de autenticar e garantir que usuários não
-necessitem entrar com usuário/senha mais de uma
+necessitem entrar com suas credenciais de autenticação mais de uma
 vez~\footnote{http://en.wikipedia.org/wiki/Single\_sign-on}. Estes servidores
 fornecem serviços de autenticação em rede para aplicações externas, a
 autenticação pode ser feita por diversos métodos, mas normalmente usa-se
@@ -81,16 +83,16 @@ usuário/senha~\footnote{http://en.wikipedia.org/wiki/Authentication\_server} em
 aplicações Web.
 
 O uso de SSO aumenta drasticamente o impacto negativo em caso de roubo de
-usuário/senha, uma vez que o acesso a esta informação possibilita acesso a
+informações, uma vez que o acesso a esta informação possibilita acesso a
 diversos sistemas, portanto a proteção dessas informações devem ser redobradas.
-É preciso também ter cuidado com a disponibilidade deste serviço, uma vez
+É preciso também ter cuidado com a disponibilidade do serviço, uma vez
 que sua queda implica em indisponibilidade dos serviços que fazem parte do
 ambiente de SSO.
 
 \subsection{SSO no Noosfero}
 
 O Noosfero não implementa mecanismos de SSO, nem há referências na comunidade
-de utilização dele num ambiente de SSO. O mecanismo de autenticação presente
+de utilização dele num ambiente como este. O mecanismo de autenticação presente
 no Noosfero está implementado nos seguintes arquivos:
 
 \begin{itemize}
@@ -100,7 +102,7 @@ no Noosfero está implementado nos seguintes arquivos:
 \end{itemize}
 
 Esta implementação presente no {\it core} do Noosfero realiza autenticação
-através de usuário/senha, e armazenado estas informações em banco de dados de
+através de usuário/senha e armazena estas informações em banco de dados de
 forma encriptada. É possível alterar o método de autenticação através de
 plugins, um exemplo é o plugin Ldap distribuído junto ao Noosfero em:
 
@@ -117,18 +119,18 @@ SSO resolve um problema bem comum e conhecido, o usuário de um serviço Web
 sessão entre diversos serviços (outros sites, outras redes, etc) sem
 necessidade de fornecer seus dados de acesso uma segunda vez.
 
-Este problema é resultado de uma política segurança e privacidade implementada
-nos Navegadores Web, esta política, chamada Same Origin
-Policy~\footnote{https://en.wikipedia.org/wiki/Same-origin\_policy} é uma
-recomendação do W3C e previne que documentos em diferentes domínios afetem e
-compartilhem dados com outro domínio, isso previne, por exemplo, ataques de
+A solução para esta questão precisa lidar com uma política segurança e
+privacidade implementada nos Navegadores Web, esta política, chamada Same
+Origin Policy~\footnote{https://en.wikipedia.org/wiki/Same-origin\_policy} é
+uma recomendação do W3C e previne que documentos em diferentes domínios afetem
+e compartilhem dados com outros domínios, isso previne, por exemplo, ataques de
 cross-site scripting.
 
-Inúmeras soluções foram propostas para contornar esta limitação, JSONP, CORS,
+Inúmeras soluções foram propostas para contornar esta política, JSONP, CORS,
 easyXDM, entre
 outras~\footnote{http://stackoverflow.com/questions/7094967/single-sign-on-with-ajax-in-same-origin-policy-world-effective-solutions}, todas elas se tornaram obsoletas após a recomendação do
 W3C chamada "Web Messaging"~\footnote{http://www.w3.org/TR/webmessaging/}, uma
-técnica que permite documentos em diferentes domínios compartilar dados. A
+técnica que permite documentos em diferentes domínios compartilhar dados. A
 maioria dos Navegadores Web atuais implementam Web
 Messaging~\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
 
@@ -137,38 +139,27 @@ Messaging~\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
 % Exemplo simples e prático sobre funcionamento do Web Messaging:
 % http://openblog.github.io/2013/02/25/html5-web-messaging-api/
 
-\subsection{Como funciona?}
+\subsection{Como SSO funciona?}
 
-Existem várias tecnologias para implementar SSO: Kerberos, Smart card, OTP,
-entre outras. Dependendo da solução as seguintes estratégias podem ser
-utilizadas~\footnote{http://www.opengroup.org/security/sso/sso\_intro.htm}:
-
-\begin{itemize}
-  \item{As credenciais do usuário são passadas para um segundo domínio
-        quando este acessa o segundo domínio.}
-  \item{As credencias do usuário são obtidas de uma base de informação de
-        gerenciamento de single sign-on.}
-  \item{São estabelecidas várias sessões de login com todas as aplicações no
-        momento em que se estabelece a primeira sessão.}
-  \item{Armazenar temporariamente no cache e usar ao fazer requisição num
-        segundo domínio.}
-\end{itemize}
-
-A solução
+Existem muitas formas de implementar SSO: Kerberos, Smart card, CAS, OTP,
+entre outras, cada uma com sua própria
+estratégia~\footnote{http://www.opengroup.org/security/sso/sso\_intro.htm}. A solução
 SiteMinder~\footnote{http://www.ca.com/br/products/detail/ca-siteminder.aspx}
-da "ca technologies", por exemplo, implementa SSO da seguinte
+da "CA Technologies", por exemplo, implementa SSO da seguinte
 forma~\footnote{http://support.ca.com/cadocs/0/CA\%20SiteMinder\%20r12\%205-ENU/Bookshelf\_Files/HTML/idocs/256655.html}:
 
 \begin{itemize}
-  \item{Usuário autentica uma vez.}
-  \item{O navegador faz cache da autentitação e seta um cookie com
+  \item{Usuário autentica uma vez}
+  \item{O navegador faz cache da autenticação e seta um cookie com
         informações de single sign-on}
   \item{O cookie fornece informações de sessão, assim o usuário pode acessar
-        outros sites sem re-autenticar}
+        outros sites sem necessidade de re-autenticar}
 \end{itemize}
 
 A Figura~\ref{fig:sso-siteminder} traz um diagrama exemplificando esta
-solução.
+solução. A solução SiteMinder é um sistema centralizado de gerenciamento de
+acesso Web da empresa "CA Technologies", que implementa uma série de soluções,
+além de SSO.
 
 \begin{figure}[h]
 \center
@@ -177,45 +168,46 @@ solução.
 \label{fig:sso-siteminder}
 \end{figure}
 
-Este é apenas um exemplo de implementação, a solução SiteMinder é um sistema
-centralizado de gerenciamento de acesso Web da empresa CA Tecnologies, que
-implementa uma série de soluções e SSO.
+\subsection{Quais soluções de SSO existem?}
 
-\subsection{Quais soluções existem?}
+A seguir é apresentada uma lista de soluções em software livre para SSO
+elaborada com base no artigo da Wikipedia em:
 
-Quais soluções estão disponíveis para quem quer implementar SSO? Segue
-uma lista baseada no artigo da
-Wikipedia~\footnote{http://en.wikipedia.org/wiki/List\_of\_single\_sign-on\_implementations}
-com soluções em software livre para SSO:
+\begin{itemize}
+  \item http://en.wikipedia.org/wiki/List\_of\_single\_sign-on\_implementations
+\end{itemize}
 
 \subsubsection{Accounts \& SSO}
 
 Framework contendo um conjunto de componentes e bibliotecas para autenticação
-de contas de usuários online em clientes Desktops, em sistemas Linux e POSIX.
+de contas de usuários online para clientes Desktops, sistemas Linux e POSIX.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Accounts\_\&\_SSO}
 \end{itemize}
 
+{\bf Avaliação:} {\it Não é uma opção válida para ser implantado no portal de
+participação social Participa.br pois é voltado para clientes desktop.}
+
 \subsubsection{Central Authentication Service (CAS)}
 
 Protocolo de Single Sign-on para a Web. O nome CAS refere-se também a uma
-implementação deste mesmo protocolo. O fluxo que ocorre durante a autenticação
-é o seguinte:
+implementação deste mesmo protocolo. O fluxo durante a autenticação é o
+seguinte:
 
 \begin{itemize}
-\item{Cliente visita uma aplicação requisitando autenticação}
-\item{A aplicação redireciona o Cliente para o CAS}
-\item{CAS valida atenticidade do Cliente (geralmente contra um banco, Kerberos, Active Directory, etc)}
-\item{Se a autenticação tem sucesso, CAS retorna o cliente para a aplicação, passando um ticket de segurança}
-\item{A aplicação valida o ticket contactando CASC}
-\item{AS then gives the application trusted information about whether a particular user has successfully authenticated}
+  \item{Cliente visita uma aplicação que requisita autenticação}
+  \item{A aplicação redireciona o Cliente para o CAS}
+  \item{CAS valida atenticidade do Cliente (geralmente contra um banco, Kerberos, Active Directory, etc)}
+  \item{Se a autenticação tem sucesso, o CAS retorna o cliente para a aplicação, passando um ticket de segurança}
+  \item{A aplicação valida o ticket contactando o CAS}
+  \item{O CAS dá a informação com segurança à aplicação que o usuário foi autenticado com sucesso}
 \end{itemize}
 
-A implementação oficial do CAS é em Java e mantido pelo grupo
-JASIG~\footnote{http://www.jasig.org}, existem implementações oficiais do lado
-cliente em várias linguagens, .NET, PHP, Perl, Apache, etc.
+A implementação oficial do CAS é em Java e é mantido, hoje, pelo grupo
+JASIG~\footnote{http://www.jasig.org}, existem implementações oficiais de
+cliente em várias linguagens, como: .NET, PHP, Perl, Apache, etc.
 
 \begin{figure}[h]
 \center
@@ -223,6 +215,15 @@ cliente em várias linguagens, .NET, PHP, Perl, Apache, etc.
 \caption{Diagrama do RubyCAS, implementação do protocolo CAS em Ruby}
 \label{fig:sso-rubycas}
 \end{figure}
+
+O artigo {\it Approaches and challenges for a single sign-on enabled extranet
+using Jasig CAS} descreve a experiência em configurar single sign-on em um
+ambiente de intranet usando o CAS e outros software livres, e faz uma boa
+avaliação das tecnologias envolvidas, como OpenID, OAuth, etc.
+
+\begin{itemize}
+  \item{http://openidentity.eu/2013/media/09\_Holzschuher\_Peinl\_2013\_SSO\_extranet\_CAS\_LNI.pdf}
+\end{itemize}
 
 %http://rubycas.github.io
 %(tem pacote Debian)
@@ -233,6 +234,10 @@ Mais em:
   \item{http://www.jasig.org/cas/protocol}
 \end{itemize}
 
+{\bf Avaliação:} {\it Implementação madura contendo um bom conjunto de
+técnicas para implementação de SSO, incluindo suporte a OAuth, OpenID, SAML, LDAP,
+etc. É uma opção recomendada.}
+
 \subsubsection{Distributed Access Control System (DACS)}
 
 DACS é um sistema de SSO leve combinado com mecanismos de autenticação e
@@ -242,14 +247,16 @@ de autenticação para servidor Web Apache.
 
 %http://pdf.aminer.org/000/309/229/a_single_sign_on_protocol_for_distributed_web_applications_based.pdf
 
-O Debian utiliza DACS para prover SSO entre alguns dos seus servidores para os
-desenvolvedores do projeto, ver mais em:
+O Debian utiliza DACS para prover SSO entre alguns dos seus servidores de
+desenvolvimento do projeto.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Distributed\_Access\_Control\_System\_(DACS)}
   \item{https://wiki.debian.org/DebianSingleSignOn}
 \end{itemize}
+
+{\bf Avaliação:} {\it ?????.}
 
 \subsubsection{Enterprise Sign On Engine}
 
@@ -263,6 +270,9 @@ Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Enterprise\_Sign\_On\_Engine}
 \end{itemize}
+
+{\bf Avaliação:} {\it Nenhuma referência encontrada sobre seu uso em produção,
+não recomendado para o portal de participação social Participa.br.}
 
 \subsubsection{FreeIPA}
 
@@ -279,16 +289,21 @@ Mais em:
   \item{http://en.wikipedia.org/wiki/FreeIPA}
 \end{itemize}
 
+{\bf Avaliação:} {\it Esta solução é incialmente voltada para ambientes de
+rede desktop e não atende aos requisitos do Participa.br.}
+
 \subsubsection{IBM Enterprise Identity Mapping}
 
 Framework para mapear identidades de usuários em várias plataformas distintas,
-com poucas informações na Web, aparentemente apenas para integrar as soluçoes
-da própria IBM.
+com poucas informações na Web.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/IBM\_Enterprise\_Identity\_Mapping}
 \end{itemize}
+
+{\bf Avaliação:} {\it Voltado apenas para integrar as soluçoes da própria
+IBM.}
 
 \subsubsection{JBoss SSO}
 
@@ -308,6 +323,8 @@ Mais em:
   \item{http://en.wikipedia.org/wiki/JBoss\_SSO}
 \end{itemize}
 
+{\bf Avaliação:} {\it Solução madura, possível alternativa a ser utilizada.}
+
 \subsubsection{JOSSO}
 
 Java Open Single Sign On (JOSSO) é uma solução de SSO para aplicações Web.
@@ -320,6 +337,8 @@ Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/JOSSO}
 \end{itemize}
+
+{\bf Avaliação:} {\it Solução madura, possível alternativa a ser utilizada.}
 
 \subsubsection{Kerberos}
 
@@ -342,6 +361,8 @@ Mais em:
   \item{http://en.wikipedia.org/wiki/Kerberos\_(protocol)}
 \end{itemize}
 
+{\bf Avaliação:} {\it Protocolo de autenticação, não é uma solução para SSO.}
+
 \subsubsection{OpenAM}
 
 Provê single sign-on de forma transparente em infraestrutura de redes. Escrito
@@ -361,6 +382,9 @@ Mais em:
   \item{http://en.wikipedia.org/wiki/OpenAM}
 \end{itemize}
 
+{\bf Avaliação:} {\it Possível alternativa de ser utilizada, madura, bem
+documentada e bastante utilizada, suporta: OAuth, SAML, Kerberos, LDAP, etc.}
+
 \subsubsection{Pubcookie}
 
 Protocolo (e software) de SSO, o processo de autenticação se dá da seguinte
@@ -372,12 +396,13 @@ forma:
   \item{Usuário fornece login e senha, se o login for com sucesso, seta 2 cookies, login e concessão}
 \end{itemize}
 
-O ultimo release do projeto é de 2010, um pouco antigo.
-
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Pubcookie}
 \end{itemize}
+
+{\bf Avaliação:} {\it O último release do projeto é de 2010, não recomendado
+como possível solução de SSO para o portal Participa.br}
 
 \subsubsection{SAML}
 
@@ -409,6 +434,9 @@ Mais em:
   \item{http://en.wikipedia.org/wiki/Security\_Assertion\_Markup\_Language}
 \end{itemize}
 
+{\bf Avaliação:} {\it Não uma solução de SSO em sí, é suportado por várias
+soluções, é altamente recomendado que a solução adotada suporte este padrão.}
+
 \subsubsection{Shibboleth}
 
 Middleware para SSO e autenticação baseado em SAML.
@@ -417,6 +445,10 @@ Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Shibboleth\_(Internet2)}
 \end{itemize}
+
+{\bf Avaliação:} {\it É uma possível alternativa a ser utilizada no
+Participa.br, tem boas referências de uso na prática como por exemplo a
+iniciativa das universidades do Reuino Unido chamada OpenAthens.}
 
 \subsubsection{ZXID}
 
@@ -429,6 +461,8 @@ Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/ZXID}
 \end{itemize}
+
+{\bf Avaliação:} {\it Não recomendado.}
 
 \section{IdP - Identity Provider}
 
@@ -457,7 +491,7 @@ Uma solução de SSO é composta usualmente de ao menos 3 componentes:
   \item{Provedor de serviço}
 \end{itemize}
 
-Em um ambiente SSO um usuário autentica apenas uma vez e um token de segurança
+Neste cenário o usuário autentica apenas uma vez e um token de segurança
 é passado entre os sistemas participantes do ambiente de SSO. Normalmente
 suportam os tipos de token de segurança mais comuns, como:
 
@@ -467,7 +501,7 @@ suportam os tipos de token de segurança mais comuns, como:
   \item{X.509}
 \end{itemize}
 
-Um provedor de identidade (IdP) sozinho não garante Single Sign-on (SSO), um
+Como dito, um provedor de identidade (IdP) sozinho não garante Single Sign-on (SSO), um
 IdP é normalmente parte de um ambiente de SSO, normalmente um primeiro passo
 para ter um ambiente SSO é implantar um serviço de IdP.
 
@@ -477,14 +511,11 @@ Definição de IdP segundo a OASIS:
   \item{http://en.wikipedia.org/wiki/Identity\_provider}
 \end{itemize}
 
-Mais sobre esses termos pode ser encontrado em:
-\begin{itemize}
-  \item{http://www.empowerid.com/learningcenter/technologies/service-identity-providers}
-\end{itemize}
-
-Mais sobre Identity Provider em:
+Mais sobre Identity Provider e os diversos conceitos envolvidos podem ser
+encontrados em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Identity\_provider}
+  \item{http://www.empowerid.com/learningcenter/technologies/service-identity-providers}
 \end{itemize}
 
 \subsection{IdP no Noosfero}
@@ -787,9 +818,40 @@ são:
   \item{Cultura Educa (cc/org)}
 \end{itemize}
 
-Assim que implementado conectaríamos:
+Assim que implementado conectaríamos estes sites acima.
 
 O caminho de implementação pode ser SLTI (gov) ou Serpro (gov/com).
+
+Existem 2 caminhos distintos a adotar:
+1) Implementar SSO logo de cara, usar OpenAM ou alguma outra solução de SSO; ou
+2) Implementar apenas um provedor de identidade, com base no banco do
+Participa.br, e permitir que os sites do arranjo loguem através disso
+
+A opção 2) se mostra mais interessante, uma vez que ela é inicialmente menos
+custosa de implementar, e parte do trabalho (senão todo o trabalho) é
+aproveitado ao se implementar SSO de verdade futuramente.
+
+Dentre as opções pesquisadas, Mozilla Persona se mostra bastante interessante,
+uma vez que utiliza um identificador de usuário em formato de email
+usuario@dominio.com, ao invés de uma URL como é feito no OpenID
+http://dominio.com/usuario
+
+O OpenAM como solução mostra por outro lado uma grande vantagem pois é uma
+tecnologia já adotada pelo Serpro, o que facalitaria bastante sua implantação
+caso a solução seja implementada por esta instituição.
+
+OpenAM, provê uma solução completa, provedor de identidade, single sign-on, em
+um só pacote, seria necessário apenas implementar no Noosfero uma forma de
+autenticar através da base do OpenAM.
+
+A alternativa mais apropriada é implementar inicialmente suporte a OAuth,
+OpenID ou Mozilla Persona no Noosfero, implementar tanto o lado cliente quando
+o lado servidor (provider), isto irá fornecer a infraestrutura básica para num
+segundo momento implementar Single Sign-on de verdade.
+
+O OpenAM tem suporte a OAuth, OpenID Connect, então é inteiramente possível
+aproventar o trabalho feito no momento que for implantar SSO de verdade usando
+OpenAM, caso seja esta a solução eleita.
 
 \section{Considerações finais}
 
