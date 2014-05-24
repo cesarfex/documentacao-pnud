@@ -76,10 +76,10 @@ dos outros sistemas que façam parte deste mesmo ambiente.
 Usualmente, ambientes SSO compartilham servidores de autenticação para servir
 cada aplicação, com objetivo de autenticar e garantir que usuários não
 necessitem entrar com suas credenciais de autenticação mais de uma
-vez~\footnote{http://en.wikipedia.org/wiki/Single\_sign-on}. Estes servidores
+vez\footnote{http://en.wikipedia.org/wiki/Single\_sign-on}. Estes servidores
 fornecem serviços de autenticação em rede para aplicações externas, a
 autenticação pode ser feita por diversos métodos, mas normalmente usa-se
-usuário/senha~\footnote{http://en.wikipedia.org/wiki/Authentication\_server} em
+usuário/senha\footnote{http://en.wikipedia.org/wiki/Authentication\_server} em
 aplicações Web.
 
 O uso de SSO aumenta drasticamente o impacto negativo em caso de roubo de
@@ -121,18 +121,18 @@ necessidade de fornecer seus dados de acesso uma segunda vez.
 
 A solução para esta questão precisa lidar com uma política segurança e
 privacidade implementada nos Navegadores Web, esta política, chamada Same
-Origin Policy~\footnote{https://en.wikipedia.org/wiki/Same-origin\_policy} é
+Origin Policy\footnote{https://en.wikipedia.org/wiki/Same-origin\_policy} é
 uma recomendação do W3C e previne que documentos em diferentes domínios afetem
 e compartilhem dados com outros domínios, isso previne, por exemplo, ataques de
 cross-site scripting.
 
 Inúmeras soluções foram propostas para contornar esta política, JSONP, CORS,
 easyXDM, entre
-outras~\footnote{http://stackoverflow.com/questions/7094967/single-sign-on-with-ajax-in-same-origin-policy-world-effective-solutions}, todas elas se tornaram obsoletas após a recomendação do
-W3C chamada "Web Messaging"~\footnote{http://www.w3.org/TR/webmessaging/}, uma
+outras\footnote{http://stackoverflow.com/questions/7094967/single-sign-on-with-ajax-in-same-origin-policy-world-effective-solutions}, todas elas se tornaram obsoletas após a recomendação do
+W3C chamada "Web Messaging"\footnote{http://www.w3.org/TR/webmessaging/}, uma
 técnica que permite documentos em diferentes domínios compartilhar dados. A
 maioria dos Navegadores Web atuais implementam Web
-Messaging~\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
+Messaging\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
 
 % Ver mais em:
 % http://security.stackexchange.com/questions/36753/designing-single-sign-on-with-jsonp-cors
@@ -143,10 +143,10 @@ Messaging~\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
 
 Existem muitas formas de implementar SSO: Kerberos, Smart card, CAS, OTP,
 entre outras, cada uma com sua própria
-estratégia~\footnote{http://www.opengroup.org/security/sso/sso\_intro.htm}. A solução
-SiteMinder~\footnote{http://www.ca.com/br/products/detail/ca-siteminder.aspx}
+estratégia\footnote{http://www.opengroup.org/security/sso/sso\_intro.htm}. A solução
+SiteMinder\footnote{http://www.ca.com/br/products/detail/ca-siteminder.aspx}
 da "CA Technologies", por exemplo, implementa SSO da seguinte
-forma~\footnote{http://support.ca.com/cadocs/0/CA\%20SiteMinder\%20r12\%205-ENU/Bookshelf\_Files/HTML/idocs/256655.html}:
+forma\footnote{http://support.ca.com/cadocs/0/CA\%20SiteMinder\%20r12\%205-ENU/Bookshelf\_Files/HTML/idocs/256655.html}:
 
 \begin{itemize}
   \item{Usuário autentica uma vez}
@@ -206,7 +206,7 @@ seguinte:
 \end{itemize}
 
 A implementação oficial do CAS é em Java e é mantido, hoje, pelo grupo
-JASIG~\footnote{http://www.jasig.org}, existem implementações oficiais de
+JASIG\footnote{http://www.jasig.org}, existem implementações oficiais de
 cliente em várias linguagens, como: .NET, PHP, Perl, Apache, etc.
 
 \begin{figure}[h]
@@ -262,9 +262,9 @@ Mais em:
 
 Plataforma de SSO, controle de acesso e federação compatível com SAML 2.0
 e parcialmente compatível com
-XACML~\footnote{http://en.wikipedia.org/wiki/XACML}.
+XACML\footnote{http://en.wikipedia.org/wiki/XACML}.
 
-Desenvolvido em Java e com suporte a Tomcat, Apache e IIS.
+Desenvolvido em Java, possui suporte a Tomcat, Apache e IIS.
 
 Mais em:
 \begin{itemize}
@@ -280,9 +280,9 @@ Solução da RedHat para SSO e "Policy and Audit". É comparável a solução
 "Novell's Identity Manager" ou "Microsoft's Active Directory" pois tem
 objetivos e mecanismos similares.
 
-Usa as soluções: 389 Directory Server, MIT Kerberos 5, Apache HTTP e Python.
-
-Na versão 3.0.0 usa Samba para integrar com Microsoft Active Directory.
+Usa as soluções 389 Directory Server, MIT Kerberos 5, Apache HTTP e Python. A
+partir da versão 3.0.0 adicionou suporte a Samba para integração com Microsoft
+Active Directory.
 
 Mais em:
 \begin{itemize}
@@ -295,25 +295,25 @@ rede desktop e não atende aos requisitos do Participa.br.}
 \subsubsection{IBM Enterprise Identity Mapping}
 
 Framework para mapear identidades de usuários em várias plataformas distintas,
-com poucas informações na Web.
+pouca informação disponível na Web.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/IBM\_Enterprise\_Identity\_Mapping}
 \end{itemize}
 
-{\bf Avaliação:} {\it Voltado apenas para integrar as soluçoes da própria
+{\bf Avaliação:} {\it Voltado apenas para integrar soluçoes da própria
 IBM.}
 
 \subsubsection{JBoss SSO}
 
-Faz parte da suíte de soluções JBoss SOA, permite single sign-on e sign-off e
+Faz parte da suíte de soluções JBoss SOA, permite single sign-on, sign-off e
 acesso federado a múltiplas aplicações e recursos computacionais em rede.
 
 Dentre várias funcionalidades o JBoss SSO inclue:
 
 \begin{itemize}
-  \item{Interação entre aplicações e módulos baseados no padrão SAML}
+  \item{Integração entre aplicações e módulos baseados no padrão SAML}
   \item{Abordagem descentralizada}
   \item{Habilidade de conectar a diferentes sistemas de armazenamento}
 \end{itemize}
@@ -328,9 +328,9 @@ Mais em:
 \subsubsection{JOSSO}
 
 Java Open Single Sign On (JOSSO) é uma solução de SSO para aplicações Web.
-Baseado em Java EE. O framework permite mútiplos servidores web autenticar
-usuários com suas credenciais. JOSSO se comunica com o armazenamento das
-credenciais por LDAP ou JDBC. Fornece interface via SOAP sob o protocolo HTTP
+Baseado em Java EE, permite mútiplos servidores web autenticar
+usuários através de suas credenciais. JOSSO se comunica com o armazenamento das
+credenciais por LDAP ou JDBC e fornece interface via SOAP sob o protocolo HTTP
 para permitir fácil integração com aplicações não-Java.
 
 Mais em:
@@ -342,12 +342,11 @@ Mais em:
 
 \subsubsection{Kerberos}
 
-Protocolo de autenticação em rede baseado em 'tickets para permitir nós se
-comunicar sob uma rede não-segura para provar sua identidade para outro de
-forma segura. Seus designers objetivaram principalmente como um modelo
-cliente-servidor e isso provê autenticação tanto de usuários quanto de
-servidores. Veja Figura~\ref{fig:kerberos} para exemplo de negociação com o
-Kerberos.
+Protocolo de autenticação em rede baseado em 'tickets', permite comunicação
+entre nós sob uma rede não-segura de forma segura. Foi projetado
+principalmente com um modelo cliente-servidor, isso provê autenticação tanto
+de usuários quanto de servidores. Veja na Figura~\ref{fig:kerberos} um exemplo
+de negociação com o Kerberos.
 
 \begin{figure}[h]
 \center
@@ -366,8 +365,8 @@ Mais em:
 \subsubsection{OpenAM}
 
 Provê single sign-on de forma transparente em infraestrutura de redes. Escrito
-em Java, suporte a mais de 20 tipos de autenticação. Possui suporte a SAML e
-emplementa sistema de autorização baseado em XACML. Veja exemplo na
+em Java, suporte a mais de 20 tipos de autenticação, possui suporte a SAML e
+implementa sistema de autorização baseado em XACML. Veja um exemplo na
 Figura~\ref{fig:opensso} de uso do OpenAM em um portal de viagens.
 
 \begin{figure}[h]
@@ -411,13 +410,13 @@ Linguagem de marcação para definir comunicação sobre autenticação e autori
 Security Assertion Markup Language (SAML) é uma linguagem de marcação baseada
 em XML para troca de dados de autenticação e autorização definido pelo OASIS
 Security Services Technical Committee. O SAML é principalmente desenvolvido
-para ser aplicado em web browser single sign-on.
+para ser aplicado em Web Browser Single Sign-on.
 
 A especificação SAML define 3 papéis:
 \begin{itemize}
-  \item{o principal (tipicamente um usuário)}
-  \item{o provedor de identidade (IdP)}
-  \item{o provedor de serviço (SP)}
+  \item{Principal (geralmente um usuário)}
+  \item{Provedor de identidade (IdP)}
+  \item{Provedor de serviço (SP)}
 \end{itemize}
 
 A interação entre eles está representada na Figura~\ref{fig:saml2}.
@@ -435,7 +434,8 @@ Mais em:
 \end{itemize}
 
 {\bf Avaliação:} {\it Não uma solução de SSO em sí, é suportado por várias
-soluções, é altamente recomendado que a solução adotada suporte este padrão.}
+soluções, é altamente recomendado que a solução adotada no Participa.br
+suporte este padrão.}
 
 \subsubsection{Shibboleth}
 
@@ -452,10 +452,9 @@ iniciativa das universidades do Reuino Unido chamada OpenAthens.}
 
 \subsubsection{ZXID}
 
-kit de gerenciamento de identidade SAML 2.0
-
-Compatícel co SAML 2.0, Liberty ID-WSF 2.0 e XACML 2.0. Implementado em C com
-poucas dependencias externas, com bibliotecas para PHP, Perl e Java via SWIG.
+Kit de gerenciamento de identidade SAML 2.0. Compatícel co SAML 2.0, Liberty
+ID-WSF 2.0 e XACML 2.0. Implementado em C com, possui poucas dependencias
+externas, fornece bibliotecas para PHP, Perl e Java via SWIG.
 
 Mais em:
 \begin{itemize}
@@ -468,15 +467,14 @@ Mais em:
 
 \subsection{O que é IdP?}
 
-Identity Provider, ou Provedor de Identidade, é um serviço responsável por
+Identity Provider, ou Provedor de Identidade, é o serviço responsável por
 gerenciar informações de identidade entre sistemas, usuários ou outros atores,
 provendo através de um módulo interno ou externo serviço de autenticação e
-autorização de forma segura afim de verificar a autenticidade dos atores,
-normalmente usuários.
+autorização, de forma segura, afim de verificar a autenticidade.
 
 Um provedor de identidade fornece uma alternativa para que vários serviços web
 distintos autentiquem seus usuários através dele, de forma que um usuário pode
-ter apenas um login/senha e autentique em vários serviços com este mesmo
+ter apenas um login/senha e autenticar em vários serviços com este mesmo
 login/senha. Isto não implica em Single Sign-on, pois com um provedor de
 identidade apenas o usuário ainda precisa passar por uma etapa de
 autenticação, num ambiente de SSO isto fica transparente e o usuário ao logar
@@ -488,28 +486,16 @@ Uma solução de SSO é composta usualmente de ao menos 3 componentes:
 \begin{itemize}
   \item{Usuário/cliente, geralmente usa-se os termo {\it Principal}}
   \item{Provedor de identidade, {\it IdP - Identity Provider}}
-  \item{Provedor de serviço}
+  \item{Provedor de serviço, {\it SP - Service Provider}}
 \end{itemize}
 
-Neste cenário o usuário autentica apenas uma vez e um token de segurança
-é passado entre os sistemas participantes do ambiente de SSO. Normalmente
-suportam os tipos de token de segurança mais comuns, como:
+Neste cenário o usuário autentica apenas uma vez e um token de segurança é
+passado entre os sistemas participantes do ambiente de SSO. Normalmente
+suportam os tipos de token de segurança mais comuns, como: SAML, SPNEGO,
+X.509.
 
-\begin{itemize}
-  \item{SAML}
-  \item{SPNEGO}
-  \item{X.509}
-\end{itemize}
-
-Como dito, um provedor de identidade (IdP) sozinho não garante Single Sign-on (SSO), um
-IdP é normalmente parte de um ambiente de SSO, normalmente um primeiro passo
-para ter um ambiente SSO é implantar um serviço de IdP.
-
-Definição de IdP segundo a OASIS:
-
-\begin{itemize}
-  \item{http://en.wikipedia.org/wiki/Identity\_provider}
-\end{itemize}
+Um sistema de provedor de identidade (IdP) é normalmente parte de um ambiente
+de SSO, usualmente é um primeiro passo para se ter Single Sign-on.
 
 Mais sobre Identity Provider e os diversos conceitos envolvidos podem ser
 encontrados em:
@@ -520,27 +506,23 @@ encontrados em:
 
 \subsection{IdP no Noosfero}
 
-O Noosfero não implementa oficialmente integração de nenhum protocolo ou
+O Noosfero não implementa oficialmente integração com nenhum protocolo ou
 tecnologia de provedor de identidade, no entando existe uma implementação
-não-oficial em uso na rede Cirandas.net~\footnote{http://cirandas.net} de uso
-do OAuth e do Mozilla Persona, o código fonte desta implementação não-oficial,
-ainda não integrada ao repositório oficial do Noosfero na seguinte URL:
+não-oficial em uso na rede Cirandas.net\footnote{http://cirandas.net} de uso
+do OAuth e Mozilla Persona, o código fonte desta implementação, ainda não
+integrada ao repositório oficial do Noosfero, encontra-se em:
 
 \begin{itemize}
   \item{https://github.com/CIRANDAS/noosfero-ecosol/tree/master/plugins/oauth}
 \end{itemize}
 
-\subsection{Resolve qual problema?}
+\subsection{Qual problema IdP resolve?}
 
-Um usuário criar apenas um registro login/senha e acessa múltiplos serviços
+Um usuário cria apenas um registro login/senha e acessa múltiplos serviços
 através deste mesmo login/senha, sem necessidade de ter várias senhas em cada
-serviço Web que deseje acessar, isso facilita por exemplo quando o usuário
-precisa alterar sua senha, pois em apenas um único ponto ele altera a senha de
-acesso a diversos sistemas, de uma só vez.
+serviço Web que deseje acessar.
 
-%\subsection{Como funciona?}
-
-\subsection{Quais soluções existem?}
+\subsection{Quais soluções de IdP existem?}
 
 \subsubsection{Mozilla Persona}
 
@@ -554,152 +536,96 @@ OpenID ou Facebook Connect, mas com algumas diferenças:
   \item{Forte integração com navegadores web}
 \end{itemize}
 
-A motivação pela privacidade está no fato de que um provedor de identidade não
-deve saber quais sites o usuário está se identificando.
+É baseado no protocolo BrowserID, proposto pela própria
+Mozilla\footnote{http://identity.mozilla.com/post/7616727542/introducing-browserid-a-better-way-to-sign-in}.
+A privacidade é um ponto central de preocupação neste protocolo, ele propõe que
+nem o provedor de identidade nem o outros servidores saibam quais sites o
+usuário está acessando.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/Mozilla\_Persona}
-\end{itemize}
-
-Thread sobre SSO com Persona:
-   * https://groups.google.com/forum/\#!topic/mozilla.dev.identity/oNseXZxbVUQ
-
-Baseado no protocolo BrowserID prototipado pela Mozilla.
-* http://identity.mozilla.com/post/7616727542/introducing-browserid-a-better-way-to-sign-in
-
-A Mozilla disponibiliza uma instancia do Persona rodando em:
-
-\begin{itemize}
   \item{https://login.persona.org}
-\end{itemize}
-
-Mas é possível rodar um proprio servidor Persona seguindo a seguinte
-instruções:
-
-\begin{itemize}
   \item{https://developer.mozilla.org/en-US/Persona/Implementing\_a\_Persona\_IdP}
 \end{itemize}
+
+{\bf Avaliação:} {\it Altamente recomendado.}
 
 \subsubsection{OAuth}
 
 OAuth é um padrão aberto para autorização, desenhado especialmente para
-funcionar sob o protocolo HTTP, OAuth essencialmente permite acesso a tokens
-gerados por servidores de autorização. O cliente usa o token de acesso para
-acessar serviços protegidos. Ele é complementar, apesar de distinto, do OpenID.
+funcionar sob o protocolo HTTP, essencialmente permite acesso a tokens gerados
+por servidores de autorização, o cliente usa tal token para acessar serviços
+protegidos. Ele é complementar, apesar de distinto, ao OpenID.
 
-A maioria dos grandes serviços para Web implementam ele, como: Google,
-Facebook, Yahoo, AOL, Microsoft, PayPal, MySpace, and Flickr entre outros.
-Ainda, a maioria dos serviços de email provêem serviço de autorização via
-OAuth.
+A maioria dos grandes serviços para Web implementam OAuth, como: Google,
+Facebook, Yahoo, AOL, Microsoft, PayPal, MySpace, Flickr, entre outros.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/OAuth}
 \end{itemize}
 
-Existem algumas preocupações com o OAuth como descrito no link abaixo, alguns
-dos autores iniciais do protocolo saíram do projeto apontando uma série de
-falhas no protocolo, mas não chegam a recomendar o desuso dele, apenas apontam
-para um novo e melhor caminho que não é possível incluir no OAuth por força
-das organizações que fazem partem do comitê que define o padrão, um deles é o
-Eran Hammer que propôs duas novas soluções, Oz e o Hawk.
+Existem algumas preocupações com o OAuth, alguns dos autores iniciais, como o
+Eran Hammer por exemplo, saíram do projeto
+apontando\footnote{http://hueniverse.com/2012/07/26/oauth-2-0-and-the-road-to-hell}
+uma série de falhas e apontam um novo caminho, como o
+Oz\footnote{https://github.com/hueniverse/oz} e
+Hawk\footnote{https://github.com/hueniverse/hawk} por exemplo, um protocolo de
+autorização e um esquema de autenticação HTTP, respectivamente.
 
-\begin{itemize}
-  \item{http://hueniverse.com/2012/07/26/oauth-2-0-and-the-road-to-hell}
-  \item{https://github.com/hueniverse/oz}
-  \item{https://github.com/hueniverse/hawk}
-\end{itemize}
+{\bf Avaliação:} {\it Apesar dos problemas apontados por alguns
+desenvolvedores do projeto, OAuth é praticamente um padrão e seu uso é
+altamente recomendado no portal de participação Participa.br.}
 
 \subsubsection{OpenID}
 
-Sistema de identificação baseado em URL. Permite autenticação de usuários
-usando parceiros para autenticação, usuários podem criar seu acesso onde
-desejar e logar onde quer que OpenID seja suportado.
+Sistema de identificação baseado em URL, permite autenticação de usuários a
+partir de sistemas de autenticação parceiros, usuários podem criar seu acesso
+onde desejar e logar onde quer que OpenID seja suportado. Alguns exemplos de
+provedores OpenID: Google, Yahoo!, PayPal, BBC, AOL, LiveJournal e MySpace.
 
-Usuários podem criar contas com seu provedor de identidade OpenID preferido e
-então usar sua conta para logar em qualquer outro sistema Web que aceite
-autenticação com OpenID. Alguns provedores de OpenID hoje são: Google, Yahoo!,
-PayPal, BBC, AOL, LiveJournal, MySpace, IBM, etc.
-
-O sistema que influenciou identificação baseado em URL no OpenID foi o LID:
-
-\begin{itemize}
-  \item{http://en.wikipedia.org/wiki/Light-Weight\_Identity}
-\end{itemize}
+No OpenID os usuários são identificados através de URLs, isto foi fortemente
+influencido pelo sistema
+LID\footnote{http://en.wikipedia.org/wiki/Light-Weight\_Identity}, um sistema
+online de gerenciamento de identidade digital desenvolvido como parte do
+NetMesh.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/OpenID}
 \end{itemize}
 
+{\bf Avaliação:} {\it Recomendado.}
+
 \subsubsection{OpenID Connect}
 
-Camada de autenticação em cima do OAuth 2.0, um framework de autorização,
-promovido pelo OpenID Foundation.
+Camada de autenticação em cima do OAuth 2.0 promovido pelo OpenID Foundation.
 
 Mais em:
 \begin{itemize}
   \item{http://en.wikipedia.org/wiki/OpenID\_Connect}
+  \item{http://openid.net/connect}
 \end{itemize}
 
-%% \subsubsection{WS-Federation}
-%% 
-%% Parte da especificação de identificação federada da iniciativa WS-Security:
-%% 
-%% \begin{itemize}
-%%   \item{http://en.wikipedia.org/wiki/WS-Federation}
-%% \end{itemize}
-%% 
-%% WS-Security, WS-Trust e WS-SecurityPolicy provêem um modelo básico de
-%% federação entre provedores de identidade. Estas especificações definem
-%% mecanismos para 
-%% 
-%% WS-Security, WS-Trust, and WS-SecurityPolicy provide a basic model for federation between Identity
-%% Providers and Relying Parties. These specifications define mechanisms for codifying claims (assertions)
-%% about a requestor as security tokens which can be used to protect and authorize web services requests
-%% in accordance with policy. WS-Federation extends this foundation by describing how the claim
-%% transformation model inherent in security token exchanges can enable richer trust relationships and
-%% advanced federation of services. This enables high value scenarios where authorized access to resources
-%% managed in one realm can be provided to security principals whose identities and attributes are
-%% managed in other realms. WS-Federation includes mechanisms for brokering of identity, attribute
-%% discovery and retrieval, authentication and authorization claims between federation partners, and
-%% protecting the privacy of these claims across organizational boundaries. These mechanisms are defined
-%% as extensions to the Security Token Service (STS) model defined in WS-Trust. In addition WS-Federation
-%% defines a mapping of these mechanisms, and the WS-Trust token issuance messages, onto HTTP such
-%% that WS-Federation can be leveraged within Web browser environments. The intention is to provide a
-%% common infrastructure for performing Federated Identity operations for both web services and
-%% browser-based applications. A common protocol provides economies with regard to development,
-%% testing, deployment and maintenance for vendors and customers alike.
-%% 
-%% Fonte: http://download.boulder.ibm.com/ibmdl/pub/software/dw/specs/ws-fed/WS-FederationSpec05282007.pdf?S\_TACT=105AGX04\&S\_CMP=LP
+{\bf Avaliação:} {\it Recomendado.}
 
 \section{Outras iniciativas}
 
 \subsection{OpenAthens - Reino Unido}
 
-Athens, iniciativa do Reino Unido, iniciou em instituições de ensino
-universidades e então pelas instituições de saúde, adota SAML e interfaces via
-Shibboleth. Em funcionamento desde 1996 com mais de 4.5 milhões de contas de
-usuários é usado para prover acesso a mais de 300 serviços web distintos,
-entre universidades e serviços públicos.
-
-Desenvolvido pela empresa Eduserv, uma empresa sem fins lucrativos sediada em
-Bath-UK:
-
-\begin{itemize}
-  \item{http://www.eduserv.org.uk/services/OpenAthens}
-\end{itemize}
-
-O post no link abaixo fornece uma visão clara de como tudo funciona:
-
-\begin{itemize}
-  \item{http://everything2.com/index.pl?node\_id=1888399}
-\end{itemize}
+Iniciativa de implantação de SSO no Reino Unido, iniciou em instituições de
+ensino universidades e então pelas instituições de saúde, adota SAML e
+interfaces via Shibboleth. Em funcionamento desde 1996 com mais de 4.5 milhões
+de contas de usuários, usado para prover acesso a mais de 300 serviços web
+distintos, entre universidades e serviços públicos. Desenvolvido pela empresa
+Eduserv, uma empresa sem fins lucrativos sediada em Bath-UK.
 
 Mais em:
 \begin{itemize}
+  \item{http://www.eduserv.org.uk/services/OpenAthens}
   \item{http://en.wikipedia.org/wiki/Athens\_access\_and\_identity\_management}
+  \item{http://everything2.com/index.pl?node\_id=1888399}
 \end{itemize}
 
 \subsection{Microsoft account}
@@ -748,7 +674,7 @@ sobre permitir usuário controlar como seus recursos serão acessados por
 terceiros.
 
 CAS a partir da versão 3.5 suporta OAuth cliente e
-servidor~\footnote{https://wiki.jasig.org/display/CASUM/OAuth}.
+servidor\footnote{https://wiki.jasig.org/display/CASUM/OAuth}.
 
 CASE: OpenSSO foi utilizado pela CPqD para implantas SSO entre diversar aplicações
 da empresa https://blogs.oracle.com/superpat/entry/opensso\_at\_cpqd
