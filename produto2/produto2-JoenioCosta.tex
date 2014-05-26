@@ -208,6 +208,9 @@ seguinte:
 A implementação oficial do CAS é em Java e é mantido, hoje, pelo grupo
 JASIG\footnote{http://www.jasig.org}, existem implementações oficiais de
 cliente em várias linguagens, como: .NET, PHP, Perl, Apache, etc.
+A partir da versão 3.5 adicionou suporte a
+OAuth\footnote{https://wiki.jasig.org/display/CASUM/OAuth}, tanto cliente
+quanto servidor.
 
 \begin{figure}[h]
 \center
@@ -217,16 +220,16 @@ cliente em várias linguagens, como: .NET, PHP, Perl, Apache, etc.
 \end{figure}
 
 O artigo {\it Approaches and challenges for a single sign-on enabled extranet
-using Jasig CAS} descreve a experiência em configurar single sign-on em um
-ambiente de intranet usando o CAS e outros software livres, e faz uma boa
-avaliação das tecnologias envolvidas, como OpenID, OAuth, etc.
+using Jasig
+CAS}\footnote{http://openidentity.eu/2013/media/09\_Holzschuher\_Peinl\_2013\_SSO\_extranet\_CAS\_LNI.pdf}
+descreve a experiência em configurar single sign-on em um ambiente de intranet
+usando o CAS e outros software livres, e faz uma boa avaliação das tecnologias
+envolvidas, como OpenID, OAuth, etc.
 
-\begin{itemize}
-  \item{http://openidentity.eu/2013/media/09\_Holzschuher\_Peinl\_2013\_SSO\_extranet\_CAS\_LNI.pdf}
-\end{itemize}
-
-%http://rubycas.github.io
-%(tem pacote Debian)
+CAS centraliza a autenticação e é recomendável de ser utilizado quando todas
+as aplicações autenticam numa mesma base de credenciais de autenticação. É
+geralmente a melhor escolha para grandes organizações, onde se quer
+centralizar a base de usuários, como universidades por exemplo.
 
 Mais em:
 \begin{itemize}
@@ -256,7 +259,7 @@ Mais em:
   \item{https://wiki.debian.org/DebianSingleSignOn}
 \end{itemize}
 
-{\bf Avaliação:} {\it ?????.}
+{\bf Avaliação:} {\it Recomendado.}
 
 \subsubsection{Enterprise Sign On Engine}
 
@@ -375,6 +378,14 @@ Figura~\ref{fig:opensso} de uso do OpenAM em um portal de viagens.
 \caption{Exemplo de federação com OpenAM para um portal de viagens}
 \label{fig:opensso}
 \end{figure}
+
+O OpenSSO, projeto que deu origem ao OpenAM, foi utilizado pela CPqD para
+implantar Single Sign-on entre diversas aplicações e é um bom caso de uso
+desta plataforma em um ambiente real, mais detalhes no link abaixo:
+
+\begin{itemize}
+  \item{https://blogs.oracle.com/superpat/entry/opensso\_at\_cpqd}
+\end{itemize}
 
 Mais em:
 \begin{itemize}
@@ -558,8 +569,11 @@ funcionar sob o protocolo HTTP, essencialmente permite acesso a tokens gerados
 por servidores de autorização, o cliente usa tal token para acessar serviços
 protegidos. Ele é complementar, apesar de distinto, ao OpenID.
 
-A maioria dos grandes serviços para Web implementam OAuth, como: Google,
-Facebook, Yahoo, AOL, Microsoft, PayPal, MySpace, Flickr, entre outros.
+OAuth autoriza, por exemplo, que um site X possa efetuar autenticação a partir
+de um serviço de autenticação Y. Ele permite que os usuários controlem como os seus
+recursos serão acessados por terceiros. A maioria dos grandes serviços para
+Web implementam OAuth, como: Google, Facebook, Yahoo, AOL, Microsoft, PayPal,
+MySpace e Flickr.
 
 Mais em:
 \begin{itemize}
@@ -590,6 +604,11 @@ influencido pelo sistema
 LID\footnote{http://en.wikipedia.org/wiki/Light-Weight\_Identity}, um sistema
 online de gerenciamento de identidade digital desenvolvido como parte do
 NetMesh.
+
+OpenID decentraliza a autenticação, recomenda-se seu uso quando se quer
+aceitar login de qualquer provedor OpenID, mas esse comportamento pode ser
+alterado configurando a aplicação para restringir quais provedores OpenID são
+aceitos.
 
 Mais em:
 \begin{itemize}
@@ -643,10 +662,10 @@ Mais em:
 
 \subsection{Liberty Alliance}
 
-Iniciativa entre organizações para promover padrões de federação, IGF,
-serviços de identidade, etc... submeteu para o OASIS Group a especificação do
-SAML 2.0, propôs uma séries de soluções como: OpenAz, ZXID, etc... As
-iniciativas deste grupo hoje estão sendo mantidas pelo Kantara Initiative.
+Iniciativa para promover padrões de federação, IGF, serviços de identidade,
+etc. Submeteu para o OASIS Group a especificação do SAML 2.0, propôs uma
+séries de soluções como OpenAz e ZXID por exemplo. As iniciativas deste grupo
+hoje estão sendo mantidas pelo Kantara Initiative.
 
 Mais em:
 \begin{itemize}
@@ -656,38 +675,17 @@ Mais em:
 
 \section{Discussão}
 
-Discussao sobre CAS x OAuth:
-* http://stackoverflow.com/questions/2033026/sso-with-cas-or-oauth/3181557\#3181557
-
-CAS centraliza a autenticação, deve ser usado quando todas as aplicações
-autenticam numa mesma base de credenciais usuário/senha de usuários.
-
-OpenID decentraliza a autenticação, deve ser usado para aceitar login de
-qualquer provedor OpenID, mas a aplicação pode restringir quais provedores
-OpenID aceitar no entando.
-
-Nem CAS nem OpenID lidam com autorização nativamente.
-
-OAuth lida com autorização, autoriza por exemplo que um site X possa efetuar
-autenticação a partir de um serviço de autenticação de terceiros Y. OAuth é
-sobre permitir usuário controlar como seus recursos serão acessados por
-terceiros.
-
-CAS a partir da versão 3.5 suporta OAuth cliente e
-servidor\footnote{https://wiki.jasig.org/display/CASUM/OAuth}.
-
-CASE: OpenSSO foi utilizado pela CPqD para implantas SSO entre diversar aplicações
-da empresa https://blogs.oracle.com/superpat/entry/opensso\_at\_cpqd
-
-CAS é geralmente a escolhe preferida para grande organizações, onde se quer
-centralizar a base de usuários, exemplo universidades.
-
-Falha grave de segurança:
-* http://research.microsoft.com/apps/pubs/default.aspx?id=160659
-
-Discussao na visao do pessoal do DACS sobre o porque SSO é pouco adotado no
-geral:
-* http://dacs.dss.ca/about.html
+%Discussao sobre CAS x OAuth:
+%* http://stackoverflow.com/questions/2033026/sso-with-cas-or-oauth/3181557\#3181557
+%
+%Nem CAS nem OpenID lidam com autorização nativamente.
+%
+%Falha grave de segurança:
+%* http://research.microsoft.com/apps/pubs/default.aspx?id=160659
+%
+%Discussao na visao do pessoal do DACS sobre o porque SSO é pouco adotado no
+%geral:
+%* http://dacs.dss.ca/about.html
 
 \subsection{Iniciativas (Governo e Comunidade)}
 
@@ -696,12 +694,15 @@ geral:
 Projeto piloto desenvolvido pela PROCERGS de um provedor de identidade com
 base em OAuth para os serviços do governo do estado do Rio Grande do Sul.
 
-Instancia do Login Cidadão rodandm em:
+Uma instancia do Login Cidadão pode ser encontrada em:
+
 \begin{itemize}
   \item{https://meu.rs.gov.br}
 \end{itemize}
 
-Código fonte, projeto desenvolvido em PHP com framework symfony:
+Código fonte do projeto desenvolvido em PHP com base no framework symfony pode
+ser obtido a partir do seguinte link:
+
 \begin{itemize}
   \item{https://github.com/PROCERGS/login-cidadao}
 \end{itemize}
@@ -709,6 +710,7 @@ Código fonte, projeto desenvolvido em PHP com framework symfony:
 A equipe responsável pelo Login Cidadão esteve no Fisl15 apresentando a
 palestra "Login Cidadão: Uma conta. Tudo o que o governo oferece", o vídeo
 está disponível através do link abaixo:
+
 \begin{itemize}
   \item{http://hemingway.softwarelivre.org/fisl15/high/41f/sala41f-high-201405081612.ogv}
 \end{itemize}
@@ -723,20 +725,20 @@ projeto é desenvolvido em Python e o código-fonte está disponível em:
 \end{itemize}
 
 Esta implementação foi posteriormente aproveitada pelo projeto Mapas Culturais
-do Estado de São Paulo e hoje está sendo utilizado neste projeto, o código
-utilizado neste projeto está em:
+do Estado de São Paulo e desde então tem sido sendo utilizada por este
+projeto, o código fonte pode ser encontrado em:
+
 \begin{itemize}
   \item{https://github.com/hacklabr/mapasculturais-openid}
 \end{itemize}
 
 \subsection{Proposta para o Participa.BR}
 
-Qual caminho tomar?
+%Qual caminho tomar?
 
-Neste contexto de SSO, o Participa.BR tem a necessidade de criar um
-arranjo de confiança entre alguns sites relacionados ao projeto, inicialmente
-estes os sites que farão parte deste arranjo são, além do próprio Participa.br
-são:
+O Participa.BR tem a necessidade de criar um arranjo de confiança entre alguns
+sites parceiros, neste arranjo de confiança um ambiente de Single Sign-on será
+implementado, os sites parceiros são:
 
 \begin{itemize}
   \item{Participatório (gov)}
@@ -744,40 +746,47 @@ são:
   \item{Cultura Educa (cc/org)}
 \end{itemize}
 
-Assim que implementado conectaríamos estes sites acima.
+%Assim que implementado conectaríamos estes sites acima.
+%O caminho de implementação pode ser SLTI (gov) ou Serpro (gov/com).
 
-O caminho de implementação pode ser SLTI (gov) ou Serpro (gov/com).
+Para isso propõe-se dividir o trabalho em duas etapas:
 
-Existem 2 caminhos distintos a adotar:
-1) Implementar SSO logo de cara, usar OpenAM ou alguma outra solução de SSO; ou
-2) Implementar apenas um provedor de identidade, com base no banco do
-Participa.br, e permitir que os sites do arranjo loguem através disso
+\begin{enumerate}
+  \item{Implementar um provedor de identidade}
+  \item{Implementar SSO  usando umas das soluções recomendadas}
+\end{enumerate}
 
-A opção 2) se mostra mais interessante, uma vez que ela é inicialmente menos
-custosa de implementar, e parte do trabalho (senão todo o trabalho) é
-aproveitado ao se implementar SSO de verdade futuramente.
+Esta estratégia permite ter com pouco investimento um provedor de identidade
+em produção sendo utilizado pelos sites parceiros, o que já proporciona grande
+parte do que se espera de um ambiente de Single Sign-on.
 
-Dentre as opções pesquisadas, Mozilla Persona se mostra bastante interessante,
-uma vez que utiliza um identificador de usuário em formato de email
-usuario@dominio.com, ao invés de uma URL como é feito no OpenID
-http://dominio.com/usuario
+Lembrando que o desenvolvimento de um provedor de identidade envolve
+implementação tanto do lado do Participa.BR quanto do lado dos sites
+parceiros, então é importante lembrar que será preciso contar também com a
+colaboração das equipes que mantém tais sites.
 
-O OpenAM como solução mostra por outro lado uma grande vantagem pois é uma
-tecnologia já adotada pelo Serpro, o que facalitaria bastante sua implantação
-caso a solução seja implementada por esta instituição.
+Nesta proposta o Participa.BR será o provedor de identidade, os sites
+parceiros serão clientes. Os usuários de tais sites poderão efetuar login
+através de seus usuários no Participa.BR.
 
-OpenAM, provê uma solução completa, provedor de identidade, single sign-on, em
-um só pacote, seria necessário apenas implementar no Noosfero uma forma de
-autenticar através da base do OpenAM.
+A partir daí, já com o Participa.BR sendo um provedor de identidade, inicia-se
+o desenvolvimento da segunda etapa que é implementar SSO real usando uma das
+opções recomendadas. Dentre as opções recomendadas, destaca-se:
 
-A alternativa mais apropriada é implementar inicialmente suporte a OAuth,
-OpenID ou Mozilla Persona no Noosfero, implementar tanto o lado cliente quando
-o lado servidor (provider), isto irá fornecer a infraestrutura básica para num
-segundo momento implementar Single Sign-on de verdade.
+\begin{itemize}
+  \item{CAS}
+  \item{DACS}
+  \item{OpenAM}
+\end{itemize}
 
-O OpenAM tem suporte a OAuth, OpenID Connect, então é inteiramente possível
-aproventar o trabalho feito no momento que for implantar SSO de verdade usando
-OpenAM, caso seja esta a solução eleita.
+A decisão de qual plataforma utilizar depende de fatores que fogem ao escopo
+deste documento, um deles é a experiência da equipe que irá implementar tal
+solução. Que poderá influenciar fortemente por uma ou outra solução.
+
+Com isso fica a proposta final de se implementar no portal de participação
+social Participa.BR ao menos suporte à provedor de identidade usando Mozilla
+Persona e também OAuth e posteriormente Single Sign-on através de CAS, DACS ou
+OpenAM.
 
 \section{Considerações finais}
 
