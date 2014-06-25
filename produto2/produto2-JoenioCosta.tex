@@ -25,7 +25,6 @@
 \cfoot{}
 \rfoot{\thepage /\pageref{LastPage}}
 \hyphenation{par-ti-ci-pa-ção}
-\bibliographystyle{ieeetr}
 
 \newcommand{\MyName}{Joenio Marques da Costa}
 \newcommand{\MyEmail}{joenio@colivre.coop.br}
@@ -40,6 +39,7 @@
 }
 \newcommand{\MesEntrega}{Abril de 2014}
 \newcommand{\DiaEntrega}{21}
+\bibliographystyle{ieeetr}{}
 
 \begin{document}
 \lstset{language=Ruby}
@@ -76,10 +76,10 @@ dos outros sistemas que façam parte deste mesmo ambiente.
 Usualmente, ambientes SSO compartilham servidores de autenticação para servir
 cada aplicação, com objetivo de autenticar e garantir que usuários não
 necessitem entrar com suas credenciais de autenticação mais de uma
-vez\footnote{http://en.wikipedia.org/wiki/Single\_sign-on}. Estes servidores
+vez\cite{wikipediaSingleSignOn}. Estes servidores
 fornecem serviços de autenticação em rede para aplicações externas, a
 autenticação pode ser feita por diversos métodos, mas normalmente usa-se
-usuário/senha\footnote{http://en.wikipedia.org/wiki/Authentication\_server} em
+usuário/senha\cite{wikipediaAuthenticationServer} em
 aplicações Web.
 
 O uso de SSO aumenta drasticamente o impacto negativo em caso de roubo de
@@ -121,32 +121,27 @@ necessidade de fornecer seus dados de acesso uma segunda vez.
 
 A solução para esta questão precisa lidar com uma política segurança e
 privacidade implementada nos Navegadores Web, esta política, chamada Same
-Origin Policy\footnote{https://en.wikipedia.org/wiki/Same-origin\_policy} é
+Origin Policy\cite{wikipediaSameOriginPolicy} é
 uma recomendação do W3C e previne que documentos em diferentes domínios afetem
 e compartilhem dados com outros domínios, isso previne, por exemplo, ataques de
 cross-site scripting.
 
 Inúmeras soluções foram propostas para contornar esta política, JSONP, CORS,
-easyXDM, entre
-outras\footnote{http://stackoverflow.com/questions/7094967/single-sign-on-with-ajax-in-same-origin-policy-world-effective-solutions}, todas elas se tornaram obsoletas após a recomendação do
-W3C chamada "Web Messaging"\footnote{http://www.w3.org/TR/webmessaging/}, uma
-técnica que permite documentos em diferentes domínios compartilhar dados. A
-maioria dos Navegadores Web atuais implementam Web
-Messaging\footnote{http://en.wikipedia.org/wiki/Web\_Messaging}.
-
-% Ver mais em:
-% http://security.stackexchange.com/questions/36753/designing-single-sign-on-with-jsonp-cors
-% Exemplo simples e prático sobre funcionamento do Web Messaging:
-% http://openblog.github.io/2013/02/25/html5-web-messaging-api/
+easyXDM, entre outras\cite{stackoverflowAjax}, todas elas se tornaram
+obsoletas após a recomendação do W3C chamada "Web
+Messaging"\cite{w3cWebmessaging}, uma técnica que permite documentos em
+diferentes domínios compartilhar dados. A maioria dos Navegadores Web atuais
+implementam Web Messaging\cite{wikipediaWebmessaging}
+\cite{stackexchangeJSONP} \cite{webMessagingOpenBlog}.
 
 \subsection{Como SSO funciona?}
 
 Existem muitas formas de implementar SSO: Kerberos, Smart card, CAS, OTP,
 entre outras, cada uma com sua própria
-estratégia\footnote{http://www.opengroup.org/security/sso/sso\_intro.htm}. A solução
-SiteMinder\footnote{http://www.ca.com/br/products/detail/ca-siteminder.aspx}
+estratégia\cite{opengroupSSO}. A solução
+SiteMinder\cite{siteminderCA}
 da "CA Technologies", por exemplo, implementa SSO da seguinte
-forma\footnote{http://support.ca.com/cadocs/0/CA\%20SiteMinder\%20r12\%205-ENU/Bookshelf\_Files/HTML/idocs/256655.html}:
+forma\cite{siteminderDOCS}:
 
 \begin{itemize}
   \item{Usuário autentica uma vez}
@@ -206,11 +201,9 @@ seguinte:
 \end{itemize}
 
 A implementação oficial do CAS é em Java e é mantido, hoje, pelo grupo
-JASIG\footnote{http://www.jasig.org}, existem implementações oficiais de
-cliente em várias linguagens, como: .NET, PHP, Perl, Apache, etc.
-A partir da versão 3.5 adicionou suporte a
-OAuth\footnote{https://wiki.jasig.org/display/CASUM/OAuth}, tanto cliente
-quanto servidor.
+JASIG\cite{jasigSite}, existem implementações oficiais de cliente em várias
+linguagens, como: .NET, PHP, Perl, Apache, etc.  A partir da versão 3.5
+adicionou suporte a OAuth\cite{oauthJasig}, tanto cliente quanto servidor.
 
 \begin{figure}[h]
 \center
@@ -220,11 +213,10 @@ quanto servidor.
 \end{figure}
 
 O artigo {\it Approaches and challenges for a single sign-on enabled extranet
-using Jasig
-CAS}\footnote{http://openidentity.eu/2013/media/09\_Holzschuher\_Peinl\_2013\_SSO\_extranet\_CAS\_LNI.pdf}
-descreve a experiência em configurar single sign-on em um ambiente de intranet
-usando o CAS e outros software livres, e faz uma boa avaliação das tecnologias
-envolvidas, como OpenID, OAuth, etc.
+using Jasig CAS}\cite{approachesAndChallengesSSO} descreve a experiência em
+configurar single sign-on em um ambiente de intranet usando o CAS e outros
+software livres, e faz uma boa avaliação das tecnologias envolvidas, como
+OpenID, OAuth, etc.
 
 CAS centraliza a autenticação e é recomendável de ser utilizado quando todas
 as aplicações autenticam numa mesma base de credenciais de autenticação. É
@@ -246,9 +238,7 @@ etc. É uma opção recomendada.}
 DACS é um sistema de SSO leve combinado com mecanismos de autenticação e
 controle de acesso para Web escrito em C/C++. Possui suporte para integrar com
 diversos mecanismos de autenticação, como X.509, PAM, LDAP, etc. Possui módulo
-de autenticação para servidor Web Apache.
-
-%http://pdf.aminer.org/000/309/229/a_single_sign_on_protocol_for_distributed_web_applications_based.pdf
+de autenticação para servidor Web Apache\cite{webServicesRoleBased}.
 
 O Debian utiliza DACS para prover SSO entre alguns dos seus servidores de
 desenvolvimento do projeto.
@@ -265,7 +255,7 @@ Mais em:
 
 Plataforma de SSO, controle de acesso e federação compatível com SAML 2.0
 e parcialmente compatível com
-XACML\footnote{http://en.wikipedia.org/wiki/XACML}.
+XACML\cite{wikipediaXACML}.
 
 Desenvolvido em Java, possui suporte a Tomcat, Apache e IIS.
 
@@ -519,7 +509,7 @@ encontrados em:
 
 O Noosfero não implementa oficialmente integração com nenhum protocolo ou
 tecnologia de provedor de identidade, no entando existe uma implementação
-não-oficial em uso na rede Cirandas.net\footnote{http://cirandas.net} de uso
+não-oficial em uso na rede Cirandas.net\cite{cirandasNET} de uso
 do OAuth e Mozilla Persona, o código fonte desta implementação, ainda não
 integrada ao repositório oficial do Noosfero, encontra-se em:
 
@@ -548,10 +538,9 @@ OpenID ou Facebook Connect, mas com algumas diferenças:
 \end{itemize}
 
 É baseado no protocolo BrowserID, proposto pela própria
-Mozilla\footnote{http://identity.mozilla.com/post/7616727542/introducing-browserid-a-better-way-to-sign-in}.
-A privacidade é um ponto central de preocupação neste protocolo, ele propõe que
-nem o provedor de identidade nem o outros servidores saibam quais sites o
-usuário está acessando.
+Mozilla\cite{introBrowserID}.  A privacidade é um ponto central de preocupação
+neste protocolo, ele propõe que nem o provedor de identidade nem o outros
+servidores saibam quais sites o usuário está acessando.
 
 Mais em:
 \begin{itemize}
@@ -581,12 +570,10 @@ Mais em:
 \end{itemize}
 
 Existem algumas preocupações com o OAuth, alguns dos autores iniciais, como o
-Eran Hammer por exemplo, saíram do projeto
-apontando\footnote{http://hueniverse.com/2012/07/26/oauth-2-0-and-the-road-to-hell}
-uma série de falhas e apontam um novo caminho, como o
-Oz\footnote{https://github.com/hueniverse/oz} e
-Hawk\footnote{https://github.com/hueniverse/hawk} por exemplo, um protocolo de
-autorização e um esquema de autenticação HTTP, respectivamente.
+Eran Hammer por exemplo, saíram do projeto apontando\cite{oauthRoadHell} uma
+série de falhas e apontam um novo caminho, como o Oz\cite{ozProtocol} e
+Hawk\cite{hawkProtocol} por exemplo, um protocolo de autorização e um esquema
+de autenticação HTTP, respectivamente.
 
 {\bf Avaliação:} {\it Apesar dos problemas apontados por alguns
 desenvolvedores do projeto, OAuth é praticamente um padrão e seu uso é
@@ -600,10 +587,8 @@ onde desejar e logar onde quer que OpenID seja suportado. Alguns exemplos de
 provedores OpenID: Google, Yahoo!, PayPal, BBC, AOL, LiveJournal e MySpace.
 
 No OpenID os usuários são identificados através de URLs, isto foi fortemente
-influencido pelo sistema
-LID\footnote{http://en.wikipedia.org/wiki/Light-Weight\_Identity}, um sistema
-online de gerenciamento de identidade digital desenvolvido como parte do
-NetMesh.
+influencido pelo sistema LID\cite{wikipediaLID}, um sistema online de
+gerenciamento de identidade digital desenvolvido como parte do NetMesh.
 
 OpenID decentraliza a autenticação, recomenda-se seu uso quando se quer
 aceitar login de qualquer provedor OpenID, mas esse comportamento pode ser
@@ -797,6 +782,8 @@ consulta e participação popular na discussão e na definição da agenda
 prioritária do país, é necessário que além de documentação faça-se um esforço
 de movimentar as pessoar fora do ambiente virtual, para que haja um
 engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+\bibliography{bibliografia}
 
 \vspace{1cm}
 
