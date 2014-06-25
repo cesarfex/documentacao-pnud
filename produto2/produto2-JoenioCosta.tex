@@ -750,9 +750,21 @@ implementação tanto do lado do Participa.BR quanto do lado dos sites
 parceiros, então é importante lembrar que será preciso contar também com a
 colaboração das equipes que mantém tais sites.
 
-Nesta proposta o Participa.BR será o provedor de identidade, os sites
+Nesta proposta o Participa.BR será o provedor de identidade e os sites
 parceiros serão clientes. Os usuários de tais sites poderão efetuar login
 através de seus usuários no Participa.BR.
+
+A melhor opção para implementar este provedor é o Mozilla Persona e o OAuth, o
+Mozilla Persona por ter uma grande preocupação com a privacidade do usuário
+onde não toma conhecimento e nem armazena quais sites o usuário visita e
+o OAuth por ser amplamente adotado e possuir inúmeras implementações em
+diversas linguagens, o que facilita bastante sua implementação. O Mozilla
+Persona tem uma vantagem adicional, que apesar de ser uma vantagem estética
+deve ser levada em consideração, a identificação de um usuário através do
+Mozilla Persona é no formato nome@provedor, semelhante à um endereço de email,
+isto é de fato a melhor forma de identificar alguém na internet, é
+semanticamente auto-explicativo e por sí já é um formato bastante adequado
+para ambientes federados.
 
 A partir daí, já com o Participa.BR sendo um provedor de identidade, inicia-se
 o desenvolvimento da segunda etapa que é implementar SSO real usando uma das
@@ -768,10 +780,27 @@ A decisão de qual plataforma utilizar depende de fatores que fogem ao escopo
 deste documento, um deles é a experiência da equipe que irá implementar tal
 solução. Que poderá influenciar fortemente por uma ou outra solução.
 
-Com isso fica a proposta final de se implementar no portal de participação
-social Participa.BR ao menos suporte à provedor de identidade usando Mozilla
-Persona e também OAuth e posteriormente Single Sign-on através de CAS, DACS ou
-OpenAM.
+Mas a princípio é importante destacar as vantagens de cada solução, o CAS é um
+protocolo extremamente maduro para federação com uma implementação de mesmo
+nome mantido pelo grupo Jasig, tal implementação é bastante difundida, tendo
+seu último release v4.0.0 lançado em Maio de 2014, portanto em desenvolvimento
+ativo. O projetos DACS é um sistema leve de SSO escrito em C/C++, ele é
+utilizado pelo projeto Debian, um projeto de desenvolvimento de um sistema
+operacional baseado em GNU/Linux, o Debian é um grande projeto com uma equipe
+altamente especializada, o uso do DACS por parte deste projeto é um sinal de
+maturidade do DACS e um bom caso de sucesso de uso desta ferramenta, por conta
+disto ele está entre as soluções recomendadas. O OpenAM é uma implementação em
+Java para federação com suporte a Single Sign-on, madura, amplamente
+utilizada, possui suporte a mais de vinte tipos de autenticação, dentre elas
+LDAP, suporte a autorização via OAuth, o que casa perfeitamente com a proposta
+de implementar no Participa.BR um provedor de OAuth.
+
+Resumindo, a solução de SSO para o Participa.BR será composta de Mozilla
+Persona e OAuth como provedores de identidade. E CAS, DACS ou OpenAM como
+plataforma de Single Sign-on integrando com o provedor de identidade
+previamente implementado. Novamente destaco que qualquer das solução de SSO
+listadas acima atendem às necessidades do projeto Participa.BR e a escolha
+dependerá da experiência da equipe que desenvolverá tal solução.
 
 \section{Considerações finais}
 
