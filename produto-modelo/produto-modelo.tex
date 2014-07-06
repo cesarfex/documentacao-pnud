@@ -1,0 +1,184 @@
+\documentclass[12pt]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage[T1]{fontenc}
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyvrb}
+\pagestyle{fancy}
+%\usepackage[scaled=0.92]{helvet}
+%\normalfont
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+%\setlength{\headsep}{30pt}
+%\setlength{\textheight}{550pt}
+
+
+% cabecalho
+\setlength{\headheight}{120pt}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{\includegraphics[scale=0.03]{brasao.png}}
+\rhead{\includegraphics[scale=0.4]{logo-pnud.png}}
+\cfoot{}
+
+\rfoot{\thepage}
+
+\hyphenation{par-ti-ci-pa-ção}
+\bibliographystyle{ieeetr}
+
+\newcommand{\MyName}{Joenio Marques da Costa}
+\newcommand{\MySurnameForename}{Costa, Joenio}
+\newcommand{\SupervisorName}{Ricardo Poppi???}
+\newcommand{\MyEmail}{joenio@colivre.coop.br}
+\newcommand{\ContractNumber}{2013/000564}
+\newcommand{\ContractYear}{2014 ???}
+\newcommand{\ProjectCode}{Projeto BRA/12/018}
+
+
+\newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
+\newcommand{\SiglaSecretaria}{SG/PR}
+\newcommand{\ProductNumber}{03}
+\newcommand{\ProductTitle}{Título do Produto}
+\newcommand{\ProductSubtitle}{Subtítulo do Produto}
+\newcommand{\ProductDescription}{"Documento com proposta para desenvolvimento
+        do código de 2 aplicativos para as trilhas de participação social
+        priorizados nas reuniões do projeto contendo exemplos e códigos."
+}
+\newcommand{\ProductValue}{R\$ xx,xx (por extenso)}
+\newcommand{\ObjetoContratacao}{"Transcrever o objeto da contratação conforme
+  Termo de Referência e/ou contrato."
+}
+\newcommand{\DataEntrega}{?? Julho de 2014}
+
+\begin{document}
+
+%\lstset{language=Ruby}
+%\definecolor{light-gray}{gray}{0.95}
+%\lstdefinestyle{codeFrame}{backgroundcolor=\color{light-gray},frame=lines}
+
+\input{folhaderosto.tex}
+
+
+
+
+\input{folhadeaprovacao.tex}
+
+\input{folhadeidentificacao.tex}
+
+
+%\input{identificacao.tex}
+%\clearpage
+
+\tableofcontents
+\clearpage
+
+\listoffigures
+\clearpage
+
+\begin{abstract}
+The software architecture of a computer program represents the basic structure
+and the externally visible relationships of those components. The documentation
+of this architecture is of great importance to monitor and evaluate the
+evolution of a system and to measure their attributes of modularity as coupling
+and cohesion. A tool capable of extracting this documentation automatically
+enables monitor and measure these attributes during the evolution of a software
+project. This paper presents the implementation of a tool for automatic
+extraction of information of dependence between modules for programs written in
+C/C++ with focus on attributes of modularity to monitor the evolution of the
+system. At the end of this paper is done an evaluation of this
+tool through a case study.
+
+{\bf Keywords:} software engineering, metrics, software architecture, coupling,
+cohesion, C, C++, depedency.
+\end{abstract}
+
+\section{Intruducao}
+
+Em consonância com os objetivos e cronograma previsto no âmbito do
+projeto BRA/12/018:
+\textbf{Desenvolvimento de Metodologias de Articulação e Gestão de
+Políticas Públicas para Promoção da Democracia Participativa},
+firmado entre a Secretaria-Geral da Presidência da República
+(SG/PR) e o Programa das Nações Unidas para o Desenvolvimento (PNUD),
+o presente documento apresenta \ProductDescription.
+
+Essa proposta está configurada como produto \ProductNumber~da consultoria técnica
+para especificação da construção dos códigos das metodologias de
+organização da informação e interação participativa do portal de
+participação social.
+
+\section{O Participa.br}
+
+O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
+um espaço para participação social no Brasil, escuta e diálogo entre o Governo
+Federal e a Sociedade Civil. 
+
+A plataforma, totalmente desenvolvida em software livre, tem como missão
+desenvolver práticas inovadoras de participação via internet e oferta de
+espaços de manifestação e debate para qualquer cidadão ou organização, com o
+intuito de construir políticas públicas cada vez mais eficazes e efetivas.
+
+O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
+
+\section{O Noosfero}
+
+O Noosfero é uma plataforma web livre para redes sociais e de economia
+solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
+discussão temática, agenda de eventos e inteligência econômica colaborativa
+num mesmo sistema! O Noosfero utiliza a linguagem de programação Ruby com
+framework Rails e, portanto, suporta bancos de dados, PostgreSQL, MySQL,
+SQLite entre outros.
+
+Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
+License (AGPL), versão 3. 
+
+\section{Aplicativos para trilhas de participação}
+
+O Participa.br utiliza algumas ferramentas como mecanismo de participação,
+essas ferramentas permitem aos usuários da rede contribuir através de
+comentários, votos ou diretamente sugerindo textos e conteúdos.
+
+Estas ferramentas são organizadas em trilhas de participação, uma trilha
+pode utilizar uma ou mais ferramentas e podem ter datas de de início e fim de
+participação, dando assim um fluxo para a participação social.
+
+Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
+para trilha de participação.
+
+\subsection{Comentários por parágrafo}
+
+Comentário por parágrafo o usuário pode comentar em parágrafos específicos de
+um texto sugerindo alterações ou correções, ou mesmo tirando dúvidas.
+
+\subsection{Pairwise}
+
+Votação em pares...
+
+\section{Considerações finais}
+
+Neste documento foi apresentado um \ProductDescription
+
+Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
+consulta e participação popular na discussão e na definição da agenda
+prioritária do país, é necessário que além de documentação faça-se um esforço
+de movimentar as pessoar fora do ambiente virtual, para que haja um
+engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+%\bibliography{bibliografia}
+
+\vspace{1cm}
+
+Sem mais nada a acrescentar, coloco-me à disposição.
+
+\vspace{1cm}
+
+\begin{minipage}{\textwidth}
+  Brasília/DF, \DataEntrega\\[1cm]
+  \textbf{\MyName}\\
+  \small Consultor do PNUD
+\end{minipage}
+
+\end{document}
