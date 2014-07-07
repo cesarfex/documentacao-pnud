@@ -11,7 +11,7 @@
 \usepackage{fancyvrb}
 \usepackage[hmargin=2cm,vmargin=2cm]{geometry}
 \usepackage{lastpage}
-\usepackage[acronym]{glossaries}
+\usepackage{makeidx}
 \pagestyle{fancy}
 
 % cabecalho e rodapé
@@ -51,8 +51,7 @@
 \newcommand{\PalavrasChave}{palavra1, palavra2, palavra3, etc}
 
 % lista de abreviações
-\makeglossaries
-\newacronym{cms}{CMS}{Content Management System}
+\makeindex
 
 \begin{document}
 
@@ -79,7 +78,7 @@ tool through a case study. \\
 \end{abstract}
 \newpage
 
-\section{Intrudução}
+\section{Introdução}
 
 Em consonância com os objetivos e cronograma previsto no âmbito do
 projeto BRA/12/018:
@@ -123,14 +122,15 @@ License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
  
 O Participa.br utiliza algumas ferramentas como mecanismo de participação,
 essas ferramentas permitem aos usuários da rede contribuir através de
-comentários, votos ou diretamente sugerindo textos e conteúdos \acrlong{cms}.
+comentários, votos ou diretamente sugerindo textos e conteúdos \index{cms}.
+%\newacronym{cms}{CMS}{Content Management System}
 
 Estas ferramentas são organizadas em trilhas de participação, uma trilha
 pode utilizar uma ou mais ferramentas e podem ter datas de de início e fim de
-participação, dando assim um fluxo para a participação social \acrshort{cms}
+participação, dando assim um fluxo para a participação social \index{cms}
 
 Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
-para trilha de participação \acrfull{cms}.
+para trilha de participação \index{cms}.
 
 \subsubsection{Comentários por parágrafo}
 
@@ -156,8 +156,8 @@ engajamento no uso e contribuição deste projeto de forma consistente e perene.
 \newpage
 \listoffigures
 \newpage
-\printglossary[type=\acronymtype,title=Abreviações]
+\printindex
 \newpage
-\appendix
+\input{listadeanexos.tex}
 
 \end{document}
