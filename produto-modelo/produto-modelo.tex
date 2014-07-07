@@ -9,26 +9,24 @@
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{fancyvrb}
-\pagestyle{fancy}
-%\usepackage[scaled=0.92]{helvet}
-%\normalfont
 \usepackage[hmargin=2cm,vmargin=2cm]{geometry}
-%\setlength{\headsep}{30pt}
-%\setlength{\textheight}{550pt}
 \usepackage{lastpage}
+\usepackage[acronym]{glossaries}
+\pagestyle{fancy}
 
-% cabecalho
+% cabecalho e rodapé
 \setlength{\headheight}{120pt}
+\setlength{\textheight}{550pt}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{\includegraphics[scale=0.03]{brasao.png}}
 \rhead{\includegraphics[scale=0.4]{logo-pnud.png}}
 \cfoot{}
-
 \rfoot{\thepage}
 
 \hyphenation{par-ti-ci-pa-ção}
 \bibliographystyle{ieeetr}
 
+% definições sobre o autor e o produto
 \newcommand{\MyName}{Joenio Marques da Costa}
 \newcommand{\MySurnameForename}{Costa, Joenio}
 \newcommand{\SupervisorName}{Ricardo Poppi???}
@@ -52,29 +50,17 @@
 \newcommand{\DataEntrega}{?? Julho de 2014}
 \newcommand{\PalavrasChave}{palavra1, palavra2, palavra3, etc}
 
-
-
-
+% lista de abreviações
+\makeglossaries
+\newacronym{cms}{CMS}{Content Management System}
 
 \begin{document}
-
-%\lstset{language=Ruby}
-%\definecolor{light-gray}{gray}{0.95}
-%\lstdefinestyle{codeFrame}{backgroundcolor=\color{light-gray},frame=lines}
 
 \input{folhaderosto.tex}
 \input{folhadeaprovacao.tex}
 \input{folhadeidentificacao.tex}
-
-
-
-
 \tableofcontents
-
-\clearpage
-
-\listoffigures
-\clearpage
+\newpage
 
 \begin{abstract}
 The software architecture of a computer program represents the basic structure
@@ -87,13 +73,13 @@ project. This paper presents the implementation of a tool for automatic
 extraction of information of dependence between modules for programs written in
 C/C++ with focus on attributes of modularity to monitor the evolution of the
 system. At the end of this paper is done an evaluation of this
-tool through a case study.
+tool through a case study. \\
 
-{\bf Keywords:} software engineering, metrics, software architecture, coupling,
-cohesion, C, C++, depedency.
+{\bf Palavras-chave:} \PalavrasChave.
 \end{abstract}
+\newpage
 
-\section{Intruducao}
+\section{Intrudução}
 
 Em consonância com os objetivos e cronograma previsto no âmbito do
 projeto BRA/12/018:
@@ -108,7 +94,7 @@ para especificação da construção dos códigos das metodologias de
 organização da informação e interação participativa do portal de
 participação social.
 
-\section{O Participa.br}
+\section{Desenvolvimento}
 
 O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
 um espaço para participação social no Brasil, escuta e diálogo entre o Governo
@@ -121,7 +107,7 @@ intuito de construir políticas públicas cada vez mais eficazes e efetivas.
 
 O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
 
-\section{O Noosfero}
+\subsection{O Noosfero}
 
 O Noosfero é uma plataforma web livre para redes sociais e de economia
 solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
@@ -131,31 +117,31 @@ framework Rails e, portanto, suporta bancos de dados, PostgreSQL, MySQL,
 SQLite entre outros.
 
 Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
-License (AGPL), versão 3. 
+License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
 
-\section{Aplicativos para trilhas de participação}
-
+\subsection{Aplicativos para trilhas de participação}
+ 
 O Participa.br utiliza algumas ferramentas como mecanismo de participação,
 essas ferramentas permitem aos usuários da rede contribuir através de
-comentários, votos ou diretamente sugerindo textos e conteúdos.
+comentários, votos ou diretamente sugerindo textos e conteúdos \acrlong{cms}.
 
 Estas ferramentas são organizadas em trilhas de participação, uma trilha
 pode utilizar uma ou mais ferramentas e podem ter datas de de início e fim de
-participação, dando assim um fluxo para a participação social.
+participação, dando assim um fluxo para a participação social \acrshort{cms}
 
 Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
-para trilha de participação.
+para trilha de participação \acrfull{cms}.
 
-\subsection{Comentários por parágrafo}
+\subsubsection{Comentários por parágrafo}
 
 Comentário por parágrafo o usuário pode comentar em parágrafos específicos de
 um texto sugerindo alterações ou correções, ou mesmo tirando dúvidas.
 
-\subsection{Pairwise}
+\subsubsection{Pairwise}
 
 Votação em pares...
 
-\section{Considerações finais}
+\section{Conclusão}
 
 Neste documento foi apresentado um \ProductDescription
 
@@ -165,18 +151,13 @@ prioritária do país, é necessário que além de documentação faça-se um es
 de movimentar as pessoar fora do ambiente virtual, para que haja um
 engajamento no uso e contribuição deste projeto de forma consistente e perene.
 
-%\bibliography{bibliografia}
-
-\vspace{1cm}
-
-Sem mais nada a acrescentar, coloco-me à disposição.
-
-\vspace{1cm}
-
-\begin{minipage}{\textwidth}
-  Brasília/DF, \DataEntrega\\[1cm]
-  \textbf{\MyName}\\
-  \small Consultor do PNUD
-\end{minipage}
+\newpage
+\bibliography{bibliografia}
+\newpage
+\listoffigures
+\newpage
+\printglossary[type=\acronymtype,title=Abreviações]
+\newpage
+\appendix
 
 \end{document}
