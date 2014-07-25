@@ -2,7 +2,6 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{listings}
 \usepackage{graphicx}
-\usepackage[export]{adjustbox}
 \usepackage{fancyhdr}
 \usepackage{framed}
 \usepackage[T1]{fontenc}
@@ -38,8 +37,9 @@
 \newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
 \newcommand{\SiglaSecretaria}{SG/PR}
 \newcommand{\ProductNumber}{03}
-\newcommand{\ProductTitle}{Título do Produto}
-\newcommand{\ProductSubtitle}{Subtítulo do Produto}
+\newcommand{\ProductTitle}{Proposta de ferramentas de participação social}
+\newcommand{\ProductSubtitle}{Ferramenta de elaboração e discussão de
+propostas e ferramenta de votação em pares para o Participa.br}
 \newcommand{\ProductDescription}{"Documento com proposta para desenvolvimento
   do código de 2 aplicativos para as trilhas de participação social
   priorizados nas reuniões do projeto contendo exemplos e códigos."
@@ -49,7 +49,8 @@
   aplicativos do portal da participação social."
 }
 \newcommand{\DataEntrega}{18 de Julho de 2014}
-\newcommand{\PalavrasChave}{palavra1, palavra2, palavra3, etc}
+\newcommand{\PalavrasChave}{consulta, votação, proposta, colaboração,
+ferramentas}
 
 % lista de abreviações
 \makeindex
@@ -63,7 +64,12 @@
 \newpage
 
 \begin{abstract}
-Resumo... \\
+O Participa.br é a plataforma federal de participação social, ela fomenta o
+diálogo entre o governo e sociedade civil. É desenvolvida em softwares livres
+e utiliza o Noosfero como infraestrutura básica em sua construção. A
+plataforma está em constante evolução e este documento traz a proposta de 2
+novas ferramentas com diversas novas funcionalidades para promover a
+participação do cidadão nas decisões e na elaboração de políticas públicas.
 
 {\bf Palavras-chave:} \PalavrasChave.
 \end{abstract}
@@ -146,13 +152,17 @@ para trilha de participação \index{cms}.
 
 \subsubsection{Ferramenta para construção e debates de propostas}
 
-Esta ferramenta é proposta inicialmente para atender a metodologia para a
-consulta de regulamentação do Marco Civil, baseado em requisitos elaborados
-pela equipe do Participa.br em conjunto com o Ministério da Justiça e será
-desenvolvido como um plugin Noosfero.
+Ferramenta proposta inicialmente para atender a consulta de regulamentação do
+Marco Civil da Internet baseada em requisitos elaborados pela equipe do
+Participa.br em conjunto com o Ministério da Justiça, será desenvolvida como
+um plugin Noosfero.
 
-A consulta de regulamentação do Marco Civil ocorrerá a partir de eixos de
-debate, sem um texto base inicial, os eixos são:
+A consulta de regulamentação do Marco Civil da Internet ocorrerá a partir de
+grandes temas chamados eixos de debate, nesta ferramenta cada eixo de debate
+será exibido junto a uma breve explicação do que ele significa e instruções
+básicas de como colaborar. Deve haver também links e artigos relacionados ao
+tema sendo exibidos junto a cada eixo, os eixos de debate para regulamentação
+do Marco Civil da Internet serão os seguintes:
 
 \begin{enumerate}
   \item Neutralidade de rede
@@ -162,13 +172,9 @@ debate, sem um texto base inicial, os eixos são:
   \item Políticas públicas para internet
 \end{enumerate}
 
-Para cada eixo de debate existirá uma breve explicação do que ele significa e
-instruções básicas de como colaborar com ele, além de links para artigos
-relacionados ao Marco Civil.
-
 Os usuários interessados em contribuir para o debate poderão enviar propostas
-para cada um dos eixos, estas propostas serão qualitativas e abertas. Os
-usuários podem enviar quantas propostas quiserem. Cada proposta deverá seguir
+em cada um destes eixos, estas propostas serão qualitativas e abertas. Os
+usuários podem enviar quantas propostas quiserem, as propostas terão o
 o seguinte formato (ver Figura~\ref{fig:formulario-proposta}).
 
 \begin{figure}[h]
@@ -181,32 +187,27 @@ o seguinte formato (ver Figura~\ref{fig:formulario-proposta}).
 \begin{itemize}
   \item Título - 70 caracteres - para ajudar na divulgação nas redes sociais
   \item Resumo - 140 caracteres - para ajudar na divulgação nas redes sociais
-%  \item Tags amplas pré-definidas com interface gameficada: forma de regulamentar, desafio, crítica, etc
   \item Forma de regulamentar - 1000 caracteres
-% (campo customizado) (esta ferramenta deve ter suporte a campos personalizados, forma de regulamentar por exemplo é algo que só faz sentido nesta consulta do Marco Civil por exemplo)
 \end{itemize}
-
-%As propostas irão delimitar os eixos do debate. Propostas podem ser agregadas
-%a partir da perspectiva do resumo. A forma de regulamentar será preservada e
-%acompanhará o autor.
 
 As propostas irão delimitar os eixos do debate e a discussão sobre cada tema
 se dará através da interação dos usuários em cada proposta através de
-comentários por parágrafo ou por trecho. Além claro da possibilidade de
-concordar ou discordar da proposta como um todo.
+comentários por parágrafo ou por trecho. Os usuários poderão também concordar
+ou discordar da proposta sem a necessidade de fazer comentários.
 
-Cada comentário poderá receber tags, estas tags darão semantica ao comentário
-indicando inclusão ou remoção de texto. Desta forma além do próprio conteúdo
-do comentário o usuário poderá também indicar se está sugerindo uma inclusão
-ou remoção de texto daquela proposta.
+Os usuários poderão definir tags em seus comentários, estas tags darão
+semantica ao comentário indicando que a intenção ali é de incluir ou
+excluir um trecho qualquer de texto. A visualização destes comentários
+deve levar em consideração a semantica da tag e exibir elementos visuais
+que tenham relação com o seu significado.
 
-Tuda vez que um usuário interage com uma proposta ele passa a acompanhar as
-modificações daquela proposta através de seu perfil no Participa.br e pode a
-qualquer momento voltar e contribuir com ela.
+Sempre que um usuário interagir com uma proposta ele passa a acompanhar as
+modificações dela através de seu perfil no Participa.br e pode a qualquer
+momento voltar e contribuir com ela.
 
-As propostas de cada eixo de debate formarão uma espécie de fórum de
+As propostas de debate em cada eixo formarão uma espécie de fórum de
 discussão, mas com uma interface diferenciada e simples, com opções de
-ordenação das propostas por vários critérios (ver
+ordenação por diversos critérios (ver
 Figura~\ref{fig:pagina-inicial}). Exemplos de critérios de ordenação:
 
 \begin{figure}[h]
@@ -251,11 +252,10 @@ propostas}
 \label{fig:proposta04}
 \end{figure}
 
-Formas de brincar com essa consulta é ir muito além da mera visualização de
-fórum mas permitir que os usuários filtrem dinamicamente os conteúdos em tempo
-real e interajam com aqueles que mais lhes interessarem. Com isso, pode até
-ser mais interessante não separar em 5 fóruns independentes para cada “eixo”
-da consulta
+A visualização das propostas submetidas pelos usuários será baseada na
+interface do Medium\cite{medium}, onde comentários por trecho ou por
+parágrafos serão exibidos dinamicamente ao lado de cada trecho ou parágrafo,
+como pode ser visto na Figura~\ref{fig:medium}.
 
 \begin{figure}[h]
 \center
@@ -263,19 +263,6 @@ da consulta
 \caption{Proposta de comentários por parágrafo do Medium}
 \label{fig:medium}
 \end{figure}
-
-
--------
-
-Deve ser possível ao administrador da consulta relacionar propostas dentro de
-um mesmo subtema, de forma que facilite a discussão agregando propostas
-similares e também o resultado final que será elaborado a partir desta
-consulta. Propostas agregadas pelo administrador devem ser exibidas para os
-usuários, ou sejam, os usuários devem conseguir identificar que sua proposta
-foi anexada à outra.
-
-Comentário por parágrafo o usuário pode comentar em parágrafos específicos de
-um texto sugerindo alterações ou correções, ou mesmo tirando dúvidas.
 
 \subsubsection{Votação em Pares}
 
@@ -299,7 +286,7 @@ geral a ferramenta funcionará da seguinte forma:
     através da uma interface administrativa
 \end{itemize}
 
-As propostas de idéias inseridas pelo usuários devem ter limite de caracter e
+As propostas de idéias inseridas pelos usuários devem ter limite de caracter e
 a interface deve exibir um contador regressivo indicando quantos caracteres o
 usuário já digitou, sugere-se um limite de 140 caracteres.
 
@@ -352,10 +339,10 @@ University} disponível em:
   \item https://github.com/allourideas/pairwise-api
 \end{itemize}
 
-O pairwise é implementado em {\it Ruby on Rails} e apesar de ser uma ótima
-ferramenta possui uma séria limitação que impede seu uso no Participa.br,
-a impossibilidade de trabalhar com banco de dados PostgreSQL, que é o banco de
-dados já em uso no Participa.br.
+O pairwise é implementado em {\it Ruby on Rails}\cite{wikipediaRails} e apesar
+de ser uma ótima ferramenta possui uma séria limitação que impede seu uso no
+Participa.br, que é a impossibilidade de trabalhar com banco de dados
+PostgreSQL, banco de dados já em uso no Participa.br.
 
 Além disso será necessário adicionar novos métodos para filtrar e ordenar as
 ideias cadastradas pois o pairwise não fornece tal possibilidade e isto é um
@@ -365,17 +352,24 @@ requisito necessário para o Participa.br.
 
 O pairwise fornece toda infraestrutura para votação em pares, os dados são
 armazenados e recuperados através dele, os algoritmos para cálculo de
-relevancia dos votos, a lógica de negócio fica concentrada nele. Mas não
-implementa nenhuma intertface, portanto será necessário implementar uma
-interface para o pairwise no lado do Noosfero como plugin.
+relevancia dos votos, toda lógica de negócio fica concentrada nele.
+
+%Isto
+%permite que 
+%implementa nenhuma intertface, portanto será necessário implementar uma
+%interface para o pairwise no lado do Noosfero como plugin.
 
 É importante destacar que o Noosfero carece de uma melhoria de performance nos
 conteúdos gerados pelos plugins e será necessário otitimizar ao menos um
-mecanismo de cache na aba de resultados exibidos pelo pairwise.
+mecanismo de cache para otimizar o plugin Noosfero do pairwise que será
+desenvolvido, o cache será especialmente importante na aba de resultados
+da votação.
 
-Esta interface irá se comunicar via API com uma instancia do pairwise
-configurada nos servidores do Serpro, a documentação da API pode ser
-encontrada em:
+O plugin Noosfero do pairwise irá implementar uma interface que consome a API
+do próprio pairwise, o pairwise será instalado e configurado pela equipe do
+Participa.br nas mesmas instalações onde hoje está hospedado a plataforma
+Noosfero, e este plugin Noosfero irá se comunicar com esta instancia do
+pairwise a partir de sua API.
 
 \begin{itemize}
   \item https://github.com/allourideas/pairwise-api/wiki/API-Documentation
