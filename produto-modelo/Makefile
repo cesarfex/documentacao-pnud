@@ -1,6 +1,6 @@
 # DOCUMENT VARIABLES
 
-NAME= produto-modelo
+NAME= produto
 
 # PROJECT VARIABLES
 
