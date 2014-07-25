@@ -4,10 +4,8 @@ class PairwisePlugin::PairwiseContent < Article
 
   REASONS_ARRAY = [
      {:text => _("I like both ideas"), :compare => false},
-     {:text => _("I think both ideas are the same"),
-      :compare => false},
-     {:text => _("I don't know enough about either idea"),
-      :compare => false},
+     {:text => _("I think both ideas are the same"), :compare => false},
+     {:text => _("I don't know enough about either idea"), :compare => false},
      {:text => _("I don't like either idea"), :compare => false},
      {:text => _("I don't know enough about: "),:compare => true},
      {:text => _("I just can't decide"),:compare => false}
@@ -164,7 +162,6 @@ class PairwisePlugin::PairwiseContent < Article
       self.pairwise_question_id = @question.id
       toggle_autoactivate_ideas(false)
     else
-      #add new choices
       unless @choices.nil?
         @choices.each do |choice_text|
           begin
@@ -183,7 +180,6 @@ class PairwisePlugin::PairwiseContent < Article
           end
         end
       end
-      # change old choices
       unless @choices_saved.nil?
         @choices_saved.each do |id,data|
           begin
@@ -202,5 +198,4 @@ class PairwisePlugin::PairwiseContent < Article
       end
     end
   end
-
 end

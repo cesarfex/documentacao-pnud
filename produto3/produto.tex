@@ -48,7 +48,7 @@ propostas e ferramenta de votação em pares para o Participa.br}
 \newcommand{\ObjetoContratacao}{"Construção dos códigos para comunidades e
   aplicativos do portal da participação social."
 }
-\newcommand{\DataEntrega}{18 de Julho de 2014}
+\newcommand{\DataEntrega}{25 de Julho de 2014}
 \newcommand{\PalavrasChave}{consulta, votação, proposta, colaboração,
 ferramentas}
 
@@ -93,9 +93,9 @@ Noosfero.
 
 \subsection{O Participa.br}
 
-O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
-um espaço para participação social no Brasil, escuta e diálogo entre o Governo
-Federal e a Sociedade Civil. 
+O Participa.br\cite{participa} é a Plataforma Federal da Participação Social.
+Trata-se de mais um espaço para participação social no Brasil, escuta e
+diálogo entre o Governo Federal e a Sociedade Civil. 
 
 A plataforma, totalmente desenvolvida em software livre, tem como missão
 desenvolver práticas inovadoras de participação via internet e oferta de
@@ -109,12 +109,12 @@ gestores públicos.
 
 \subsection{O Noosfero}
 
-O Noosfero é uma plataforma web livre para redes sociais e de economia
-solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
-discussão temática, agenda de eventos e inteligência econômica colaborativa
-em um mesmo sistema. O Noosfero utiliza a linguagem de programação Ruby com
-framework Rails e suporta bancos de dados, PostgreSQL, MySQL, SQLite entre
-outros.
+O Noosfero\cite{noosfero} é uma plataforma web livre para redes sociais e de
+economia solidária que possui as funcionalidades de Blog, e-Portfolios,
+CMS\index{cms}, RSS\index{rss}, discussão temática, agenda de eventos e
+inteligência econômica colaborativa em um mesmo sistema. O Noosfero utiliza a
+linguagem de programação Ruby\index{ruby} com framework Rails\index{rails}
+e suporta bancos de dados, PostgreSQL\index{postgresql}, MySQL, SQLite entre outros.
 
 Ele tem sido desenvolvido desde 2007 como um Software Livre e é licenciado sob
 a GNU Affero General Public License (AGPL), versão 3.
@@ -127,15 +127,14 @@ ponto central de documentação e gestão de informações a plataforma
 Gitlab\cite{gitlab}.
 
 Cada nova ferramenta desenvolvida parte de uma ideia inicial básica e vai
-amadurecendo através de reuniões presenciais ou remotas entre toda a equipe,
-esta ideia inicial gera especificações em forma textual que posteriormente são
-transformadas em desenhos, a partir destes desenhos com a proposta final da
-funcionalidade a equipe de desenvolvimento da plataforma inicia seu trabalho e
-entrega a funcionalidade tal qual foi desenhada anteriormente.
+sendo amadurecida através de reuniões presenciais ou remotas entre toda a
+equipe, esta ideia gera especificações em forma textual e posteriormente são
+transformadas em desenhos, a partir dos quais a equipe de desenvolvimento
+inicia seu trabalho.
 
 Este documento traz 2 novas propostas de ferramentas e contará com
-especificação textual e modelos desenhos do que será desenvolvido
-posteriormente pela equipe de desenvolvimento.
+especificação textual e modelos visuais que serão posteriormente desenvolvidos
+pela equipe de desenvolvedores.
 
 \subsection{Aplicativos para trilhas de participação}
  
@@ -147,8 +146,8 @@ Estas ferramentas são organizadas em trilhas de participação, uma trilha
 pode utilizar uma ou mais ferramentas e podem ter datas de início e fim de
 participação, dando assim um fluxo para a participação social.
 
-Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
-para trilha de participação \index{cms}.
+Nas próximas seções será apresentado 2 propostas de ferramentas para trilha de
+participação.
 
 \subsubsection{Ferramenta para construção e debates de propostas}
 
@@ -321,43 +320,27 @@ interface de administração contemplando ao menos o seguinte:
   \item Possiblidade de agregar duas propostas mantendo os dois autores
 \end{itemize}
 
-% http://noosfero.org/Development/ActionItem2942
-% https://gitlab.com/participa/noosfero/tree/AI2942-pairwise_plugin/plugins/pairwise
-% https://groups.google.com/forum/#!searchin/participa-dev/pairwise/participa-dev/iO5caqWf_FE/YYZm8SJw6DoJ
-% https://gitlab.com/participa/noosfero/issues/47
-% https://groups.google.com/forum/#!searchin/participa-dev/pairwise/participa-dev/G2dA6vt9C2M/ly3DtyF-Pa0J
-% https://gitlab.com/participa/noosfero/issues/17
-% https://groups.google.com/forum/#!searchin/participa-dev/pairwise/participa-dev/qyHpLqRsx84/y6i7K7GHCicJ
-% https://gitlab.com/participa/noosfero/issues/97
-% https://gitlab.com/participa/noosfero/issues/105
-
-Esta ferramenta será implementada com base na API do pairwise, uma engine para
-votação em pares, desenvolvido pela equipe do {\it Trustees of Princeton
-University} disponível em:
+Esta ferramenta será implementada com base na API\index{api} do pairwise, uma
+engine para votação em pares, desenvolvido pela equipe do {\it Trustees of
+Princeton University} disponível em:
 
 \begin{itemize}
   \item https://github.com/allourideas/pairwise-api
 \end{itemize}
 
-O pairwise é implementado em {\it Ruby on Rails}\cite{wikipediaRails} e apesar
-de ser uma ótima ferramenta possui uma séria limitação que impede seu uso no
-Participa.br, que é a impossibilidade de trabalhar com banco de dados
-PostgreSQL, banco de dados já em uso no Participa.br.
+O pairwise é implementado em {\it Ruby\index{ruby} on
+Rails\index{rails}}\cite{wikipediaRails} e apesar de ser uma ótima ferramenta
+possui uma séria limitação que impede seu uso no Participa.br, que é a
+impossibilidade de trabalhar com banco de dados PostgreSQL\index{postgresql}, banco de dados já
+em uso no Participa.br.
 
 Além disso será necessário adicionar novos métodos para filtrar e ordenar as
 ideias cadastradas pois o pairwise não fornece tal possibilidade e isto é um
 requisito necessário para o Participa.br.
 
-% https://github.com/allourideas/pairwise-api/pull/30
-
 O pairwise fornece toda infraestrutura para votação em pares, os dados são
 armazenados e recuperados através dele, os algoritmos para cálculo de
 relevancia dos votos, toda lógica de negócio fica concentrada nele.
-
-%Isto
-%permite que 
-%implementa nenhuma intertface, portanto será necessário implementar uma
-%interface para o pairwise no lado do Noosfero como plugin.
 
 É importante destacar que o Noosfero carece de uma melhoria de performance nos
 conteúdos gerados pelos plugins e será necessário otitimizar ao menos um
@@ -365,11 +348,11 @@ mecanismo de cache para otimizar o plugin Noosfero do pairwise que será
 desenvolvido, o cache será especialmente importante na aba de resultados
 da votação.
 
-O plugin Noosfero do pairwise irá implementar uma interface que consome a API
-do próprio pairwise, o pairwise será instalado e configurado pela equipe do
-Participa.br nas mesmas instalações onde hoje está hospedado a plataforma
-Noosfero, e este plugin Noosfero irá se comunicar com esta instancia do
-pairwise a partir de sua API.
+O plugin Noosfero do pairwise irá implementar uma interface que consome a
+API\index{api} do próprio pairwise, o pairwise será instalado e configurado
+pela equipe do Participa.br nas mesmas instalações onde hoje está hospedado a
+plataforma Noosfero, e este plugin Noosfero irá se comunicar com esta
+instancia do pairwise a partir de sua API\index{api}.
 
 \begin{itemize}
   \item https://github.com/allourideas/pairwise-api/wiki/API-Documentation
@@ -393,9 +376,9 @@ engajamento no uso e contribuição deste projeto de forma consistente e perene.
 \printindex
 \newpage
 \input{listadeanexos.tex}
-
-%\appendix
-%\appendixpage 
-%\input{appendix.tex}
+\newpage
+\appendix
+\appendixpage 
+\input{appendix.tex}
 
 \end{document}
