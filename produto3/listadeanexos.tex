@@ -1,0 +1,26 @@
+\definecolor{lightgrey}{rgb}{0.95,0.95,0.95}
+\lstset{language=Ruby,basicstyle=\small\ttfamily,backgroundcolor=\color{lightgrey}}
+
+\section{Anexos}
+
+\subsection{Exemplo de código do plugin Noosfero para pairwise}
+
+\lstinputlisting{pairwise_content.rb}
+
+\subsection{Exemplo de código XML retornado pelo pairwise-api}
+
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<prompt>
+  <created-at type="datetime">2010-07-01T23:48:01+00:00</created-at>
+  <id type="integer">1</id>
+  <left-choice-id type="integer">10</left-choice-id>
+  <question-id type="integer">7</question-id>
+  <right-choice-id type="integer">9</right-choice-id>
+  <tracking nil="true"></tracking>
+  <updated-at type="datetime">2010-07-01T23:48:01+00:00</updated-at>
+  <votes-count type="integer">0</votes-count>
+  <left-choice-text>bar</left-choice-text>
+  <right-choice-text>foo</right-choice-text>
+</prompt>
+\end{lstlisting}

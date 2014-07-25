@@ -1,0 +1,407 @@
+\documentclass[12pt]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage[T1]{fontenc}
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyvrb}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{lastpage}
+\usepackage{makeidx}
+\pagestyle{fancy}
+
+% cabecalho e rodapé
+\setlength{\headheight}{120pt}
+\setlength{\textheight}{550pt}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{\includegraphics[scale=0.03]{brasao.png}}
+\rhead{\includegraphics[scale=0.4]{logo-pnud.png}}
+\cfoot{\textbf{\ProjectCode\ - Inovando a democracia participativa}}
+\rfoot{\thepage}
+
+\hyphenation{par-ti-ci-pa-ção}
+\bibliographystyle{ieeetr}
+
+% definições sobre o autor e o produto
+\newcommand{\MyName}{Joenio Marques da Costa}
+\newcommand{\MySurnameForename}{Costa, Joenio}
+\newcommand{\SupervisorName}{Gabriella Vieira Oliveira Gonçalves}
+\newcommand{\MyEmail}{joenio@colivre.coop.br}
+\newcommand{\ContractNumber}{2013/000564}
+\newcommand{\ContractYear}{2013}
+\newcommand{\ProjectCode}{Projeto BRA/12/018}
+\newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
+\newcommand{\SiglaSecretaria}{SG/PR}
+\newcommand{\ProductNumber}{03}
+\newcommand{\ProductTitle}{Título do Produto}
+\newcommand{\ProductSubtitle}{Subtítulo do Produto}
+\newcommand{\ProductDescription}{"Documento com proposta para desenvolvimento
+  do código de 2 aplicativos para as trilhas de participação social
+  priorizados nas reuniões do projeto contendo exemplos e códigos."
+}
+\newcommand{\ProductValue}{R\$ 18.000,00 (dezoito mil reais)}
+\newcommand{\ObjetoContratacao}{"Construção dos códigos para comunidades e
+  aplicativos do portal da participação social."
+}
+\newcommand{\DataEntrega}{18 de Julho de 2014}
+\newcommand{\PalavrasChave}{palavra1, palavra2, palavra3, etc}
+
+% lista de abreviações
+\makeindex
+
+\begin{document}
+
+\input{folhaderosto.tex}
+\input{folhadeaprovacao.tex}
+\input{folhadeidentificacao.tex}
+\tableofcontents
+\newpage
+
+\begin{abstract}
+Resumo... \\
+
+{\bf Palavras-chave:} \PalavrasChave.
+\end{abstract}
+\newpage
+
+\section{Introdução}
+
+Em consonância com os objetivos e cronograma previsto no âmbito do
+projeto BRA/12/018:
+\textbf{Desenvolvimento de Metodologias de Articulação e Gestão de
+Políticas Públicas para Promoção da Democracia Participativa},
+firmado entre a Secretaria-Geral da Presidência da República
+(SG/PR) e o Programa das Nações Unidas para o Desenvolvimento (PNUD),
+o presente documento apresenta \ProductDescription.
+
+Essa proposta está configurada como produto \ProductNumber~da consultoria técnica
+para especificação da construção dos códigos das metodologias de
+organização da informação e interação participativa do portal de
+participação social, Participa.br, desenvolvido utilizando a ferramenta
+Noosfero.
+
+\subsection{O Participa.br}
+
+O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
+um espaço para participação social no Brasil, escuta e diálogo entre o Governo
+Federal e a Sociedade Civil. 
+
+A plataforma, totalmente desenvolvida em software livre, tem como missão
+desenvolver práticas inovadoras de participação via internet e oferta de
+espaços de manifestação e debate para qualquer cidadão ou organização, com o
+intuito de construir políticas públicas cada vez mais eficazes e efetivas.
+
+O Participa.br é desenvolvido sob a plataforma de software livre para redes
+sociais Noosfero e conta com uma equipe multi-disciplinar entre jornalistas,
+profissionais de design gráfico, desenvolvedores de software, pesquisadores e
+gestores públicos.
+
+\subsection{O Noosfero}
+
+O Noosfero é uma plataforma web livre para redes sociais e de economia
+solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
+discussão temática, agenda de eventos e inteligência econômica colaborativa
+em um mesmo sistema. O Noosfero utiliza a linguagem de programação Ruby com
+framework Rails e suporta bancos de dados, PostgreSQL, MySQL, SQLite entre
+outros.
+
+Ele tem sido desenvolvido desde 2007 como um Software Livre e é licenciado sob
+a GNU Affero General Public License (AGPL), versão 3.
+
+\section{Desenvolvimento}
+
+A plataforma de participação social, Participa.br, tem sido desenvolvida desde
+de 2013 através de uma metodologia colaborativa e descentralizada, tendo como
+ponto central de documentação e gestão de informações a plataforma
+Gitlab\cite{gitlab}.
+
+Cada nova ferramenta desenvolvida parte de uma ideia inicial básica e vai
+amadurecendo através de reuniões presenciais ou remotas entre toda a equipe,
+esta ideia inicial gera especificações em forma textual que posteriormente são
+transformadas em desenhos, a partir destes desenhos com a proposta final da
+funcionalidade a equipe de desenvolvimento da plataforma inicia seu trabalho e
+entrega a funcionalidade tal qual foi desenhada anteriormente.
+
+Este documento traz 2 novas propostas de ferramentas e contará com
+especificação textual e modelos desenhos do que será desenvolvido
+posteriormente pela equipe de desenvolvimento.
+
+\subsection{Aplicativos para trilhas de participação}
+ 
+O Participa.br utiliza algumas ferramentas como mecanismo de participação,
+essas ferramentas permitem aos usuários da rede contribuir através de
+comentários, votos ou diretamente sugerindo textos e conteúdos.
+
+Estas ferramentas são organizadas em trilhas de participação, uma trilha
+pode utilizar uma ou mais ferramentas e podem ter datas de início e fim de
+participação, dando assim um fluxo para a participação social.
+
+Nas próximas seções será apresentado 2 propostas de ferramentas ou aplicativos
+para trilha de participação \index{cms}.
+
+\subsubsection{Ferramenta para construção e debates de propostas}
+
+Esta ferramenta é proposta inicialmente para atender a metodologia para a
+consulta de regulamentação do Marco Civil, baseado em requisitos elaborados
+pela equipe do Participa.br em conjunto com o Ministério da Justiça e será
+desenvolvido como um plugin Noosfero.
+
+A consulta de regulamentação do Marco Civil ocorrerá a partir de eixos de
+debate, sem um texto base inicial, os eixos são:
+
+\begin{enumerate}
+  \item Neutralidade de rede
+  \item Proteção de dados pessoais
+  \item Registros de conexão e acesso a aplicações
+  \item Fiscalização e apuração de infrações
+  \item Políticas públicas para internet
+\end{enumerate}
+
+Para cada eixo de debate existirá uma breve explicação do que ele significa e
+instruções básicas de como colaborar com ele, além de links para artigos
+relacionados ao Marco Civil.
+
+Os usuários interessados em contribuir para o debate poderão enviar propostas
+para cada um dos eixos, estas propostas serão qualitativas e abertas. Os
+usuários podem enviar quantas propostas quiserem. Cada proposta deverá seguir
+o seguinte formato (ver Figura~\ref{fig:formulario-proposta}).
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{04_-_proposta_passo_2.png}
+\caption{Formulário de criação de propostas}
+\label{fig:formulario-proposta}
+\end{figure}
+
+\begin{itemize}
+  \item Título - 70 caracteres - para ajudar na divulgação nas redes sociais
+  \item Resumo - 140 caracteres - para ajudar na divulgação nas redes sociais
+%  \item Tags amplas pré-definidas com interface gameficada: forma de regulamentar, desafio, crítica, etc
+  \item Forma de regulamentar - 1000 caracteres
+% (campo customizado) (esta ferramenta deve ter suporte a campos personalizados, forma de regulamentar por exemplo é algo que só faz sentido nesta consulta do Marco Civil por exemplo)
+\end{itemize}
+
+%As propostas irão delimitar os eixos do debate. Propostas podem ser agregadas
+%a partir da perspectiva do resumo. A forma de regulamentar será preservada e
+%acompanhará o autor.
+
+As propostas irão delimitar os eixos do debate e a discussão sobre cada tema
+se dará através da interação dos usuários em cada proposta através de
+comentários por parágrafo ou por trecho. Além claro da possibilidade de
+concordar ou discordar da proposta como um todo.
+
+Cada comentário poderá receber tags, estas tags darão semantica ao comentário
+indicando inclusão ou remoção de texto. Desta forma além do próprio conteúdo
+do comentário o usuário poderá também indicar se está sugerindo uma inclusão
+ou remoção de texto daquela proposta.
+
+Tuda vez que um usuário interage com uma proposta ele passa a acompanhar as
+modificações daquela proposta através de seu perfil no Participa.br e pode a
+qualquer momento voltar e contribuir com ela.
+
+As propostas de cada eixo de debate formarão uma espécie de fórum de
+discussão, mas com uma interface diferenciada e simples, com opções de
+ordenação das propostas por vários critérios (ver
+Figura~\ref{fig:pagina-inicial}). Exemplos de critérios de ordenação:
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{01_-_pagina_inicial.png}
+\caption{Proposta da interface da nova ferramenta, página inicial}
+\label{fig:pagina-inicial}
+\end{figure}
+
+\begin{itemize}
+  \item Ordenar de forma aleatória (padrão)
+  \item Propostas mais discutidas
+  \item Propostas com maior concordancia
+  \item Propostas com menor concordancia
+\end{itemize}
+
+A interface de criação de propostas deve ser precedida por texto explicativo
+de como funciona a consulta e a criação de propostas deve ser dividida em
+passos pequenos e simples como pode ser visto das Figuras
+\ref{fig:proposta02}, \ref{fig:proposta03} e \ref{fig:proposta04}.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{02_-_metodologia_e_eixos.png}
+\caption{Proposta da interface da nova ferramenta, como funciona a consulta}
+\label{fig:proposta02}
+\end{figure}
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{03_-_proposta_passo_1.png}
+\caption{Proposta da interface da nova ferramenta, passo 1 da criacao de
+propostas}
+\label{fig:proposta03}
+\end{figure}
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{05_-_proposta_passo_final.png}
+\caption{Proposta da interface da nova ferramenta, passo 3 da criacao de
+propostas}
+\label{fig:proposta04}
+\end{figure}
+
+Formas de brincar com essa consulta é ir muito além da mera visualização de
+fórum mas permitir que os usuários filtrem dinamicamente os conteúdos em tempo
+real e interajam com aqueles que mais lhes interessarem. Com isso, pode até
+ser mais interessante não separar em 5 fóruns independentes para cada “eixo”
+da consulta
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.4]{medium.png}
+\caption{Proposta de comentários por parágrafo do Medium}
+\label{fig:medium}
+\end{figure}
+
+
+-------
+
+Deve ser possível ao administrador da consulta relacionar propostas dentro de
+um mesmo subtema, de forma que facilite a discussão agregando propostas
+similares e também o resultado final que será elaborado a partir desta
+consulta. Propostas agregadas pelo administrador devem ser exibidas para os
+usuários, ou sejam, os usuários devem conseguir identificar que sua proposta
+foi anexada à outra.
+
+Comentário por parágrafo o usuário pode comentar em parágrafos específicos de
+um texto sugerindo alterações ou correções, ou mesmo tirando dúvidas.
+
+\subsubsection{Votação em Pares}
+
+A ferramenta de votação em pares permite grupos de pessoas coletar e priorizar
+informações em um processo aberto, democrático e eficiente, esta ferramenta
+deve combinar funcionalidades de coleta através de métodos quantitativos e
+qualitativos. Deve ser escalável, rápido e permitir quantificar uma pesquisa
+enquanto permite inclusão de novas informações pelos participantes.
+
+Além de coletar e priorizar idéias, deve respeitar a privacidade do usuário de
+forma que se evite qualquer possibilidade de identificação dos votos. De modo
+geral a ferramenta funcionará da seguinte forma:
+
+\begin{itemize}
+  \item Administrador cria nova consulta e cadastra idéias para serem votadas
+  \item Usuários da plataforma votam através da exibição em pares das
+    idéias cadastradas conforme Figura \ref{fig:pairwise}
+  \item O usuário pode cadastrar novas idéias, estas novas idéias entrarão
+    para moderação
+  \item Ao final do período de votação o administrador apura os resultados
+    através da uma interface administrativa
+\end{itemize}
+
+As propostas de idéias inseridas pelo usuários devem ter limite de caracter e
+a interface deve exibir um contador regressivo indicando quantos caracteres o
+usuário já digitou, sugere-se um limite de 140 caracteres.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.4]{design-votacao-em-pares-verde.png}
+\caption{Proposta de interface de votação em pares}
+\label{fig:pairwise}
+\end{figure}
+
+A implementação desta ferramenta deve gerar código HTML de incorporação em
+ambientes externos. Além disso é imprescindível também ter uma interface
+alternativa mais simples do mecanismo de votação para incorporação nas redes
+sociais, esta interface alternativa não deve ter blocos laterais ou outros
+elementos na página.
+
+Para isso será importante aceitarmos votações de usuários não registrados para
+os acessos oriundos desses códigos de incorporação externos. Para as votações
+dentro do Participa.br, somente usuários cadastrados poderão votar.
+
+Além dos critérios de usabilidade para usuário final é importante ter uma boa
+interface de administração contemplando ao menos o seguinte:
+
+\begin{itemize}
+  \item Filtros para mediação das ideias cadastradas (ordenar por data, ordem
+    alfabetica e nome)
+  \item Novas ideias serão sempre mediadas
+  \item Área de busca textual nas propostas cadastradas
+  \item Busca por usuários cadastrados (para saber quais propostas
+    um certo usuário cadastrou)
+  \item Possibilidade de aprovação em massa através de checkbox
+  \item Possiblidade de agregar duas propostas mantendo os dois autores
+\end{itemize}
+
+% http://noosfero.org/Development/ActionItem2942
+% https://gitlab.com/participa/noosfero/tree/AI2942-pairwise_plugin/plugins/pairwise
+% https://groups.google.com/forum/#!searchin/participa-dev/pairwise/participa-dev/iO5caqWf_FE/YYZm8SJw6DoJ
+% https://gitlab.com/participa/noosfero/issues/47
+% https://groups.google.com/forum/#!searchin/participa-dev/pairwise/participa-dev/G2dA6vt9C2M/ly3DtyF-Pa0J
+% https://gitlab.com/participa/noosfero/issues/17
+% https://groups.google.com/forum/#!searchin/participa-dev/pairwise/participa-dev/qyHpLqRsx84/y6i7K7GHCicJ
+% https://gitlab.com/participa/noosfero/issues/97
+% https://gitlab.com/participa/noosfero/issues/105
+
+Esta ferramenta será implementada com base na API do pairwise, uma engine para
+votação em pares, desenvolvido pela equipe do {\it Trustees of Princeton
+University} disponível em:
+
+\begin{itemize}
+  \item https://github.com/allourideas/pairwise-api
+\end{itemize}
+
+O pairwise é implementado em {\it Ruby on Rails} e apesar de ser uma ótima
+ferramenta possui uma séria limitação que impede seu uso no Participa.br,
+a impossibilidade de trabalhar com banco de dados PostgreSQL, que é o banco de
+dados já em uso no Participa.br.
+
+Além disso será necessário adicionar novos métodos para filtrar e ordenar as
+ideias cadastradas pois o pairwise não fornece tal possibilidade e isto é um
+requisito necessário para o Participa.br.
+
+% https://github.com/allourideas/pairwise-api/pull/30
+
+O pairwise fornece toda infraestrutura para votação em pares, os dados são
+armazenados e recuperados através dele, os algoritmos para cálculo de
+relevancia dos votos, a lógica de negócio fica concentrada nele. Mas não
+implementa nenhuma intertface, portanto será necessário implementar uma
+interface para o pairwise no lado do Noosfero como plugin.
+
+É importante destacar que o Noosfero carece de uma melhoria de performance nos
+conteúdos gerados pelos plugins e será necessário otitimizar ao menos um
+mecanismo de cache na aba de resultados exibidos pelo pairwise.
+
+Esta interface irá se comunicar via API com uma instancia do pairwise
+configurada nos servidores do Serpro, a documentação da API pode ser
+encontrada em:
+
+\begin{itemize}
+  \item https://github.com/allourideas/pairwise-api/wiki/API-Documentation
+\end{itemize}
+
+\section{Conclusão}
+
+Neste documento foi apresentado um \ProductDescription
+
+Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
+consulta e participação popular na discussão e na definição da agenda
+prioritária do país, é necessário que além de documentação faça-se um esforço
+de movimentar as pessoar fora do ambiente virtual, para que haja um
+engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+\newpage
+\bibliography{bibliografia}
+\newpage
+\listoffigures
+\newpage
+\printindex
+\newpage
+\input{listadeanexos.tex}
+
+%\appendix
+%\appendixpage 
+%\input{appendix.tex}
+
+\end{document}
