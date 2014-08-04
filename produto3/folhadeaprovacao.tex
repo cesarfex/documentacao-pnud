@@ -1,43 +1,46 @@
 \newgeometry{hmargin=3cm,vmargin=1.5cm}
 \addtolength{\topmargin}{2.5cm}
 \thispagestyle{empty}
-{\color{MidnightBlue}
 
-{\bf \LARGE Produto \ProductNumber\ -\ \ProductTitle}
+{\bf \ProjectCode \ -} \ProductDescription
 
-\hrulefill
+\vspace{2.5cm}
+
+\begin{minipage}{\textwidth}
+  {\bf Consultor(a): \MyName}
+  \newline
+  {\bf Contrato nº: \ContractNumber}
+  \newline
+  {\bf Produto / nº: \ProductNumber}
+\end{minipage}
+
+\vspace{2cm}
+
+{\bf Assinatura do Consultor(a)}
+
+\begin{framed}
+\noindent Local e data: Brasília/DF, \line(1,0){20} \ de \line(1,0){100} \ de 2014
+\newline
+\newline
+Assinatura do Consultor(a): \line(1,0){300}
+\end{framed}
 
 \vspace{1cm}
 
-\begin{center}
+{\bf Assinatura do Supervisor(a)}
 
-{\bf \large Contrato n. \ContractNumber}
+\begin{framed}
+\noindent Atesto que os serviços foram prestados conforme estabelecido no
+Contrato de Consultoria.
+\newline
+\newline
+Local e data: Brasília/DF, \line(1,0){20} \ de \line(1,0){100} \ de 2014
+\newline
+\newline
+Assinatura e Carimbo: \line(1,0){300}
+\end{framed}
 
 \vspace{1.5cm}
-
-{\bf \large Objeto da contratação: \ObjetoContratacao}
-
-\end{center}
-
-\vspace{3.2cm}
-
-Valor do produto: \ProductValue
-
-\vspace{1.2cm}
-
-Data de entrega: \DataEntrega
-
-\vspace{1.2cm}
-
-Nome do consultor: \MyName
-
-\vspace{1.2cm}
-
-Nome do supervisor: \SupervisorName
-
-}
-
-\vspace{2cm}
 
 \begin{center}
 \includegraphics[scale=0.04]{brasao.png} \\
