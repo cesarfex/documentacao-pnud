@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage[T1]{fontenc}
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyvrb}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{lastpage}
+\usepackage{makeidx}
+\pagestyle{fancy}
+
+% cabecalho e rodapé
+\setlength{\headheight}{120pt}
+\setlength{\textheight}{550pt}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{\includegraphics[scale=0.03]{brasao.png}}
+\rhead{\includegraphics[scale=0.4]{logo-pnud.png}}
+\cfoot{\textbf{\ProjectCode\ - Inovando a democracia participativa}}
+\rfoot{\thepage}
+
+\hyphenation{par-ti-ci-pa-ção}
+\bibliographystyle{ieeetr}
+
+% definições sobre o autor e o produto
+\newcommand{\MyName}{Joenio Marques da Costa}
+\newcommand{\MySurnameForename}{Costa, Joenio}
+\newcommand{\SupervisorName}{Gabriella Vieira Oliveira Gonçalves}
+\newcommand{\MyEmail}{joenio@colivre.coop.br}
+\newcommand{\ContractNumber}{2013/000564}
+\newcommand{\ContractYear}{2013}
+\newcommand{\ProjectCode}{Projeto BRA/12/018}
+\newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
+\newcommand{\SiglaSecretaria}{SG/PR}
+\newcommand{\ProductNumber}{04}
+\newcommand{\ProductTitle}{Proposta de aperfeiçoamento para aplicativos de
+  participação social}
+\newcommand{\ProductSubtitle}{Aperfeiçoamento das trilhas de participação e
+  interface de gestão dos aplicativos de participação social}
+\newcommand{\ProductDescription}{"Documento com proposta de aperfeiçoamento
+  para os aplicativos das trilhas de Participação Social, com propostas de
+  funcionalidades e exemplos de códigos."
+}
+\newcommand{\ProductValue}{R\$ 10.800,00 (dez mil e oitocentos reais)}
+\newcommand{\ObjetoContratacao}{"Construção dos códigos para comunidades e
+  aplicativos do portal da participação social."
+}
+\newcommand{\DataEntrega}{?? Setembro de 2014}
+\newcommand{\PalavrasChave}{palavra1, palavra2, palavra3, etc}
+
+% lista de abreviações
+\makeindex
+
+\begin{document}
+
+\input{folhaderosto.tex}
+\input{folhadeaprovacao.tex}
+\input{folhadeidentificacao.tex}
+\tableofcontents
+\newpage
+
+\begin{abstract}
+escrever resumo aqui... \\
+
+{\bf Palavras-chave:} \PalavrasChave.
+\end{abstract}
+\newpage
+
+\section{Introdução}
+
+Em consonância com os objetivos e cronograma previsto no âmbito do
+projeto BRA/12/018:
+\textbf{Desenvolvimento de Metodologias de Articulação e Gestão de
+Políticas Públicas para Promoção da Democracia Participativa},
+firmado entre a Secretaria-Geral da Presidência da República
+(SG/PR) e o Programa das Nações Unidas para o Desenvolvimento (PNUD),
+o presente documento apresenta \ProductDescription.
+
+Essa proposta está configurada como produto \ProductNumber~da consultoria técnica
+para especificação da construção dos códigos das metodologias de
+organização da informação e interação participativa do portal de
+participação social.
+
+\section{Desenvolvimento}
+
+O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
+um espaço para participação social no Brasil, escuta e diálogo entre o Governo
+Federal e a Sociedade Civil. 
+
+A plataforma, totalmente desenvolvida em software livre, tem como missão
+desenvolver práticas inovadoras de participação via internet e oferta de
+espaços de manifestação e debate para qualquer cidadão ou organização, com o
+intuito de construir políticas públicas cada vez mais eficazes e efetivas.
+
+O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
+
+\subsection{O Noosfero}
+
+O Noosfero é uma plataforma web livre para redes sociais e de economia
+solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
+discussão temática, agenda de eventos e inteligência econômica colaborativa
+num mesmo sistema! O Noosfero utiliza a linguagem de programação Ruby com
+framework Rails e, portanto, suporta bancos de dados, PostgreSQL, MySQL,
+SQLite entre outros.
+
+Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
+License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
+
+\subsection{Observatório do Participa.br}
+
+1) formular o observatório do participa, atrelado às trilhas, etapas e demais
+conteúdos do ambiente. Isso entraria como "aperfeiçoamento da trilha". 
+
+Minha ideia é documentar sugestões melhorias na própria trilha, ou seja, 
+identificar possíveis melhorias em como as etapas são criadas e 
+dispostas, etc. 
+
+consultar issues relacionadas com o observatorio e falar com ronald para
+especificar os detalhes, ele tem muitas ideias sobre isto.
+
+https://gitlab.com/participa/noosfero/issues/66
+
+---
+
+O Participa.br utiliza algumas ferramentas como mecanismo de participação,
+essas ferramentas permitem aos usuários da rede contribuir através de
+comentários, votos ou diretamente sugerindo textos e conteúdos.
+
+Estas ferramentas são organizadas em trilhas de participação, uma trilha
+pode utilizar uma ou mais ferramentas e podem ter datas de início e fim de
+participação, dando assim um fluxo para a participação social.
+
+---
+
+A plataforma organiza seus debates em torno de comunidades temáticas criadas a
+partir do interesse da sociedade ou governo. A gestão das comunidades é
+conjunta. A construção de um processo participativo dentro de uma comunidade
+ocorre no objeto “trilha” a qual permite estabelecer um caminho colaborativo
+de participação com diversas etapas. Cada etapa está ligada a uma ferramenta
+digital de participação.  
+
+Cada comunidade criada pode usufruir de uma ou mais trilhas de participação.
+Cada trilha pode ter uma ou mais etapas participativas, presenciais ou online.
+Cada etapa participativa possui uma ferramenta principal empregada no processo
+que está sendo desenvolvido naquela etapa.
+
+\subsection{Painel gestor das ferramentas de consulta}
+
+Selecionar algumas issues que exigem mais reflexão, daquelas que nós
+priorizamos para os próximos milestones.
+
+2) propor um painel administrativo e de sistematização para as ferramentas de
+consulta (tanto paragrafo quanto a nova de proposta). Isso poderia partir da
+formulação que fizemos e que a Dani chegou a começar a desenvolver, que tinha
+etiquetas para sistematização e outras funcionalidades.
+
+https://gitlab.com/participa/noosfero/issues/117
+https://gitlab.com/participa/noosfero/issues/116
+
+\section{Conclusão}
+
+Neste documento foi apresentado um \ProductDescription
+
+Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
+consulta e participação popular na discussão e na definição da agenda
+prioritária do país, é necessário que além de documentação faça-se um esforço
+de movimentar as pessoar fora do ambiente virtual, para que haja um
+engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+\newpage
+\bibliography{bibliografia}
+\newpage
+\listoffigures
+\newpage
+\printindex
+\newpage
+\input{listadeanexos.tex}
+%\appendix
+%\appendixpage
+%\input{appendix.tex}
+
+\end{document}
