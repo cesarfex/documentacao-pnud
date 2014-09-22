@@ -110,56 +110,239 @@ SQLite entre outros.
 Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
 License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
 
-\subsection{Observatório do Participa.br}
+\subsection{Aperfeiçoamento para os aplicativos de Participação Social}
 
-1) formular o observatório do participa, atrelado às trilhas, etapas e demais
-conteúdos do ambiente. Isso entraria como "aperfeiçoamento da trilha". 
+\subsubsection{Observatório do Participa.br}
 
-Minha ideia é documentar sugestões melhorias na própria trilha, ou seja, 
-identificar possíveis melhorias em como as etapas são criadas e 
-dispostas, etc. 
-
-consultar issues relacionadas com o observatorio e falar com ronald para
-especificar os detalhes, ele tem muitas ideias sobre isto.
-
-https://gitlab.com/participa/noosfero/issues/66
-
----
-
-O Participa.br utiliza algumas ferramentas como mecanismo de participação,
-essas ferramentas permitem aos usuários da rede contribuir através de
-comentários, votos ou diretamente sugerindo textos e conteúdos.
-
-Estas ferramentas são organizadas em trilhas de participação, uma trilha
-pode utilizar uma ou mais ferramentas e podem ter datas de início e fim de
-participação, dando assim um fluxo para a participação social.
-
----
-
-A plataforma organiza seus debates em torno de comunidades temáticas criadas a
-partir do interesse da sociedade ou governo. A gestão das comunidades é
+O Participa.br organiza seus debates em torno de comunidades temáticas criadas
+a partir do interesse da sociedade ou governo. A gestão das comunidades é
 conjunta. A construção de um processo participativo dentro de uma comunidade
-ocorre no objeto “trilha” a qual permite estabelecer um caminho colaborativo
-de participação com diversas etapas. Cada etapa está ligada a uma ferramenta
-digital de participação.  
+ocorre através de criação de diversos tipos de conteúdos e ferramentas
+digitais de participação. Estes conteúdos e ferramentas podem ser criados por
+qualquer usuário do ambiente participativo e possuem em comum 2 informações de
+vital importancia para dar sustentação ao observatório aqui proposto, são
+elas: tags e categorias (ver Figura~\ref{categorias-tags}), elas dão um viés
+estrutural a todo conteúdo e ferramenta de participação criada no
+Participa.br.
 
-Cada comunidade criada pode usufruir de uma ou mais trilhas de participação.
-Cada trilha pode ter uma ou mais etapas participativas, presenciais ou online.
-Cada etapa participativa possui uma ferramenta principal empregada no processo
-que está sendo desenvolvido naquela etapa.
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.6]{categorias-tags.png}
+\caption{Definição de categoria e tag na edição de conteúdo}
+\label{categorias-tags}
+\end{figure}
 
-\subsection{Painel gestor das ferramentas de consulta}
+O observatório do Participa.br dará aos usuários uma forma de acompanhar temas
+de interesse através da seleção de tags (ver Figura~\ref{observatorio-tags}) e
+categorias (ver Figura~\ref{observatorio-categorias}), isto proporcionará ao
+usuário uma visão personalizada de tudo que acontece no Participa.br (ver
+Figura~\ref{observatorio-busca}).
 
-Selecionar algumas issues que exigem mais reflexão, daquelas que nós
-priorizamos para os próximos milestones.
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.4]{observatorio-tags.png}
+\caption{Seleção de tags para acompanhar no observatório}
+\label{observatorio-tags}
+\end{figure}
 
-2) propor um painel administrativo e de sistematização para as ferramentas de
-consulta (tanto paragrafo quanto a nova de proposta). Isso poderia partir da
-formulação que fizemos e que a Dani chegou a começar a desenvolver, que tinha
-etiquetas para sistematização e outras funcionalidades.
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.4]{observatorio-categorias.png}
+\caption{Seleção de categorias para acompanhar no observatório}
+\label{observatorio-categorias}
+\end{figure}
 
-https://gitlab.com/participa/noosfero/issues/117
-https://gitlab.com/participa/noosfero/issues/116
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.25]{observatorio-busca.png}
+\caption{Observatório - Página de busca principal}
+\label{observatorio-busca}
+\end{figure}
+
+Será possível ainda, acompanhar o observatório a partir de leitor de feeds
+externos, pois será disponibilizado um FEED RSS a partir dos conteúdos do
+observatório conforme pode ser visto na Figura~\ref{observatorio-wireframe}.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{observatorio-wireframe.png}
+\caption{Observatório - Página de busca com opções de filtros}
+\label{observatorio-wireframe}
+\end{figure}
+
+Para possibilitar a implementacao do observatorio sera preciso:
+\begin{itemize}
+  \item Criar uma forma de visuzlizacao de todas as categorias assim como há para tags
+  \item Permitir aos usuarios seguir tags e categorias
+  \item Implementar uma nova funcionalidade que permita ao usuário visualizar conteúdos com base nas tags e categorias que está seguindo
+\end{itemize}
+
+Issues relacionadas ao observatório:
+\begin{itemize}
+  \item https://gitlab.com/participa/noosfero/issues/66
+\end{itemize}
+
+Mais wireframes sobre esta feature em:
+
+\begin{itemize}
+  \item http://sgpr.faracy.com.br/wireframe/Meu\%20Observatorio.html
+  \item http://sgpr.faracy.com.br/wireframe/Lista\%20de\%20Temas\%2029-09.html
+  \item http://sgpr.faracy.com.br/wireframe/Nuvem\%20de\%20Tags\%2027-09.html
+\end{itemize}
+
+\subsubsection{Painel gestor das ferramentas de consulta}
+
+Painel administrativo e de sistematização para as ferramentas de comentários
+por trecho e por parágrafo através de etiquetas e status para sistematização e
+outras funcionalidades.
+
+Para possibilitar tal sistematização é preciso habilitar o plugin
+CommentClassification\cite{commentClassificationPlugin} no Noosfero, plugin
+que possibilita classificar plugins através de etiquetas e tags. Os usuários
+podem indicar semanticamente qual o significado do seu comentário no momento
+em que o faz, como pode ser visto na Figura~\ref{etiqueta}.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{etiqueta.png}
+\caption{Etiquetas de classificação para comentários}
+\label{etiqueta}
+\end{figure}
+
+Clicando em configuração, o administrador poderá gerenciar as "labels" (as
+etiquetas) e os "Status" (que o avaliador vai escolher e dar a justificativa)
+(ver Figuras \ref{manage-labels} e \ref{manage-status}).
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{manage-labels.png}
+\caption{Gerenciamento de labels do plugin CommentClassification}
+\label{manage-labels}
+\end{figure}
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{manage-status.png}
+\caption{Gerenciamento de status do plugin CommentClassification}
+\label{manage-status}
+\end{figure}
+
+Desta forma o administrador da consulta pode pré-definir etiquetas que serão
+utilizadas pelos usuário no momento do comentário, o administrador pode por
+exemplo criar etiquetas que indiquem:
+
+\begin{itemize}
+  \item Adição ou remoção de texto
+  \item Concordancia ou discordancia
+  \item Opinião sobre qualidade do texto (bom, ruim, etc)
+  \item Dentre outros, a criação de etiquetas é livre e o admin pode criar quantas quiser
+\end{itemize}
+
+O administrador da consulta pode a partir do painel de controle de uma
+comunidade como na Figura~\ref{control-panel} gerenciar os comentários e
+definir status para eles, estes status são pré-definidos através da
+configuração do plugin.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{control-panel.png}
+\caption{Imagem no painel de controle da comunidade}
+\label{control-panel}
+\end{figure}
+
+Deve existir no painel a opção de exportação em CSV dos trechos, comentários,
+status, justificativas e novas redações.
+
+Como um trecho pode ter vários comentários e cada comentário pode ter várias
+sugestões de justificativas e alteração de texto, vê se dessa forma está bem
+organizado. (colocar imagem de comentários aninhados)
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{support-on-comment.png}
+\caption{Apoio/aprovo este comentario}
+\label{support-on-comment}
+\end{figure}
+
+Agora o foco mesmo é o painel de sistematização das consultas, aquele que vc já está trabalhando.
+
+http://noosfero.org/Development/ActionItem2520
+
+Este recurso de marcar etiquetas e status em comentários pode ser utilizado em
+conteúdos padrão do Noosfero e também em artigos com comentários por parágrafo
+ou trecho, para estes 2 últimos pode se fazer necessário a união de duas
+unidades comentáveis e para isto basta englobar os trechos e referenciar o
+código do trecho precedido de virgula; Exemplo: \[commentable name="p1,p2"\] o
+que significa: p1 paragrafo 1 e p2 paragrafo 2... Assim todos os comentários
+são listados de forma unificada para os dois parágrafos e somente será exibido
+uma unidade comentável.
+
+%O plugin permite que especifique o texto original através da tag
+%\[original\_version\], isso se faz importante quando o usuário tem que fazer alguma comparação entre o que esta sendo consultado com a versão anterior da consulta.
+
+É obrigatório para o plugin marcar identificadores na tag comentável; é
+através destes identificadores que filtramos informações e acompanhamos uma
+consulta; a criação desses identificadores tem sido de livre uso para o
+administrador e geralmente esta associada e ou referenciada ao trecho
+comentável, exemplo: p1 = paragrafo 1.. art2 = artigo 2... cap1 = capitulo 1.
+
+- Para criar/editar/remover uma label:
+http://sgpr.colivre.net/admin/plugin/comment\_classification/labels
+  * Cada label pode ter uma cor. Essa cor será usada na visualização do comentário. Coloquei as vermelho, verde, amarelo, azul e cinza. Mas podemos colocar mais
+
+- Para criar/editar/remover um status:
+http://sgpr.colivre.net/admin/plugin/comment\_classification/status
+
+Tanto os status quanto os labels podem ser "desabilitados", para que as pessoas não possam escolher.
+
+- Ícone no painel de controle para gerenciar a classificação por perfil
+http://sgpr.colivre.net/myprofile/compromisso-nacional
+
+Criei um artigo igual ao da consulta:
+http://sgpr.colivre.net/compromisso-nacional
+
+Em cada comentário tem o link "I support!" que seria o "Curtir" do facebook.
+E também tem o "Add status", que só é visto pelas pessoas com permissão de "moderar comentários"
+
+* O que falta:
+ -  Fazer a tela para mostrar as estatísticas na própria ferramenta: qtos querem adicionar, suprimir, questionamentos etc
+ -  A opção de sugestão que pode ser incorporada ao texto dá para classificar como viável e colocar na justificativa a alteração do texto. Mas falta definir um atributo ou algo assim pra que essa informação apareça diferente no histórico de avaliações
+ - O botão para um avaliador poder concordar com a justificativa de outro avaliador
+ - Mostrar o trecho que está sendo comentado.
+ - Ícone do "I support"
+ - Melhor organização das 3 novas informaçõs nos comentários (label, status, support)
+ - Ícone no painel de controle para visualizar a classificação dos comentários
+ - Permitir que uma comunidade desative a função no perfil dela, mesmo estando ativo no ambiente
+ - Gerar um .odt com as informações
+
+===========================================================
+
+Sim, aqui fabiano tb pode propor. É importante que a interface indique de forma clara os comentários que já passaram por "colocação de status" incentivando a equipe de sistematização a responder todos. Podia ser uma "mascara" de cor em cima do avatar do comentador, ou outra solução que possa ser bem visível. 
+
+Para exibição dos status, justificativas e novas redações acredito que a melhor solução seja mesmo aquelade duas colunas: 1) Coluna da direita a minuta com os blocos e trédis de comentários 2) Coluna daesquerda as "trédis de status/históricos" do comentário em "foco".
+ 
+ - Ícone no painel de controle para visualizar a classificação dos comentários
+ - Permitir que uma comunidade desative a função no perfil dela, mesmo estando ativo no ambiente
+ - Gerar um .odt com as informações
+
+Acho importante incluir no painel a opção de exportação em CSV dos trechos, comentários, status, justificativas e novas redações.
+ 
+https://gitlab.com/participa/noosfero/issues/33
+
+================================
+
+O Participa.br conta com inúmeras ferramentas de consulta pública e
+participação popular, como:
+
+* Ferramenta para construçao e debates de propostas (referencia produto3 joenio)
+* Ferramenta de comentários por parágrafos (Comment Group Plugin)
+* Comentários em artigos e comentário por trecho
+* Votação de artigos/conteúdos (Vote Plugin)
+
+%=============================================
+%Criar issue para "citar" pessoas nos comentários, conteúdo também, exemplo facebook.
+%Mostrar um link e balãozinho nestas citações, criar um alerta para a pessoa que foi citada.
+%===============================================================
 
 \section{Conclusão}
 
