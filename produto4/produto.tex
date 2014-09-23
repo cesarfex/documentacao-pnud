@@ -192,15 +192,17 @@ Mais wireframes sobre esta feature em:
 
 \subsubsection{Painel gestor das ferramentas de consulta}
 
-Painel administrativo e de sistematização para as ferramentas de comentários
-por trecho e por parágrafo através de etiquetas e status para sistematização e
-outras funcionalidades.
+Proposta de um painel administrativo e de sistematização de consultas com base
+nas ferramentas de comentários por trecho e por parágrafo usando etiquetas e
+status definidos dinamicamente via interface administrativa.
 
-Para possibilitar tal sistematização é preciso habilitar o plugin
-CommentClassification\cite{commentClassificationPlugin} no Noosfero, plugin
-que possibilita classificar plugins através de etiquetas e tags. Os usuários
-podem indicar semanticamente qual o significado do seu comentário no momento
-em que o faz, como pode ser visto na Figura~\ref{etiqueta}.
+Esta proposta de ferramenta de sistematização prevê o uso do plugin Noosfero
+CommentClassification\cite{commentClassificationPlugin}, este plugin
+possibilita classificar comentários através de etiquetas e status, ele foi
+desenvolvido por Daniela Feitosa como requisito para o Produto04, a partir
+deste plugin os usuários podem indicar semanticamente qual o significado do
+seu comentário no momento em que o faz, como pode ser visto na
+Figura~\ref{etiqueta}.
 
 \begin{figure}[h]
 \center
@@ -209,9 +211,11 @@ em que o faz, como pode ser visto na Figura~\ref{etiqueta}.
 \label{etiqueta}
 \end{figure}
 
-Clicando em configuração, o administrador poderá gerenciar as "labels" (as
-etiquetas) e os "Status" (que o avaliador vai escolher e dar a justificativa)
-(ver Figuras \ref{manage-labels} e \ref{manage-status}).
+O administrador da consulta pode gerenciar as etiquetas e os status que serão
+posteriormente disponibilizados para os usuários como pode ser visto nas
+Figuras \ref{manage-labels} e \ref{manage-status}. Os status são utilizados
+pelos avaliadores enquanto analisam os comentários e poderão definir por
+exemplo que um comentário faz sentido ou não.
 
 \begin{figure}[h]
 \center
@@ -238,6 +242,9 @@ exemplo criar etiquetas que indiquem:
   \item Dentre outros, a criação de etiquetas é livre e o admin pode criar quantas quiser
 \end{itemize}
 
+Cada label pode ter uma cor, essa cor será usada na visualização do
+comentário.
+
 O administrador da consulta pode a partir do painel de controle de uma
 comunidade como na Figura~\ref{control-panel} gerenciar os comentários e
 definir status para eles, estes status são pré-definidos através da
@@ -250,8 +257,10 @@ configuração do plugin.
 \label{control-panel}
 \end{figure}
 
-Deve existir no painel a opção de exportação em CSV dos trechos, comentários,
-status, justificativas e novas redações.
+Além de permitir gerenciar cada comentário de forma individual o painel de
+controle de gestão deve disponibilizar uma opção de exportação em CSV dos
+trechos, comentários, status e justificativas de forma que seja possível
+analisar tais dados externamente a partir de ferramentas de análise.
 
 Como um trecho pode ter vários comentários e cada comentário pode ter várias
 sugestões de justificativas e alteração de texto, vê se dessa forma está bem
@@ -264,60 +273,41 @@ organizado. (colocar imagem de comentários aninhados)
 \label{support-on-comment}
 \end{figure}
 
-Agora o foco mesmo é o painel de sistematização das consultas, aquele que vc já está trabalhando.
+%http://noosfero.org/Development/ActionItem2520
 
-http://noosfero.org/Development/ActionItem2520
+Pode se fazer necessário a união de duas unidades comentáveis e para isto
+basta englobar os trechos e permitir que comentários que faziam parte de 2
+trechos distintos sejam exibidos de forma aglutinada, assim... Assim todos os
+comentários são listados de forma unificada para os dois parágrafos e somente
+será exibido uma unidade comentável.
 
-Este recurso de marcar etiquetas e status em comentários pode ser utilizado em
-conteúdos padrão do Noosfero e também em artigos com comentários por parágrafo
-ou trecho, para estes 2 últimos pode se fazer necessário a união de duas
-unidades comentáveis e para isto basta englobar os trechos e referenciar o
-código do trecho precedido de virgula; Exemplo: \[commentable name="p1,p2"\] o
-que significa: p1 paragrafo 1 e p2 paragrafo 2... Assim todos os comentários
-são listados de forma unificada para os dois parágrafos e somente será exibido
-uma unidade comentável.
+O plugin permite marcar identificadores na tag comentável; através destes
+identificadores filtramos informações e acompanhamos uma consulta, a criação
+desses identificadores tem sido de livre uso para o administrador e geralmente
+esta associada e ou referenciada ao trecho comentável, exemplo: p1 = paragrafo
+1.. art2 = artigo 2... cap1 = capitulo 1.
 
-%O plugin permite que especifique o texto original através da tag
-%\[original\_version\], isso se faz importante quando o usuário tem que fazer alguma comparação entre o que esta sendo consultado com a versão anterior da consulta.
+Esta funcionalidade de sistematização deve trazer o recurso de gerar novas
+versões do documento (em caso de consultas com texto base) a partir da
+aprovação ou rejeição de comentários (através das etiquetas), com isso o admin
+conseguirá facilmente consolidar as contribuições dos usuários na consulta
+pública.
 
-É obrigatório para o plugin marcar identificadores na tag comentável; é
-através destes identificadores que filtramos informações e acompanhamos uma
-consulta; a criação desses identificadores tem sido de livre uso para o
-administrador e geralmente esta associada e ou referenciada ao trecho
-comentável, exemplo: p1 = paragrafo 1.. art2 = artigo 2... cap1 = capitulo 1.
+Tanto os status quanto os labels podem ser "desabilitados", para que as
+pessoas não possam escolher.
 
-- Para criar/editar/remover uma label:
-http://sgpr.colivre.net/admin/plugin/comment\_classification/labels
-  * Cada label pode ter uma cor. Essa cor será usada na visualização do comentário. Coloquei as vermelho, verde, amarelo, azul e cinza. Mas podemos colocar mais
-
-- Para criar/editar/remover um status:
-http://sgpr.colivre.net/admin/plugin/comment\_classification/status
-
-Tanto os status quanto os labels podem ser "desabilitados", para que as pessoas não possam escolher.
-
-- Ícone no painel de controle para gerenciar a classificação por perfil
-http://sgpr.colivre.net/myprofile/compromisso-nacional
-
-Criei um artigo igual ao da consulta:
-http://sgpr.colivre.net/compromisso-nacional
-
-Em cada comentário tem o link "I support!" que seria o "Curtir" do facebook.
 E também tem o "Add status", que só é visto pelas pessoas com permissão de "moderar comentários"
 
-* O que falta:
- -  Fazer a tela para mostrar as estatísticas na própria ferramenta: qtos querem adicionar, suprimir, questionamentos etc
- -  A opção de sugestão que pode ser incorporada ao texto dá para classificar como viável e colocar na justificativa a alteração do texto. Mas falta definir um atributo ou algo assim pra que essa informação apareça diferente no histórico de avaliações
- - O botão para um avaliador poder concordar com a justificativa de outro avaliador
- - Mostrar o trecho que está sendo comentado.
- - Ícone do "I support"
- - Melhor organização das 3 novas informaçõs nos comentários (label, status, support)
- - Ícone no painel de controle para visualizar a classificação dos comentários
- - Permitir que uma comunidade desative a função no perfil dela, mesmo estando ativo no ambiente
- - Gerar um .odt com as informações
+Deve ser possível ter uma tela para mostrar as estatísticas na própria
+ferramenta: qtos querem adicionar, suprimir, questionamentos etc.
+Um avaliador deve ter disponível um botão para poder concordar com a
+justificativa de outro avaliador. Ao analisar um comentário é necessário
+mostrar o trecho que está sendo comentado. Gerar um .odt com as informações
+aglutinadas.
 
 ===========================================================
 
-Sim, aqui fabiano tb pode propor. É importante que a interface indique de forma clara os comentários que já passaram por "colocação de status" incentivando a equipe de sistematização a responder todos. Podia ser uma "mascara" de cor em cima do avatar do comentador, ou outra solução que possa ser bem visível. 
+É importante que a interface indique de forma clara os comentários que já passaram por "colocação de status" incentivando a equipe de sistematização a responder todos. Podia ser uma "mascara" de cor em cima do avatar do comentador, ou outra solução que possa ser bem visível. 
 
 Para exibição dos status, justificativas e novas redações acredito que a melhor solução seja mesmo aquelade duas colunas: 1) Coluna da direita a minuta com os blocos e trédis de comentários 2) Coluna daesquerda as "trédis de status/históricos" do comentário em "foco".
  
@@ -325,8 +315,6 @@ Para exibição dos status, justificativas e novas redações acredito que a mel
  - Permitir que uma comunidade desative a função no perfil dela, mesmo estando ativo no ambiente
  - Gerar um .odt com as informações
 
-Acho importante incluir no painel a opção de exportação em CSV dos trechos, comentários, status, justificativas e novas redações.
- 
 https://gitlab.com/participa/noosfero/issues/33
 
 ================================
