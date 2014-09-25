@@ -50,7 +50,7 @@
   aplicativos do portal da participação social."
 }
 \newcommand{\DataEntrega}{?? Setembro de 2014}
-\newcommand{\PalavrasChave}{palavra1, palavra2, palavra3, etc}
+\newcommand{\PalavrasChave}{observatório, tag, categoria, comentário, etiqueta, status}
 
 % lista de abreviações
 \makeindex
@@ -64,7 +64,9 @@
 \newpage
 
 \begin{abstract}
-escrever resumo aqui... \\
+Proposta de ferramenta para acompanhamento de temas específicos do portal
+Participa.br e ferramenta para sistematização de consultas a partir de debates
+por comentários em parágrafos e trechos. \\
 
 {\bf Palavras-chave:} \PalavrasChave.
 \end{abstract}
@@ -100,15 +102,15 @@ O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
 
 \subsection{O Noosfero}
 
-O Noosfero é uma plataforma web livre para redes sociais e de economia
-solidária que possui as funcionalidades de Blog, e-Portfolios, CMS, RSS,
-discussão temática, agenda de eventos e inteligência econômica colaborativa
-num mesmo sistema! O Noosfero utiliza a linguagem de programação Ruby com
-framework Rails e, portanto, suporta bancos de dados, PostgreSQL, MySQL,
-SQLite entre outros.
+O Noosfero\cite{noosfero} é uma plataforma web livre para redes sociais e de
+economia solidária que possui as funcionalidades de Blog, e-Portfolios, CMS,
+RSS, discussão temática, agenda de eventos e inteligência econômica
+colaborativa num mesmo sistema! O Noosfero utiliza a linguagem de programação
+Ruby com framework Rails e, portanto, suporta bancos de dados, PostgreSQL,
+MySQL, SQLite entre outros.
 
 Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
-License (AGPL), versão 3\cite{wikipediaSingleSignOn}.
+License (AGPL), versão 3.
 
 \subsection{Aperfeiçoamento para os aplicativos de Participação Social}
 
@@ -170,14 +172,16 @@ observatório conforme pode ser visto na Figura~\ref{observatorio-wireframe}.
 \label{observatorio-wireframe}
 \end{figure}
 
-Para possibilitar a implementacao do observatorio sera preciso:
+Para possibilitar a implementacao do observatorio será preciso:
+
 \begin{itemize}
-  \item Criar uma forma de visuzlizacao de todas as categorias assim como há para tags
+  \item Criar uma forma de visualizacao de todas as categorias assim como há para tags
   \item Permitir aos usuarios seguir tags e categorias
   \item Implementar uma nova funcionalidade que permita ao usuário visualizar conteúdos com base nas tags e categorias que está seguindo
 \end{itemize}
 
 Issues relacionadas ao observatório:
+
 \begin{itemize}
   \item https://gitlab.com/participa/noosfero/issues/66
 \end{itemize}
@@ -199,9 +203,10 @@ status definidos dinamicamente via interface administrativa.
 Esta proposta de ferramenta de sistematização prevê o uso do plugin Noosfero
 CommentClassification\cite{commentClassificationPlugin}, este plugin
 possibilita classificar comentários através de etiquetas e status, ele foi
-desenvolvido por Daniela Feitosa como requisito para o Produto04, a partir
+desenvolvido pela consultora PNUD Daniela Feitosa como
+parte da pesquisa para elaboração do Produto 04, a partir
 deste plugin os usuários podem indicar semanticamente qual o significado do
-seu comentário no momento em que o faz, como pode ser visto na
+seu comentário no momento em que o faz, veja exemplo de uso na
 Figura~\ref{etiqueta}.
 
 \begin{figure}[h]
@@ -211,11 +216,13 @@ Figura~\ref{etiqueta}.
 \label{etiqueta}
 \end{figure}
 
-O administrador da consulta pode gerenciar as etiquetas e os status que serão
-posteriormente disponibilizados para os usuários como pode ser visto nas
-Figuras \ref{manage-labels} e \ref{manage-status}. Os status são utilizados
-pelos avaliadores enquanto analisam os comentários e poderão definir por
-exemplo que um comentário faz sentido ou não.
+O administrador da consulta pode gerenciar etiquetas e status a partir do
+painel de controle administrativo do ambiente como pode ser visto nas
+Figuras \ref{manage-labels} e \ref{manage-status}. As etiquetas podem ser
+utilizadas por qualquer usuário mas o status é utilizado
+apenas pelos avaliadores enquanto analisam os comentários.
+
+%com e poderão definir por exemplo que um comentário faz sentido ou não.
 
 \begin{figure}[h]
 \center
@@ -239,16 +246,15 @@ exemplo criar etiquetas que indiquem:
   \item Adição ou remoção de texto
   \item Concordancia ou discordancia
   \item Opinião sobre qualidade do texto (bom, ruim, etc)
-  \item Dentre outros, a criação de etiquetas é livre e o admin pode criar quantas quiser
 \end{itemize}
 
-Cada label pode ter uma cor, essa cor será usada na visualização do
-comentário.
+Cada etiqueta pode ter uma cor associada, desta forma pode-se diferenciar
+visualmente os comentários a partir da etiqueta selecionada.
 
-O administrador da consulta pode a partir do painel de controle de uma
-comunidade como na Figura~\ref{control-panel} gerenciar os comentários e
-definir status para eles, estes status são pré-definidos através da
-configuração do plugin.
+O administrador de uma consulta pode gerenciar os comentários definindo status
+para eles a partir do painel de controle da comunidade (ver
+Figura~\ref{control-panel}), estes status são previamente definidos através da
+configuração do plugin no ambiente Noosfero.
 
 \begin{figure}[h]
 \center
@@ -257,80 +263,51 @@ configuração do plugin.
 \label{control-panel}
 \end{figure}
 
-Além de permitir gerenciar cada comentário de forma individual o painel de
+Cada trecho pode ter vários comentários e cada comentário pode ter várias
+sugestões de alteração de texto a partir de etiquetas, e ainda cada comentário
+poderá receber vários status definidos pelos avaliadores. Estes status são
+utilizados pelo administrador da consulta para elaborar a proposta final do
+texto da consulta a partir das contribuições dos usuários, ver Figuras
+\ref{manage-comments} e \ref{manage-comments-commit} com a interface proposta
+para esta funcionalidade.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.3]{manage-comments.png}
+\caption{Revisão de comentários, etiquetas e status}
+\label{manage-comments}
+\end{figure}
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.3]{manage-comments-commit.png}
+\caption{Finalizar revisão de comentários, etiquetas e status}
+\label{manage-comments-commit}
+\end{figure}
+
+Além de permitir gerenciar comentários individualmente o painel de
 controle de gestão deve disponibilizar uma opção de exportação em CSV dos
 trechos, comentários, status e justificativas de forma que seja possível
 analisar tais dados externamente a partir de ferramentas de análise.
 
-Como um trecho pode ter vários comentários e cada comentário pode ter várias
-sugestões de justificativas e alteração de texto, vê se dessa forma está bem
-organizado. (colocar imagem de comentários aninhados)
+Ao finalizar revisão dos comentários (Figura \ref{manage-comments-commit}) uma
+nova versão do texto da consulta é gerado, isto será possibilitado pela
+infra-estrutura de controle versões de artigos existente no Noosfero, desta
+forma será possível consultar o histórico de versões do texto.
 
-\begin{figure}[h]
-\center
-\includegraphics[scale=0.5]{support-on-comment.png}
-\caption{Apoio/aprovo este comentario}
-\label{support-on-comment}
-\end{figure}
+Esta ferramenta possibilitará também fazer a união de duas unidades
+comentáveis e para isto basta englobar os trechos e permitir que comentários
+que faziam parte de 2 trechos distintos sejam exibidos de forma aglutinada.
 
-%http://noosfero.org/Development/ActionItem2520
-
-Pode se fazer necessário a união de duas unidades comentáveis e para isto
-basta englobar os trechos e permitir que comentários que faziam parte de 2
-trechos distintos sejam exibidos de forma aglutinada, assim... Assim todos os
-comentários são listados de forma unificada para os dois parágrafos e somente
-será exibido uma unidade comentável.
-
-O plugin permite marcar identificadores na tag comentável; através destes
-identificadores filtramos informações e acompanhamos uma consulta, a criação
-desses identificadores tem sido de livre uso para o administrador e geralmente
-esta associada e ou referenciada ao trecho comentável, exemplo: p1 = paragrafo
-1.. art2 = artigo 2... cap1 = capitulo 1.
-
-Esta funcionalidade de sistematização deve trazer o recurso de gerar novas
-versões do documento (em caso de consultas com texto base) a partir da
-aprovação ou rejeição de comentários (através das etiquetas), com isso o admin
-conseguirá facilmente consolidar as contribuições dos usuários na consulta
-pública.
-
-Tanto os status quanto os labels podem ser "desabilitados", para que as
-pessoas não possam escolher.
-
-E também tem o "Add status", que só é visto pelas pessoas com permissão de "moderar comentários"
-
-Deve ser possível ter uma tela para mostrar as estatísticas na própria
-ferramenta: qtos querem adicionar, suprimir, questionamentos etc.
-Um avaliador deve ter disponível um botão para poder concordar com a
-justificativa de outro avaliador. Ao analisar um comentário é necessário
-mostrar o trecho que está sendo comentado. Gerar um .odt com as informações
-aglutinadas.
-
-===========================================================
-
-É importante que a interface indique de forma clara os comentários que já passaram por "colocação de status" incentivando a equipe de sistematização a responder todos. Podia ser uma "mascara" de cor em cima do avatar do comentador, ou outra solução que possa ser bem visível. 
-
-Para exibição dos status, justificativas e novas redações acredito que a melhor solução seja mesmo aquelade duas colunas: 1) Coluna da direita a minuta com os blocos e trédis de comentários 2) Coluna daesquerda as "trédis de status/históricos" do comentário em "foco".
- 
- - Ícone no painel de controle para visualizar a classificação dos comentários
- - Permitir que uma comunidade desative a função no perfil dela, mesmo estando ativo no ambiente
- - Gerar um .odt com as informações
-
-https://gitlab.com/participa/noosfero/issues/33
-
-================================
-
-O Participa.br conta com inúmeras ferramentas de consulta pública e
-participação popular, como:
-
-* Ferramenta para construçao e debates de propostas (referencia produto3 joenio)
-* Ferramenta de comentários por parágrafos (Comment Group Plugin)
-* Comentários em artigos e comentário por trecho
-* Votação de artigos/conteúdos (Vote Plugin)
-
-%=============================================
-%Criar issue para "citar" pessoas nos comentários, conteúdo também, exemplo facebook.
-%Mostrar um link e balãozinho nestas citações, criar um alerta para a pessoa que foi citada.
-%===============================================================
+%Esta ferramenta deve trazer também uma tela para mostrar as estatísticas na própria
+%ferramenta: qtos querem adicionar, suprimir, questionamentos etc.
+%
+%===========================================================
+%
+%É importante que a interface indique de forma clara os comentários que já
+%passaram por "colocação de status" incentivando a equipe de sistematização a
+%responder todos. Podia ser uma "mascara" de cor em cima do avatar do
+%comentador, ou outra solução que possa ser bem visível. 
 
 \section{Conclusão}
 
@@ -350,8 +327,8 @@ engajamento no uso e contribuição deste projeto de forma consistente e perene.
 \printindex
 \newpage
 \input{listadeanexos.tex}
-%\appendix
-%\appendixpage
-%\input{appendix.tex}
+\appendix
+\appendixpage
+\input{appendix.tex}
 
 \end{document}
