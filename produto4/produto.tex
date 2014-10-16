@@ -30,7 +30,7 @@
 % definições sobre o autor e o produto
 \newcommand{\MyName}{Joenio Marques da Costa}
 \newcommand{\MySurnameForename}{Costa, Joenio}
-\newcommand{\SupervisorName}{Gabriella Vieira Oliveira Gonçalves}
+\newcommand{\SupervisorName}{Ricardo Augusto Poppi Martins}
 \newcommand{\MyEmail}{joenio@colivre.coop.br}
 \newcommand{\ContractNumber}{2013/000564}
 \newcommand{\ContractYear}{2013}
@@ -118,70 +118,90 @@ License (AGPL), versão 3.
 
 \subsubsection{Observatório do Participa.br}
 
+O {\it Observatório} é uma proposta de nova funcionalidade para o Participa.br com o
+objetivo de proporcionar aos usuários uma visão centralizada de todo o
+conteúdo existente no portal, esta visão será personalizada e cada usuário
+criará suas próprias preferências através da seleção de tags e categorias de
+seu interesse. A Figura \ref{observatorio} mostra uma proposta de tela para o
+{\it Observatório} do Participa.br.
+
+\begin{figure}[h!]
+\center
+\includegraphics[scale=0.60]{observatorio.png}
+\caption{Observatório do Participa.br}
+\label{observatorio}
+\end{figure}
+
+Com isto cada usuário cadastrado no Participa.br poderá acompanhar
+notícias, trilhas, eventos, posts de blog, galeria de imagens, vídeos e
+diversos outros tipos de conteúdo existentes na plataforma, recebendo
+notificações sempre que forem criados ou atualizados.
+
+\paragraph{Especificação da funcionalidade} \
+
+\
+
 O Participa.br organiza seus debates em torno de comunidades temáticas criadas
 a partir do interesse da sociedade ou governo. A gestão das comunidades é
 conjunta. A construção de um processo participativo dentro de uma comunidade
 ocorre através de criação de diversos tipos de conteúdos e ferramentas
 digitais de participação. Estes conteúdos e ferramentas podem ser criados por
 qualquer usuário do ambiente participativo e possuem em comum 2 informações de
-vital importancia para dar sustentação ao observatório aqui proposto, são
+vital importancia para dar sustentação ao {\it Observatório} aqui proposto, são
 elas: tags e categorias (ver Figura~\ref{categorias-tags}), elas dão um viés
 estrutural a todo conteúdo e ferramenta de participação criada no
 Participa.br.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.6]{categorias-tags.png}
 \caption{Definição de categoria e tag na edição de conteúdo}
 \label{categorias-tags}
 \end{figure}
 
-A seleção de tags e categorias está disponível para todo tipo de conteúdo
-disponível no Noosfero, artigos texto, eventos, fóruns, trilhas de
-participação, posts de blogs, galeria de imagens, etc. Uma vez selecionado
-tags e categorias para um certo conteúdo, são gerados links na visualização do
-mesmo para que os usuários possam navegar no conteúdo do ambiente através de
-filtros por uma determinada tag ou categoria.
+A seleção de tags e categorias é um recurso já disponível hoje no Participa.br
+e pode ser utilizado em qualquer tipo de conteúdo: artigos texto,
+eventos, fóruns, trilhas de participação, posts de blog, galeria de imagens,
+vídeos, etc. Uma vez definindo-se tags e categorias para um certo conteúdo, são
+gerados links na visualização do mesmo para que os usuários possam navegar no
+conteúdo do ambiente através de filtros por tags ou categorias.
 
-O observatório do Participa.br dará aos usuários uma forma de acompanhar temas
-de interesse através da seleção de tags (ver Figura~\ref{observatorio-tags}) e
-categorias (ver Figura~\ref{observatorio-categorias}), isto proporcionará ao
-usuário uma visão personalizada de tudo que acontece no Participa.br, a
-Figura~\ref{observatorio} mostra uma proposta de tela para o observatório.
+A personalização do {\it Observatório} é feita através da seleção de tags e
+categorias, esta funcionalidade não está disponível no Participa.br ainda e
+deverá ser implementada como proposto nas Figuras \ref{observatorio-tags} e
+\ref{observatorio-categorias}. Esta seleção, como demonstrado na
+figura~\ref{observatorio-tags}, é realizada através da ação {\bf seguir}, ou
+seja, clicar em {\it +seguir tag 'arena net mundial'} significa marcar e
+selecionar esta tag como um tema de interesse que será posteriormente
+utilizado para compor o conteúdo exibido no {\it Observatório}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{observatorio-seguir-tags.png}
 \caption{Seleção de tags para acompanhar no observatório}
 \label{observatorio-tags}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{observatorio-categoria.png}
 \caption{Seleção de categorias para acompanhar no observatório}
 \label{observatorio-categorias}
 \end{figure}
 
-O observatório será um agregador de conteúdos, cada usuário irá selecionar
-temas de seu interesse, esta seleção será armazenada no perfil do usuário, de
-forma que se mantenha sempre que o usuário acessar o Participa.br.
+O {\it Observatório} será um agregador de conteúdos, cada usuário irá selecionar
+temas de seu interesse, esta seleção será armazenada no perfil do usuário na
+forma de uma lista de tags e categorias a seguir, esta lista será armazenada
+de forma persistente no perfil do usuário de forma que se mantenha sempre que
+acesse o Participa.br.
 
-\begin{figure}[h]
-\center
-\includegraphics[scale=0.60]{observatorio.png}
-\caption{Observatório}
-\label{observatorio}
-\end{figure}
+Os usuários poderão acompanhar o {\it Observatório} através de um leitor de
+feed\cite{rss} externo (ver Figura~\ref{observatorio-feed}). Isto irá
+potencializar a distribuição de conteúdos do Participa.br pois dará a
+possibilidade de acessar conteúdos sem necessidade de acesso direto ao
+Participa.br.
 
-Além de acessar através da interface do próprio Participa.br
-(Figura~\ref{observatorio}) o usuário poderá também acompanhar o observatório
-a partir de um leitor de feed\cite{rss} externo (ver
-Figura~\ref{observatorio-feed}). Isto irá potencializar a distribuição de
-conteúdos do Participa.br pois dará a possibilidade de acessar conteúdos sem
-necessidade de acesso direto ao Participa.br.
-
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.60]{observatorio-feed.png}
 \caption{Seguir o observatório via feed RSS}
@@ -192,9 +212,9 @@ Será possível também acompanhar o observatório através do email, o usuário
 poderá inscrever um email ou usar o próprio email cadastrado no Participa.br
 para receber atualizações do observatório, assim o usuário será notificado
 sobre todo conteúdo criado com base nas suas preferências, isso irá disparar
-um email por dia com um resumo de tudo que ocorreu no observatório.
+um email por dia com um resumo de todas as novidades.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.60]{observatorio-email.png}
 \caption{Seguir o observatório via email}
@@ -203,30 +223,30 @@ um email por dia com um resumo de tudo que ocorreu no observatório.
 
 O observatório terá suporte também em dispositivos móveis, através de um app
 (ver Figura~\ref{observatorio-mobile}) para smartphones, os usuários poderão
-interagir com o observatório visualizando trilhas, artigos e todos os outros
+interagir com o {\it Observatório} visualizando trilhas, artigos e todos os outros
 tipos de conteúdos disponível no observatório, este app fará acesso à API do
 Noosfero (ver proposta de API no apendice \ref{api}), esta API irá expor todos
-os dados do observatório.  Este app irá também notificar os usuários a cada
+os dados do observatório. Este app irá também notificar os usuários a cada
 atualização no observatório de forma que o usuário consiga acompanhar em tempo
 real tudo o que acontece.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
-\includegraphics[scale=0.60]{observatorio-mobile.png}
+\includegraphics[scale=0.50]{observatorio-mobile.png}
 \caption{Proposta de tela para observatório mobile}
 \label{observatorio-mobile}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
-\includegraphics[scale=0.60]{observatorio-mobile-opcoes.png}
+\includegraphics[scale=0.50]{observatorio-mobile-opcoes.png}
 \caption{Configuração do observatório mobile}
 \label{observatorio-mobile-opcoes}
 \end{figure}
 
 Por fim é importante destacar que o observatório irá dar um destaque às
 trilhas de participação social, possibilitando acompanhar todas as novidades
-que ocorre nas trilhas de participação, os usuários serão notificados a cada
+que ocorrem nas trilhas de participação, os usuários serão notificados a cada
 nova etapa que se inicia ou finaliza, este tratamento especial às datas de
 início e fim de cada etapa possibilitará um acompanhamento detalhado de cada
 atividade.
@@ -237,7 +257,7 @@ se assim desejar, pois será possível escolher quais tipos de conteúdo seguir
 se quer acompanhar somente trilhas, ou somente posts de blog, ou apenas
 galeria de imagens, etc.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{observatorio-tipos-conteudo.png}
 \caption{Seleção de tipos de conteúdos para seguir no observatório}
@@ -250,11 +270,56 @@ atualizações através de interface diferenciadas, como: email, web, rss,
 dispositivos móveis, etc. O apendice~\ref{codigo-observatorio} traz um exemplo
 de código para implementação da interface Web do observatório.
 
+\paragraph{Detalhes de implementação} \
+
+\
+
+Segue uma breve descrição de tudo que precisa ser implementado para construir
+o {\it Observatório} do Participa.br:
+
+\begin{description}
+  \item[Tela principal do Observatório do Participa.br]{Desenvolver uma nova
+    interface de usuário para exibir e listar conteúdos com base nas
+    preferências do usuário (Figura \ref{observatorio}).}
+  \item[Tela para listar todas as categorias do Participa.br]{O Participa.br
+    tem inúmeras categorias cadastradas, mas não há uma interface para os
+    usuários navegarem nestas categorias, então é preciso desenvolver uma tela
+    que exiba de forma organizada todas as categorias cadastradas (Figura
+    \ref{observatorio-categorias}).}
+  \item[Funcão de "seguir" tags e categorias]{Implementar um botão ou link ao
+    lado de cada categoria ou tag que ao ser clicado adicione o item
+    na lista de preferências do usuário, indicando que tal tag ou categoria
+    representa um tema de seu interesse (Figura \ref{observatorio-tags}).}
+  \item[Criar novos campos no perfil de usuário]{Criar novos campos para
+      armazenar a lista de categorias e tags, quais tipos de conteúdos está
+      seguindo, se quer receber notificação por email.}
+  \item[Gerar feed RSS com conteúdos do Observatório]{Implementar uma
+    funcionalidade para compor uma fonte RSS a partir dos dados do
+    Observatório do usuário, este RSS é específico para cada usuário, pois deve
+    levar em consideração as preferências individuais de cada um.}
+  \item[Aplicativo módel para Observatório]{Aplicativo utilizando tecnologias
+    Web (HTML, Javascript, CSS) para exibir e notificar sobre as atualizações
+    do Participa.br, este aplicativo deve ser desenvolvido utilizando
+    tecnologias que permitam rodar em diversar plataformas (Android, iPhone, etc)
+    (Figuras \ref{observatorio-mobile} e \ref{observatorio-mobile-opcoes}).}
+  \item[API para aplicativo móvel]{O aplicativo móvel precisará de acesso a
+    uma API do Participa.br de forma a fornecer os dados necessários para
+    compor as funcionalidades do app móvel, o Participa.br possui uma API, esta
+    API precisará ser evoluída para fornecer mais alguns dados como exemplificado
+    no apendice \ref{api}.}
+  \item[Acompanhar Observatório por email]{Será preciso desenvolver um serviço
+    que fique constantemente acompanhando as atualizações de conteúdo do
+    Participa.br e notifique cada usuário do Observatório de acordo suas
+    preferências, este serviço poderá ser implementado como um novo {\it daemon},
+    semelhante ao {\it feed-updater} já existente.}
+\end{description}
+
 \subsubsection{Painel gestor das ferramentas de consulta}
 
-Proposta de um painel administrativo e de sistematização de consultas com base
-nas ferramentas de comentários por trecho e por parágrafo usando etiquetas e
-status definidos dinamicamente via interface administrativa.
+O {\it Painel gestor} é uma proposta de nova funcionalidade contendo um painel
+administrativo de sistematização de consultas com base nas ferramentas de
+comentários por trecho e por parágrafo usando etiquetas e status, definidos
+dinamicamente via interface administrativa.
 
 Esta proposta de ferramenta de sistematização prevê o uso do plugin Noosfero
 CommentClassification\cite{commentClassificationPlugin}, este plugin
@@ -265,14 +330,30 @@ deste plugin os usuários podem indicar semanticamente qual o significado do
 seu comentário no momento em que o faz, veja exemplo de uso na
 Figura~\ref{etiqueta}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{etiqueta.png}
 \caption{Etiquetas de classificação para comentários}
 \label{etiqueta}
 \end{figure}
 
-O administrador da consulta deve gerenciar etiquetas e status a partir do
+Apesar do plugin possibilitar seleção de etiquetas e status nos comentários,
+estas informações não são utilizadas para nada, este plugin ou nenhum outro
+oferece nenhuma utilidade para as etiquetas e status marcados em cada
+comentário.
+
+A funcionalidade descrita aqui propõe, então, uma forma de utilizar as
+informações de etiquetas e status associadas aos comentários com objetivo de
+sistematizar e analisar os resultados de consultas públicas através de
+ferramentas de comentários por trecho ou por parágrafo, ou seja, consultas que
+usem esta ferramenta terão uma forma simplificada de analisar e agregar as
+contribuições dos usuários realizadas através dos comentários.
+
+\paragraph{Especificação da funcionalidade} \
+
+\
+
+O administrador da consulta deve cadastrar etiquetas e status a partir do
 painel de controle administrativo do ambiente como pode ser visto nas Figuras
 \ref{manage-labels} e \ref{manage-status}, criando uma lista de opções para
 cada campo. O administrador pode por exemplo criar etiquetas que indiquem:
@@ -283,14 +364,17 @@ cada campo. O administrador pode por exemplo criar etiquetas que indiquem:
   \item Opinião sobre qualidade do texto (bom, ruim, etc)
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{manage-labels.png}
 \caption{Gerenciamento de labels do plugin CommentClassification}
 \label{manage-labels}
 \end{figure}
 
-\begin{figure}[h]
+Esta funcionalidade de cadastrar etiquetas e status já está presente no plugin
+e portanto já disponível no Participa.br.
+
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{manage-status.png}
 \caption{Gerenciamento de status do plugin CommentClassification}
@@ -302,7 +386,7 @@ visualmente os comentários a partir da etiqueta selecionada.
 
 As etiquetas podem ser utilizadas por qualquer usuário mas o status é
 utilizado apenas pelos avaliadores enquanto analisam os comentários. Estes
-avaliadores são usuários com papel específico com permissão de marcar status
+avaliadores são usuários com papel específico e permissão de marcar status
 num comentário, vários avaliadores podem marcar diferentes status num
 mesmo comentário, estas informações serão utilizadas pelo administrador da consulta
 ao avaliar o que irá considerar ou descartar em cada comentário.
@@ -311,7 +395,7 @@ Tanto os avaliadores quando o administrador de uma consulta podem gerenciar
 comentários definindo status para eles a partir do painel de controle (ver
 Figura~\ref{control-panel}).
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.5]{control-panel.png}
 \caption{Imagem no painel de controle da comunidade}
@@ -337,14 +421,14 @@ nova proposta do texto com base nas contribuições dos usuários, ver Figuras
 \ref{manage-comments} e \ref{manage-comments-commit} com a proposta de interface
 para esta funcionalidade.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.3]{manage-comments.png}
 \caption{Revisão de comentários, etiquetas e status}
 \label{manage-comments}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.3]{manage-comments-commit.png}
 \caption{Finalizar revisão de comentários, etiquetas e status}
@@ -377,6 +461,62 @@ suficientes para dar suporte ao administrador de uma consulta em analisar e
 avaliar as contribuições dos usuários feitos a partir de comentários em um
 texto de consulta, com o objetivo final de agregar tais contribuições num novo
 texto mantendo todo o histórico de alterações realizado.
+
+\paragraph{Detalhes de implementação} \
+
+\
+
+Segue uma breve descrição de tudo que precisa ser implementado para construir
+{\it Painel gestor das ferramentas de consulta} do Participa.br:
+
+\begin{description}
+  \item[Mostrar etiquetas na visualização dos comentários]{As etiquetas
+    selecionadas pelos usuários no momento do comentário não são exibidas em
+    lugar algum após terem sido feitas, será preciso alterar a implementação da
+    visualização de comentários para levar em consideração este campo exibindo
+    ele de forma adequada.}
+  \item[Mostrar status na visualização e gestão de comentários]{Mais de um
+    avaliador pode definir status para um mesmo comentário, desta forma um
+    único comentário poderá ter vários status, será preciso evoluir a interface
+    de visualização de comentários para exibir esta informação
+    aos administradores apenas, pois somente usuários com perfil de administrador
+    podem visualizar os status marcados pelos avaliadores.}
+  \item[Interface principal de sistematização de consultas]{Será preciso
+    desenvolver uma interface administrativa para possibilitar o
+    administrador manipular os parágrafos de um texto em consulta, de forma que
+    seja possível visualizar facilmente as etiquetas e status definidos pelos
+    usuários e avaliadores. Esta interface irá exibir o texto em consulta de
+    um lado e os comentários do outro, como mostra a Figura
+    \ref{manage-comments}, de forma que a cada parágrafo revisado seja marcado
+    com um status indicando que tal parágrafo foi revisado. Esta nova
+    interface deve possibilitar que o administrador revise e sistematize um novo
+    texto para cada parágrafo individualmente.}
+  \item[Administrador gera nova versão do texto com base nos comentários]{Nova
+    funcionalidade que permita gerar uma nova versão do texto após revisão das
+    etiquetas e status, esta nova versão do texto terá como base as
+    contribuições dos usuários através de seus comentários, uma nova consulta
+    poderá ser aberta após a sistematização feita pelo administrador,
+    possibilitando um processo incremental de consulta com base num texto base
+    inicial.}
+  \item[Definir status em parágrafo indicando que foi
+    sistematizado/revisado pelo administrador]{Será preciso criar um novo
+    campo associado a cada parágrafo de um artigo texto, este status irá
+    receber uma indicação de que o administrador já o revisou, este status será
+    utilizado na visualização dos parágrafos, os já revisados serão exibidos numa
+    cor diferente. Esta diferenciação estará disponível apenas para
+    administradores e avaliadores (Figura \ref{manage-comments-commit}).}
+  \item[Exportar dados associados aos comentários em formato CSV]{Os
+    comentários e suas respectivas etiquetas e status devem ser exportados
+    para um arquivo CSV, então será preciso implementar uma funcionalidade nova
+    que percorra todos os comentários e gere um CSV contendo: conteúdo do
+    comentário, autor do comentário, data, etiqueta e todos os status associados e
+    seus respectivos avaliadores.}
+  \item[Interface de exibição de estatísticas de contribuições]{Implementar
+    uma interface para exibir estatísticas da consulta, exibindo quantos
+    usuários querem adicionar conteúdo, quantos querem remover, quantos
+    concordam com o texto da consulta, quantos discordam, quantas avaliações
+    cada comentário recebeu por parte dos avaliadores.}
+\end{description}
 
 \section{Conclusão}
 
