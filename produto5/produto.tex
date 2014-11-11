@@ -1,0 +1,632 @@
+\documentclass[12pt]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage[T1]{fontenc}
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyvrb}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{lastpage}
+\usepackage{makeidx}
+\pagestyle{fancy}
+
+
+% cabecalho e rodapé
+\setlength{\headheight}{120pt}
+\setlength{\textheight}{550pt}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{\includegraphics[scale=0.03]{brasao.png}}
+\rhead{\includegraphics[scale=0.4]{logo-pnud.png}}
+\cfoot{\textbf{\ProjectCode\ - Inovando a democracia participativa}}
+\rfoot{\thepage}
+
+\hyphenation{par-ti-ci-pa-ção}
+\bibliographystyle{ieeetr}
+
+% definições sobre o autor e o produto
+\newcommand{\MyName}{Joenio Marques da Costa}
+\newcommand{\MySurnameForename}{Costa, Joenio}
+\newcommand{\SupervisorName}{Ricardo Augusto Poppi Martins}
+\newcommand{\MyEmail}{joenio@colivre.coop.br}
+\newcommand{\ContractNumber}{2013/000564}
+\newcommand{\ContractYear}{2013}
+\newcommand{\ProjectCode}{Projeto BRA/12/018}
+\newcommand{\NomeSecretaria}{Secretaria Geral da Presidência da República}
+\newcommand{\SiglaSecretaria}{SG/PR}
+\newcommand{\ProductNumber}{05}
+\newcommand{\ProductTitle}{Especificação para mecanismos automatizados e
+  assistidos para agregação de dados e metadados}
+\newcommand{\ProductSubtitle}{Como agregar dados e metadados de outros
+  ambientes de participação social ao Participa.br}
+\newcommand{\ProductDescription}{"Documento com especificações para mecanismos
+  automatizados e assistidos para agregação de dados e metadados de ambientes
+  de participação social de outros órgãos, instâncias e níveis de governo,
+  incluindo Organizações da Sociedade Civil, considerando as dimensões
+  temáticas e federativas (estados e municípios)."
+}
+\newcommand{\ProductValue}{R\$ 14.400,00 (quatorze mil e quatrocentos reais)}
+\newcommand{\ObjetoContratacao}{"Construção dos códigos para comunidades e
+  aplicativos do portal da participação social."
+}
+\newcommand{\DataEntrega}{25 Outubro de 2014}
+\newcommand{\PalavrasChave}{agregação, api, cidade democrática, interoperabilidade}
+
+% lista de abreviações
+\makeindex
+
+\begin{document}
+
+\input{folhadeaprovacao.tex}
+\input{folhaderosto.tex}
+\input{folhaobjetocontratacao.tex}
+\input{folhadeidentificacao.tex}
+\tableofcontents
+\newpage
+
+\begin{abstract}
+Documento com proposta de interoperabilidade entre o Participa.br e o Cidade
+Democrática, proposta de API e funcionalidades para moderação de conteúdo
+possibilitando agregação assistida pelos adminisitradores do ambiente. \\
+
+{\bf Palavras-chave:} \PalavrasChave.
+\end{abstract}
+\newpage
+
+\section{Introdução}
+
+Em consonância com os objetivos e cronograma previsto no âmbito do
+projeto BRA/12/018:
+\textbf{Desenvolvimento de Metodologias de Articulação e Gestão de
+Políticas Públicas para Promoção da Democracia Participativa},
+firmado entre a Secretaria-Geral da Presidência da República
+(SG/PR) e o Programa das Nações Unidas para o Desenvolvimento (PNUD),
+o presente documento apresenta \ProductDescription.
+
+Essa proposta está configurada como produto \ProductNumber~da consultoria técnica
+para especificação da construção dos códigos das metodologias de
+organização da informação e interação participativa do portal de
+participação social.
+
+\section{O Participa.br}
+
+O Participa.br é a Plataforma Federal da Participação Social. Trata-se de mais
+um espaço para participação social no Brasil, escuta e diálogo entre o Governo
+Federal e a Sociedade Civil. 
+
+A plataforma, totalmente desenvolvida em software livre, tem como missão
+desenvolver práticas inovadoras de participação via internet e oferta de
+espaços de manifestação e debate para qualquer cidadão ou organização, com o
+intuito de construir políticas públicas cada vez mais eficazes e efetivas.
+
+O Participa.br é desenvolvido sob a plataforma para redes sociais Noosfero.
+
+\section{O Noosfero}
+
+O Noosfero\cite{noosfero} é uma plataforma web livre para redes sociais e de
+economia solidária que possui as funcionalidades de Blog, e-Portfolios, CMS,
+RSS, discussão temática, agenda de eventos e inteligência econômica
+colaborativa num mesmo sistema! O Noosfero utiliza a linguagem de programação
+Ruby com framework Rails e, portanto, suporta bancos de dados, PostgreSQL,
+MySQL, SQLite entre outros.
+
+Noosfero é um Software Livre e licenciado sob a GNU Affero General Public
+License (AGPL), versão 3.
+
+\section{Especificação para mecanismos de agregação de dados}
+
+Este documento descreve como agregar e integrar dados e metados vindos de
+ambientes virtuais de participação social ao Participa.br, foram avaliados
+diversos sites governamentais e da sociedade civil, dentre eles deu-se
+especial atenção ao portal Cidade Democrática, este enfoque foi dado com base
+em decisões da equipe gestora do Participa.br, o Cidade Democrática foi um
+grande parceiro no concurso da Webcidadania Xingu, experiência que aproximou
+bastante as duas iniciativas, portanto dando uma importancia estratégica para
+tal.
+
+Nos próximas sessões serão apresentadas informações sobre alguns portais de
+participação social, análise dos dados e metadados do Cidade Democrática,
+tecnologias e ferramentas para agregação de dados entre sites, descrição de
+uma API para o Cidade Democrática, como publicar os dados no Participa.br e
+por fim algumas referências de agregação utilizando Single Sign On.
+
+\subsection{Ambientes de participacao social}
+
+Ambientes virtuais de participação social vem despertando o interesse da
+sociedade de forma crescente nos últimos anos, e isto tem proporcionado o
+surgirmento de diversas iniciativas em torno deste tema, dentre elas pode-se
+citar o surgimento de ferramentas digitais de participação social, iniciativas
+do governo e da sociedade civil para fomentar a participação do cidadão na
+construção de soluções para problemas vivenciados nas cidades ou mesmo na
+construção de propostas de políticas públicas.
+
+\subsubsection{Gabinete Digital do RS}
+
+O Gabinete Digital é um canal de participação e diálogo entre governo e
+sociedade. Vinculado à Secretaria-Geral de Governo do RS, tem o objetivo de
+incorporar novas ferramentas de participação, oferecendo diferentes
+oportunidades ao cidadão de influenciar a gestão pública e exercer maior
+controle social sobre o Estado.
+
+Criado em maio de 2011, a concepção do projeto foi acompanhada de uma ampla
+pesquisa que analisou exemplos de democracia digital do Brasil e do exterior e
+inspirou a criação de um conjunto único de mecanismos para a participação.
+
+\begin{itemize}
+  \item http://gabinetedigital.rs.gov.br
+\end{itemize}
+
+\subsubsection{Cidade Democrática}
+
+O Cidade Democrática é um site colaborativo onde cidadãos, gestores públicos e
+entidades podem se expressar em torno de temas públicos relacionados ao dia a
+dia da cidade. Os usuários podem navegar por temas, saber o que se fala sobre
+os problemas e quais ideias circulam para melhorar a cidade.
+
+Foi criado pelo Instituto Seva e contou com a
+colaboração de muitos profissionais e especialistas em questões como
+juventude, novos modelos de negócios sustentáveis, saúde, cultura, análise de
+redes, empreendedorismo social, cidadania e meio ambiente.
+
+\begin{itemize}
+  \item http://www.cidadedemocratica.org.br
+\end{itemize}
+
+\subsubsection{CulturaEduca}
+
+O CulturaEduca é uma ferramenta criada para facilitar o diálogo entre a escola
+e as instituições, iniciativas e pessoas próximas a ela. Comunidades formadas
+por crianças, jovens, professores, pais, agentes culturais e cidadãos são
+convidados a mapear seus territórios educativos de forma colaborativa. Mais
+que localizar iniciativas socioculturais, o processo de mapeamento fortalece
+elos comunitários e provoca múltiplas possibilidades de aprendizagem.
+
+É resultado do projeto "Mapeamento das Iniciativas de Cultura e
+Educação", parceria entre o Instituto Lidas, a Secretaria de Políticas
+Culturais do Ministério da Cultura (MinC) e a Secretaria de Educação Básica do
+Ministério da Educação (MEC). Membros dessas instituições formam um Comitê
+Gestor que está debatendo as relações entre cultura e educação e as
+possibilidades de levantamento de dados sobre essas relações. 
+
+\begin{itemize}
+  \item http://culturaeduca.cc
+\end{itemize}
+
+\subsubsection{Gestão Urbana SP}
+
+O portal Gestão Urbana SP é um espaço de diálogo com os cidadãos para pensar
+novas formas de administração municipal, resultando um planejamento para a
+cidade resultado da parceria entre o poder público e a sociedade.
+
+Desenvolvido desde 2013 pela Secretaria Municipal de Desenvolvimento Urbano
+(SMDU) conta com funcionalidades para acompanhar projetos em andamento,
+notícias e explicações de todo o planejamento da cidade, dados, documentos e
+leis, agenda de atividades, transmissão ao vivo, além de ferramentas
+inovadores de participação social.
+
+\begin{itemize}
+  \item http://gestaourbana.prefeitura.sp.gov.br
+\end{itemize}
+
+\subsubsection{Planeja Sampa}
+
+Planeja Sampa é o canal eletrônico permanente de interação entre poder público
+e sociedade civil, no qual o cidadão terá espaço para participar ativamente do
+processo de planejamento da cidade. O portal está em ativo desenvolvimento e
+conta com funcionalidades sobre projetos em execução, notícias, dados,
+documentos, leis, notícias, agenda de atividades, dentre várias outras
+funcionalidades.
+
+\begin{itemize}
+  \item http://planejasampa.prefeitura.sp.gov.br
+\end{itemize}
+
+\subsection{Dados e metadados dos ambientes de participacao}
+
+O Participa.br é formado por pessoas, comunidades e conteúdos de diversos
+tipos. Estes conteúdos podem ser artigos texto, fóruns, blogs, vídeos, fotos,
+etc. Dentre estes tipos de conteúdos será dado atenção especial aos conteúdos
+utilizados como ferramentas de participação social, são elas:
+
+\begin{itemize}
+  \item Trilhas de participação e seus passos
+  \item Fóruns
+  \item Artigo de texto com comentário por parágrafo
+  \item Artigo de texto com comentário por trecho
+  \item Votação em pares (pairwise)
+  \item Ferramenta de construção de propostas
+\end{itemize}
+
+Cada uma destas ferramentas de participação social presentes no Participa.br
+compartilham atributos em comum, são eles:
+
+\begin{itemize}
+  \item Título
+  \item Resumo
+  \item Conteúdo
+  \item Tags
+  \item Autor
+  \item Data de criação
+\end{itemize}
+
+Dentre estas ferramentas de participação as trilhas serão descritas com mais
+enfoque pois serão elas o objeto de agregração entre o Cidade Democrática e o
+Participa.br. As trilhas de participação presentes no Participa.br são
+formadas por:
+
+\begin{itemize}
+  \item {\it Todos os campos comuns cidados acima}
+  \item Passos
+  \item Metas
+  \item Resultados esperados
+\end{itemize}
+
+Com base nos dados descritos do Participa.br será feito um mapeamento
+para o Cidade Democrática, focando nos elementos contidos nas trilhas. O Cidade
+Democrática possui um tipo de conteúdo bastante similar as trilhas chamado
+"Concurso", estes concursos serão mapeados para trilhas dentro do
+Participa.br.
+
+Os concursos são formados por fases, estas fases serão agregadas ao
+Participa.br através da troca de dados usando o modelo proposto pelo consultor
+PNUD Renato Fabbri em seu Produto 01\cite{fabri}, este modelo é baseado em uma
+ontologia OWL chamada OPA (Ontologia do PArticipaBR), desenvolvida
+especialmente para o Participa.br e descreve 4 classes principais:
+
+\begin{itemize}
+  \item ParticipaBR
+  \item Participante
+  \item Comunidade
+  \item Mecanismo Participativo
+\end{itemize}
+
+As trilhas de participação existentes no Participa.br pertencem a classe "Mecanismo
+Participativo" e serão descritas em detalhes nas próximas sessões.
+
+\subsection{Tecnologias para troca de dados entre sistemas / API}
+
+%  Pesquisar formas de integracao, descrever API de forma geral, mapeamento de dados (ontologias)
+%
+%  Apontar um modelo de dados para a integracao, referenciar as ontologias do
+%  primeiro produto do fabri sobre ontologias.
+%
+%O link abaixo fala de diversar formas de troca de dados entre sistemas, e
+%cobre tecnologias referenciadas no produto1 do fabri, triplas, rdf,
+%ontologias, etc... A proposta feita aqui sera retirada deste topico: o que
+%fazer? Resumo das tecnologias deste artigo; falar e denifir API.
+
+% https://en.wikipedia.org/wiki/Interoperability
+% https://en.wikipedia.org/wiki/Application_programming_interface
+
+Interoperabilidade é a chave para troca de dados, ela é descrita como a
+habilidade de fazer sistemas distintos trabalharem em conjunto, para isto é
+preciso especificar em detalhes:
+
+\begin{itemize}
+  \item Como será a troca de informações
+  \item Definir um formato de dados para tais trocas
+  \item Escolher ou criar um protocolo de comunicação
+\end{itemize}
+
+Além disso é preciso pensar em como manter a consistencia dos dados, isto é
+chamado de interoperabilidade semantica, ou seja, a capacidade de trocar dados
+de forma consistente considerando um modelo de dados comum. Cada sistema tem
+seu próprio modelo de dados, para haver interoperabilidade e consequentemente
+agregação de dados é preciso haver um mapeamento entre eles, para isto será
+utilizado a OPA (uma ontologia para o ParticipaBR).
+
+O protocolo utilizado será o HTTP, a comunicação será feito via REST,
+o formato para a troca de dados será o JSON\cite{json}. Resumindo:
+
+\begin{itemize}
+  \item Protocolo: HTTP + REST
+  \item Formato de dados: JSON
+\end{itemize}
+
+%Falar de formato de dados para troca de dados
+% https://en.wikipedia.org/wiki/Data_exchange
+
+%Falar de interoperabilidade entre dominios
+% https://en.wikipedia.org/wiki/Cross-domain_interoperability
+
+%Falar de interoperabilidade semantica (envolve ontologias e afins)
+% https://en.wikipedia.org/wiki/Semantic_interoperability
+
+\subsubsection{API}
+
+No contexto de desenvolvimento web, uma API é um conjunto definido de
+mensagens de requisição e resposta HTTP, geralmente expressado nos formatos
+XML ou JSON. Ainda que o termo seja um sinônimo para web service, a chamada Web
+2.0 está aos poucos depreciando o modelo de serviços SOAP para a técnica REST.
+
+Esta interface é o conjunto de padrões de programação que permite a construção
+de aplicativos e a sua utilização de maneira não tão evidente para os
+usuários. API é uma interface (não gráfica) que roda por trás do aplicativo e
+se conectada a diversos outros sistemas e aplicativos.
+
+\subsection{Uma proposta de API para o Cidade Democrática}
+
+O Cidade Democrática é formado por concursos, estes concursos sao formados por
+fases, cada fase é composta de ferramentas de participação. Estes dados serao
+mapeados para os elementos correspondentes no Participa.br e disponibilizados
+através de uma API.
+
+Esta API deverá ser desenvolvida seguindo as diretrizes abaixo:
+
+\begin{itemize}
+  \item Requisições via GET na porta 80
+  \item Possui dois tipos de componentes: métodos e retornos
+  \item Os retornos serão sempre em formato JSON
+  \item Os métodos compõe a URI sendo requisitada
+\end{itemize}
+
+Os métodos irão corresponder aos dados disponibilizados pela API do Cidade
+Democrática, para cada tipo de dado existirá um método implementado na API,
+segue uma lista de métodos e uma breve descrição:
+
+\begin{itemize}
+  \item concursos: retorna JSON com lista de todos os concursos, seus IDs e descricao
+  \item concurso/X: retorna JSON com detalhes sobre o concurso X
+  \item concurso/X/fases: retorna JSON com a lista de fases, seus IDs e descrição
+  \item concurso/X/fase/N: retorna JSON com detalhes sobre a fase N do concurso X
+  \item concurso/X/fase/N/contribuicoes: retorna JSON com todas as contribuições da fase N
+  \item concurso/X/fase/N/contribuicao/A: retorna JSON com todos os comentários da contribuição A da fase N do concurso X
+\end{itemize}
+
+As requisições com sucesso devem retornar a seguinte resposta:
+
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo de retorno JSON com a lista de todos os concursos]
+  {
+    "success":true,
+    "dataset": [
+      {
+        "id":12,
+        "titulo":"...",
+        "resumo":"...",
+        "conteudo":"...",
+        "autor":"...",
+        "propostas":100,
+        "participantes":20
+      },
+      {
+        "id":13,
+        "titulo":"...",
+        "resumo":"...",
+        "conteudo":"...",
+        "autor":"...",
+        "propostas":12,
+        "participantes":3
+      },
+      ...
+    ]
+  }
+\end{lstlisting}
+\end{framed}
+
+As requisições com erro devem retornar a seguinte resposta em formato JSON:
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo de retorno JSON com erro]
+  {
+    "success":false,
+    "errorcode":"101",
+    "description":"Invalid params"
+  }
+\end{lstlisting}
+\end{framed}
+
+
+A resposta da API sempre é enviada em formato JSON, para ler basta usar
+qualquer biblioteca para tratamento JSON e converter a resposta em um objeto.
+
+\begin{framed}
+\begin{lstlisting}[caption=Pseudo-código com exemplo de como tratar o retorno JSON]
+  obj = json_decode(response)
+  if(obj.success) {
+    //requisicao com sucesso
+  } else {
+    //algo saiu errado
+  }
+\end{lstlisting}
+\end{framed}
+
+Esta API deve ser configurada junto ao servidor hospedando o Cidade
+Democrática e deve ser acessível através do seguinte endereço:
+
+\begin{itemize}
+  \item http://cidadedemocratica.org.br/api/
+\end{itemize}
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.5]{diagrama.png}
+\caption{Requisicao a API do Cidade Democrática}
+\label{diagrama}
+\end{figure}
+
+A partir deste endereço todos os métodos da API estarão acessíveis, a Figura
+\ref{diagrama} exemplifica uma requisicao à API a partir do Participa.br,
+exemplos de requisição aos métodos da API:
+
+\begin{itemize}
+  \item http://cidadedemocratica.org.br/api/concursos
+  \item http://cidadedemocratica.org.br/api/concurso/12
+  \item http://cidadedemocratica.org.br/api/concurso/12/fases
+  \item http://cidadedemocratica.org.br/api/concurso/12/fase/1
+\end{itemize}
+
+\subsection{Agregação de dados no Participa.br}
+
+O Participa.br será extendido com uma funcionalidade para leitura dos dados
+fornecidos pela API do Cidade Democrática, esta funcionalidade será
+desenvolvida como forma de um serviço que ficará lendo periodicamente de forma
+automatizada os dados do Cidade Democrática, este serviço irá ser executado
+junto ao serviço Noosfero e irá ler a cada 15 minutos os dados do Cidade
+Democrática, ou seja irá acessar a API do Cidade Democrática puxando todos os
+dados novos desde a última leitura, a identificação de quais são novos será
+feito a partir de um controle feito no lado do Noosfero, cada conteúdo
+devidamente agragado ao Participa.br será registrado numa tabela do banco de
+dados contendo a URI daquele item, a URI dos itens vindos do Cidade
+Democrática são únicos, 2 items nunca terão a mesma URI, então este será o
+ponto de controle.
+
+O processo será primeiro identificar os concursos existentes no Cidade
+Democrática, percorrer cada concurso copiando seus dados, como:
+
+\begin{itemize}
+  \item Titulo
+  \item Resumo
+  \item Conteúdo (como funciona)
+  \item Quem propoe
+  \item Numero de propostas
+  \item Numero de participantes
+\end{itemize}
+
+Além dos dados do próprio concurso, citados acima, serão copiados também os
+dados das etapas, que são compostas de:
+
+\begin{itemize}
+  \item Data de inicio e fim
+  \item Nome da etapa
+  \item Contribuições dos participantes (a depender da etapa pode ser: inspiracoes, propostas, comentarios, etc)
+\end{itemize}
+
+Cada Concurso possui exatamente 5 etapas, são elas:
+
+\begin{itemize}
+  \item Inspiração: os usuários são convidados a enviar imagens para inspirar os participantes do concurso.
+  \item Propostas: momento em que as propostas e problemas são enviados para responder ao tema do Concurso e quando também é possível comentar propostas de outros para ajudar a melhorar.
+  \item Aplausos: os participantes podem escolher as melhores ideias e dar o seu apoio para quantas quiser.
+  \item União: para ganhar força e visibilidade, as ideias que forem semelhantes podem ser unidas em uma só, somando também seus comentários e apoios.
+  \item Ganhadores: é quando ficamos sabendo quais foram as ideias e os ganhadores em cada categoria de premiação.
+\end{itemize}
+
+Cada contribuição dos participantes em cada fase tem seu próprio conteúdo e
+serão também copiados para o Participa.br:
+
+\begin{itemize}
+  \item Titulo
+  \item Conteudo
+  \item Tags
+  \item Autor
+  \item Fotos
+\end{itemize}
+
+Outros usuarios podem apoiar ou comentar cada proposta, estes comentarios
+serao tambem copiados para o participa e possui os seguintes dados:
+
+\begin{itemize}
+  \item Titulo
+  \item Conteudo
+  \item Data do comentário
+  \item Autor
+  \item Tags
+\end{itemize}
+
+Este serviço a ser implementado no Participa.br deverá funcionar como {\it
+daemon} (ou seja, um serviço executando em background) e irá ler dados via API
+do Cidade Democrática a cada 15 minutos, segue abaixo um exemplo de código em
+Ruby de como este {\it daemon} deve ser implementado.
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo de código Ruby para o daemon]
+  #!/usr/bin/env ruby
+  require 'daemons'
+  options = {
+    :dir_mode   => :normal,
+    :multiple   => false,
+    :backtrace  => true,
+    :log_output => true,
+    :monitor    => false
+  }
+  Daemons.run_proc(options[:app_name], options) do
+    require './config/environment'
+    CidadeDemocraticaAPI.new.start
+  end
+\end{lstlisting}
+\end{framed}
+
+Os dados coletados pelo {\it daemon} serão armazenados em uma tabela no banco
+de dados do Participa.br, esta tabela deve se chamar {\it concursos} e deve
+ter uma estrutura como descriga na Tabela \ref{dados}.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{|l|l|}
+  \hline
+  Campo                   & Tipo de dado \\
+  \hline
+  id                      & inteiro \\
+  id original             & inteiro \\
+  titulo                  & texto \\
+  resumo                  & texto \\
+  conteúdo                & texto \\
+  quem propoe             & referencia para tabela de pessoas \\
+  numero de propostas     & inteiro \\
+  numero de participantes & inteiro \\
+  \hline
+\end{tabular}
+\caption{Especificacao dos campos e tipos de dados para a tabela de concursos}
+\label{dados}
+\end{table}
+
+%Os dados deverão ser obtidos de forma Nada de diff, uma vez puxado um
+%conteudo ele eh mantido, fazer diff aumenta consideravelmente a implementacao
+%para um ganho muito pequeno.
+
+O administrador do ambiente poderá configurar o {\it daemon} para copiar e
+publicar automaticamente os dados ou pode ativar um mecanismo de moderacao,
+com a moderacao todo conteudo sera copiado para sua tabela correspondente no
+banco de dados com uma flag que indique aguardando moderacao, todo conteudo
+aguardando moderacao sera gerenciado atraves de uma interface simples e
+intuitiva, como descrito na Figura \ref{moderacao}, esta interface estará
+disponível apenas para os administradores do ambiente.
+
+\begin{figure}[h!]
+\center
+\includegraphics[scale=0.6]{moderacao.png}
+\caption{Moderacao de conteúdos no Participa.br}
+\label{moderacao}
+\end{figure}
+
+%\subsection{Outras formas de agregação}
+%
+%  Single Sign On, fazer referencia ao meu produto
+%
+%  Como mapear e trazer os usuarios, falar de SSO, propor federacao entre cidade
+%  democratica e participa.
+
+\section{Conclusão}
+
+Neste documento foi apresentado um \ProductDescription
+
+Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
+consulta e participação popular na discussão e na definição da agenda
+prioritária do país, é necessário que além de documentação faça-se um esforço
+de movimentar as pessoar fora do ambiente virtual, para que haja um
+engajamento no uso e contribuição deste projeto de forma consistente e perene.
+
+% Trabalhos futuros
+%
+%Uma ontologia similar ao OPA deve ser proposto em mais detalhes
+%para o Cidade Democrática, a fim de direcionar o desenvolvimento de
+%ferramentas para integração.
+
+\newpage
+\bibliography{bibliografia}
+\newpage
+\listoffigures
+\newpage
+\printindex
+\newpage
+\input{listadeanexos.tex}
+\appendix
+\appendixpage
+\input{appendix.tex}
+
+\end{document}
