@@ -14,7 +14,6 @@
 \usepackage{makeidx}
 \pagestyle{fancy}
 
-
 % cabecalho e rodapé
 \setlength{\headheight}{120pt}
 \setlength{\textheight}{550pt}
@@ -69,8 +68,9 @@
 
 \begin{abstract}
 Documento com proposta de interoperabilidade entre o Participa.br e o Cidade
-Democrática, proposta de API e funcionalidades para moderação de conteúdo
-possibilitando agregação assistida pelos adminisitradores do ambiente. \\
+Democrática, proposta de API e funcionalidades para moderação de conteúdos
+possibilitando agregação assistida pelos administradores do ambiente. \\
+
 
 {\bf Palavras-chave:} \PalavrasChave.
 \end{abstract}
@@ -224,7 +224,7 @@ funcionalidades.
   \item http://planejasampa.prefeitura.sp.gov.br
 \end{itemize}
 
-\subsection{Dados e metadados dos ambientes de participacao}
+\subsection{Dados e metadados dos ambientes de participação}
 
 O Participa.br é formado por pessoas, comunidades e conteúdos de diversos
 tipos. Estes conteúdos podem ser artigos texto, fóruns, blogs, vídeos, fotos,
@@ -288,19 +288,6 @@ Participativo" e serão descritas em detalhes nas próximas sessões.
 
 \subsection{Tecnologias para troca de dados entre sistemas / API}
 
-%  Pesquisar formas de integracao, descrever API de forma geral, mapeamento de dados (ontologias)
-%
-%  Apontar um modelo de dados para a integracao, referenciar as ontologias do
-%  primeiro produto do fabri sobre ontologias.
-%
-%O link abaixo fala de diversar formas de troca de dados entre sistemas, e
-%cobre tecnologias referenciadas no produto1 do fabri, triplas, rdf,
-%ontologias, etc... A proposta feita aqui sera retirada deste topico: o que
-%fazer? Resumo das tecnologias deste artigo; falar e denifir API.
-
-% https://en.wikipedia.org/wiki/Interoperability
-% https://en.wikipedia.org/wiki/Application_programming_interface
-
 Interoperabilidade é a chave para troca de dados, ela é descrita como a
 habilidade de fazer sistemas distintos trabalharem em conjunto, para isto é
 preciso especificar em detalhes:
@@ -325,15 +312,6 @@ o formato para a troca de dados será o JSON\cite{json}. Resumindo:
   \item Protocolo: HTTP + REST
   \item Formato de dados: JSON
 \end{itemize}
-
-%Falar de formato de dados para troca de dados
-% https://en.wikipedia.org/wiki/Data_exchange
-
-%Falar de interoperabilidade entre dominios
-% https://en.wikipedia.org/wiki/Cross-domain_interoperability
-
-%Falar de interoperabilidade semantica (envolve ontologias e afins)
-% https://en.wikipedia.org/wiki/Semantic_interoperability
 
 \subsubsection{API}
 
@@ -391,7 +369,10 @@ As requisições com sucesso devem retornar a seguinte resposta:
         "conteudo":"...",
         "autor":"...",
         "propostas":100,
-        "participantes":20
+        "participantes":20,
+        "tags":"...",
+        "cidade":"...",
+        "estado":"..."
       },
       {
         "id":13,
@@ -401,6 +382,9 @@ As requisições com sucesso devem retornar a seguinte resposta:
         "autor":"...",
         "propostas":12,
         "participantes":3
+        "tags":"...",
+        "cidade":"...",
+        "estado":"..."
       },
       ...
     ]
@@ -419,7 +403,6 @@ As requisições com erro devem retornar a seguinte resposta em formato JSON:
   }
 \end{lstlisting}
 \end{framed}
-
 
 A resposta da API sempre é enviada em formato JSON, para ler basta usar
 qualquer biblioteca para tratamento JSON e converter a resposta em um objeto.
@@ -470,7 +453,7 @@ junto ao serviço Noosfero e irá ler a cada 15 minutos os dados do Cidade
 Democrática, ou seja irá acessar a API do Cidade Democrática puxando todos os
 dados novos desde a última leitura, a identificação de quais são novos será
 feito a partir de um controle feito no lado do Noosfero, cada conteúdo
-devidamente agragado ao Participa.br será registrado numa tabela do banco de
+devidamente agregado ao Participa.br será registrado numa tabela do banco de
 dados contendo a URI daquele item, a URI dos itens vindos do Cidade
 Democrática são únicos, 2 items nunca terão a mesma URI, então este será o
 ponto de controle.
@@ -485,6 +468,9 @@ Democrática, percorrer cada concurso copiando seus dados, como:
   \item Quem propoe
   \item Numero de propostas
   \item Numero de participantes
+  \item Tags
+  \item Cidade
+  \item Estado
 \end{itemize}
 
 Além dos dados do próprio concurso, citados acima, serão copiados também os
@@ -553,7 +539,7 @@ Ruby de como este {\it daemon} deve ser implementado.
 
 Os dados coletados pelo {\it daemon} serão armazenados em uma tabela no banco
 de dados do Participa.br, esta tabela deve se chamar {\it concursos} e deve
-ter uma estrutura como descriga na Tabela \ref{dados}.
+ter uma estrutura como descrita na Tabela \ref{dados}.
 
 \begin{table}[t]
 \centering
@@ -569,21 +555,20 @@ ter uma estrutura como descriga na Tabela \ref{dados}.
   quem propoe             & referencia para tabela de pessoas \\
   numero de propostas     & inteiro \\
   numero de participantes & inteiro \\
+  tags                    & texto \\
+  cidade                  & texto \\
+  estado                  & texto \\
   \hline
 \end{tabular}
 \caption{Especificacao dos campos e tipos de dados para a tabela de concursos}
 \label{dados}
 \end{table}
 
-%Os dados deverão ser obtidos de forma Nada de diff, uma vez puxado um
-%conteudo ele eh mantido, fazer diff aumenta consideravelmente a implementacao
-%para um ganho muito pequeno.
-
 O administrador do ambiente poderá configurar o {\it daemon} para copiar e
-publicar automaticamente os dados ou pode ativar um mecanismo de moderacao,
-com a moderacao todo conteudo sera copiado para sua tabela correspondente no
-banco de dados com uma flag que indique aguardando moderacao, todo conteudo
-aguardando moderacao sera gerenciado atraves de uma interface simples e
+publicar automaticamente os dados ou pode ativar um mecanismo de moderação,
+onde todo conteúdo será copiado para sua tabela correspondente no
+banco de dados com uma {\it flag} que indique aguardando moderação, todo conteúdo
+aguardando moderação sera gerenciado através de uma interface simples e
 intuitiva, como descrito na Figura \ref{moderacao}, esta interface estará
 disponível apenas para os administradores do ambiente.
 
@@ -594,12 +579,51 @@ disponível apenas para os administradores do ambiente.
 \label{moderacao}
 \end{figure}
 
-%\subsection{Outras formas de agregação}
-%
-%  Single Sign On, fazer referencia ao meu produto
-%
-%  Como mapear e trazer os usuarios, falar de SSO, propor federacao entre cidade
-%  democratica e participa.
+Por fim, e não menos importante, é necessário citar a importância semantica de
+alguns dos dados a serem copiados pelos mecanismos descritos acima, alguns
+destes dados darão uma dimensão temática e federativa ao processo de
+agregação, as próximas 2 sessões detalham um pouco sobre isto.
+
+\subsubsection{Dimensão temática}
+
+O Participa.br possui uma forte dimensão social proporcionada pela organização
+da plataforma em torno de comunidades e pessoas, o portal é baseado numa
+ferramenta de redes sociais e todo o conteúdo é organizado em torno das
+comunidades. De tal forma que o contato das pessoas ao portal ocorre a partir
+de temas de interesse, onde participam e contribuem com as diversas
+comunidades existentes, esta dimensão social é parte essencial da plataforma e
+tem sido construída desde a concepção inicial da ferramenta. Apesar disso, a
+plataforma ainda carece de uma melhor estrutura para promover uma nova
+dimensão, chamada aqui de dimensão temática.  Esta dimensão será construída
+através da agregação das {\it tags} vindas do portal Cidade Democrática ao
+Participa.br, estas tags serão copiadas para cada conteúdo agregado ao
+Participa.br, isso permitirá navegação por temas e dará opções de filtrar
+conteúdos por diversos critérios. Esta dimensão temática auxiliará também no
+processo de moderação assistida, permitindo o administrador filtar itens
+que estão aguardando moderação.
+
+\subsubsection{Dimensão federativa}
+
+\begin{figure}[h!]
+\center
+\includegraphics[scale=0.4]{mapeamento-cidades.png}
+\caption{Mapeamento de estados, cidades e bairros entre Participa.br e Cidade
+Democrática}
+\label{mapeamento}
+\end{figure}
+
+O Cidade Democrática possui informações sobre estado, cidade e bairro
+relacionados a cada tópico, estas informações serão agregadas ao Participa.br
+a partir de um mapeamento previamente estabelecido entre cada estado, cidade e
+bairro do Cidade Democrática para dados similares no Participa.br. O Noosfero,
+plataforma por trás do Participa.br, possui uma entidade chamada {\it Region},
+esta entidade é armazenada na tabela {\it categories} do banco de dados e
+permite armazenar diversos níveis e sub-níveis de informação, permitindo
+simular e replicar a estrutura existende no Cidade Democrática, uma ilustração
+sobre este mapeamento é apresentada na Figura \ref{mapeamento}. Este
+mapeamento permitirá manter os dados vindos do Cidade Democrática
+categorizados por estado, cidade e bairro, dando uma dimensao federativa aos
+dados agregados.
 
 \section{Conclusão}
 
@@ -611,22 +635,11 @@ prioritária do país, é necessário que além de documentação faça-se um es
 de movimentar as pessoar fora do ambiente virtual, para que haja um
 engajamento no uso e contribuição deste projeto de forma consistente e perene.
 
-% Trabalhos futuros
-%
-%Uma ontologia similar ao OPA deve ser proposto em mais detalhes
-%para o Cidade Democrática, a fim de direcionar o desenvolvimento de
-%ferramentas para integração.
-
 \newpage
 \bibliography{bibliografia}
 \newpage
 \listoffigures
 \newpage
 \printindex
-\newpage
-\input{listadeanexos.tex}
-\appendix
-\appendixpage
-\input{appendix.tex}
 
 \end{document}
