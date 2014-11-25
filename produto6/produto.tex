@@ -417,18 +417,18 @@ o Noosfero, entre sí.
 % * nível de maturidade, aceitação e adoção
 
 O Diaspora é tanto uma implamentação de uma ferramenta de rede social, quanto
-uma especificação de protocolo para federação de redes sociais.
-A implementação suporta as seguintes funcionalidades:
+uma especificação de protocolo para federação. A implementação suporta as
+seguintes funcionalidades:
 
 \begin{itemize}
   \item Status messages
-  \item blogging
-  \item photo sharing
-  \item privacy enhanced
+  \item Blogging
+  \item Photo sharing
+  \item Privacy enhanced
 \end{itemize}
 
-É implementado em Ruby on Rails e licenciado sob a licença
-AGPL, implementa os protocolos:
+É implementado em Ruby on Rails, licenciado sob a licença AGPL e implementa os
+seguintes protocolos:
 
 \begin{itemize}
   \item Salmon
@@ -437,8 +437,8 @@ AGPL, implementa os protocolos:
   \item h-card
 \end{itemize}
 
-Utiliza as seguintes extensões junto ao Ruby on Rails, HAML, SASS, Backbone.js
-e Handlebars.js. O banco de dados é organizado conforme os modelos abaixo:
+Além do Ruby on Rails depende de HAML, SASS, Backbone.js e Handlebars.js, o
+banco de dados possui a seguinte estrutuda:
 
 \begin{itemize}
   \item User - Representação de um usuário no banco de dados
@@ -449,15 +449,17 @@ e Handlebars.js. O banco de dados é organizado conforme os modelos abaixo:
   \item Post - Uma postagem associada a uma pessoa
 \end{itemize}
 
-Postando algo:
+O workflow ao postar algo no Diaspora segue os seguintes passos:
 
-* Quando um usuário posta algo, ele posta isso em um ou vários Aspect
-* Assumindo que o post é válido, é criado e armazenado em {\it raw\_visible\_posts}
-* O HTML deste post é renderizado no servidor e enviado para o usuário via websocket
-* O post é então serializado para XML e assinado em um envelope Salmon
+\begin{itemize}
+  \item Quando um usuário posta algo, o Diaspora posta em um ou vários Aspect
+  \item Assumindo que o post é válido, é armazenado no banco de dados em {\it raw\_visible\_posts}
+  \item O HTML deste post é renderizado no servidor e enviado para o usuário via WebSocket\cite{websocket}
+  \item O post é então serializado para XML e assinado em um envelope Salmon
+\end{itemize}
 
 \begin{framed}
-\begin{lstlisting}[caption=Exemplo envio de mensagem e como o Diaspora serializa para XML]
+\begin{lstlisting}[caption=Exemplo envio de mensagem e como o Diaspora serializa em XML]
   post.to_diaspora_xml
       def push_to_people(post, people)
         salmon = salmon(post)
@@ -481,7 +483,7 @@ Postando algo:
 \end{lstlisting}
 \end{framed}
 
-Recebendo um post:
+Ao receber um post o fluxo é o seguinte:
 
 \begin{itemize}
   \item O usuário recebe um Salmon, desencripta os cabeçalhos
@@ -495,18 +497,28 @@ Recebendo um post:
 % * propoe integração do noosfero com ele
 
 Para possibilitar integração entre o Participa.br e o Diaspora é preciso
-implementar no Noosfero, software por trás do Participa.br, o suporte aos
-protocolos utilizados no Diaspora, ou seja, implementar: Salmon, Activity
-Stream, WebFinger, h-card e o proprio protocolo Diaspora.
+implementar no Noosfero, software por trás do Participa.br, suporte aos
+protocolos utilizados no Diaspora, ou seja: Salmon, Activity
+Stream, WebFinger, h-card e o proprio protocolo Diaspora. Após esta
+implementação tanto o Participa.br, quanto outras redes utilizando o Noosfero
+poderão se comunicar com servidores Diaspora, um exemplo pode ser visto na
+Figura \ref{ecosistema}.
+
+\begin{figure}[h]
+\center
+\includegraphics[scale=0.4]{ecosistema-noosfero-diaspora.png}
+\caption{Diagrama sobre integração entre o ecosistema Noosfero e Diaspora}
+\label{ecosistema}
+\end{figure}
 
 \subsubsection{WebFinger e Noosfero}
 
-Protocolo para descoberta de informações sobre pessoas e coisas identificados
-por URI únicas. Ele é o primeiro passo para ter intereção real com o Diaspora
-e outras redes sociais federadas.
+O WebFinger é um protocolo para descoberta de informações sobre pessoas e
+objetos identificados por URIs únicas. Ele é o primeiro passo para ter
+interação real com o Diaspora e outras redes sociais federadas.
 
 O Noosfero não tem suporte a tal protocolo, mas houve uma iniciativa pessoal
-de um dos desenvolvedores de documentar algo sobre este protocolo e iniciar
+de um dos desenvolvedores em documentar algo sobre este protocolo e iniciar
 uma implementação:
 
 \begin{itemize}
@@ -516,17 +528,67 @@ uma implementação:
     https://gitlab.com/aurium/noosfero/commits/init-federation
 \end{itemize}
 
-O que precisa ser feito para finalizar o suporte?
+É preciso evoluir esta implementação para ter suporte completo ao protocolo
+WebFinger de forma que os usuários da rede possam ser consultados através de
+suas URIs pelos outros "pods", os usuários do Participa.br deverão ser
+identificados através de endereços no seguinte formato:
+
+\begin{itemize}
+  \item usuario@participa.br
+\end{itemize}
+
+Um usuário fictício chamado "Joao" por exemplo será identificado através da
+seguinte URI WebFinger:
+
+\begin{itemize}
+  \item joao@participa.br
+\end{itemize}
+
+A partir desta URI um "pod" Diaspora poderá consultar e descobrir informações
+sobre "Joao" a partir de uma requisição do tipo "acct:joao@participa.br". Esta
+requisição deve retornar algo do tipo:
+
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo resposta a consulta WebFinger]
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Content-Type: application/jrd+json
+{
+  "subject" : "acct:joao@participa.br",
+  "aliases" :
+  [
+    "https://participa.br/joao"
+  ],
+  "properties" :
+  {
+      "http://participa.br/ns/role" : "member"
+  },
+  "links" :
+  [
+    {
+      "rel" : "http://webfinger.example/rel/profile-page",
+      "href" : "https://participa.br/profile/joao"
+    },
+    {
+      "rel" : "http://webfinger.example/rel/businesscard",
+      "href" : "https://participa.br/profile/joao/joao.vcf"
+    }
+  ]
+}
+\end{lstlisting}
+\end{framed}
 
 \subsubsection{Salmon e Noosfero}
 
 O protocolo Salmon é um protocolo para troca de mensagens sob HTTP projetado
 para descentralizar comentários e anotações feitas em artigos como posts de
-blogues.
+blogs.
 
 O Noosfero não tem qualquer implementação ou iniciativa de implementar Salmon,
-este protocolo é necessário ser implementado e para isso é preciso seguir os
-seguintes passos: Implementar funçoes de "aggregator" no Noosfero.
+este protocolo é necessário de ser implementado e para o Noosfero ao menos
+deve se tornar um "aggregator" Salmon, ou seja quem lê uma fonte de dados
+Salmon.
 
 O Noosfero deve ser capaz de ser um "aggregator" para ler um feed Salmon
 localizado no lado Diaspora. Quando um usuário do lado do Noosfero deixa um
@@ -582,36 +644,35 @@ O Noosfero não tem suporte a este protocolo e precisa que seja implementado
 como sugere a especificação do mesmo, basicamente uma atividade consiste de um
 ator, um verbo, um objeto e um alvo. Ele conta a história de uma pessoa
 realizando ações em um objeto, exemplo: "Geraldine postou uma foto em seu
-album" ou "João compartilhou um video"\cite{streams}. Na maioria dos casos
-estes componentes serão explícitos, mas eles podem ser imlicitos.
+album" ou "João compartilhou um video"\cite{streams}.
 
 \begin{framed}
-\begin{lstlisting}[caption=Exemplo simples de atividade JSON serielizada]
-  {
-    "published": "2011-02-10T15:04:55Z",
-    "actor": {
-      "url": "http://example.org/martin",
-      "objectType" : "person",
-      "id": "tag:example.org,2011:martin",
-      "image": {
-        "url": "http://example.org/martin/image",
-        "width": 250,
-        "height": 250
-      },
-      "displayName": "Martin Smith"
+\begin{lstlisting}[caption=Exemplo simples de atividade JSON serializada]
+{
+  "published": "2011-02-10T15:04:55Z",
+  "actor": {
+    "url": "http://example.org/martin",
+    "objectType" : "person",
+    "id": "tag:example.org,2011:martin",
+    "image": {
+      "url": "http://example.org/martin/image",
+      "width": 250,
+      "height": 250
     },
-    "verb": "post",
-    "object" : {
-      "url": "http://example.org/blog/2011/02/entry",
-      "id": "tag:example.org,2011:abc123/xyz"
-    },
-    "target" : {
-      "url": "http://example.org/blog/",
-      "objectType": "blog",
-      "id": "tag:example.org,2011:abc123",
-      "displayName": "Martin's Blog"
-    }
+    "displayName": "Martin Smith"
+  },
+  "verb": "post",
+  "object" : {
+    "url": "http://example.org/blog/2011/02/entry",
+    "id": "tag:example.org,2011:abc123/xyz"
+  },
+  "target" : {
+    "url": "http://example.org/blog/",
+    "objectType": "blog",
+    "id": "tag:example.org,2011:abc123",
+    "displayName": "Martin's Blog"
   }
+}
 \end{lstlisting}
 \end{framed}
 
