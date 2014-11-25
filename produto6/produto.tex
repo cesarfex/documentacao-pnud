@@ -219,17 +219,12 @@ Web Semantica, que combina tecnologia RDF com conceitos da 'Web Social'.
 
 \subsection{Google Wave Federation Protocol}
 
-O protocolo Wave Federation é um protocolo aberto, uma extensão do XMPP, usado
-no Apache Wave. Projetado para comunicação em tempo real através de servidores
-trabalhando de forma cooperativa.
+Um protocolo aberto descrito como uma extensão do XMPP\cite{xmpp}, usado
+no projeto chamado {\it Apache Wave}\cite{wave}. Projetado para comunicação em
+tempo real através de servidores trabalhando de forma cooperativa.
 
-Ainda em desenvolvimento ativo, o protocolo é fortemente baseado no protocolo
-de email e as funcionalidades inplementadas em cima dele são formetemte
-guiadas pela idela de email.
-
-Java source code for the "Google Wave Federation Prototype Server" was
-released in a Mercurial repository in July 2009 under the Apache License
-2.0.[6][7]
+O protocolo é fortemente baseado no protocolo de email e as funcionalidades
+inplementadas em cima dele são formetemte guiadas pela idela de email.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Google\_Wave\_Federation\_Protocol
@@ -239,12 +234,12 @@ released in a Mercurial repository in July 2009 under the Apache License
 
 OStatus é um padrão aberto para compartilhamento de atualizações que faz
 referencias a protocolos abertos como Atom, Activity Streams, PubSubHubbub,
-Walmon, Webfinger, que permitem pontos de troca e roteamento de mensagens e
-atualizações de status entre usuários em tempo real.
+Salmon, Webfinger. Através dele são criados pontos de troca e roteamento de
+mensagens e atualizações de status entre usuários em tempo real.
 
-Federação com OStatus foi inicialmente implementado no StatusNet e
-posterioemente em MiniMe, um projeto de microblog. Em janeiro de 2012 o W3C
-adotou e passou a manter o OStatus.
+O OStatus foi inicialmente implementado no StatusNet e posterioemente em
+MiniMe, um projeto de microblog. Em janeiro de 2012 o W3C adotou e passou a
+manter o OStatus. Hoje é implementado na plataforma GNU Social.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/OStatus
@@ -253,13 +248,13 @@ adotou e passou a manter o OStatus.
 \subsection{OpenSocial}
 
 OpenSocial é uma especificação pública que define um componente de hospedagem
-e um conjunto de APIs para aplicações web. Iniciamente projetado para
-aplicações de redes sociais foi desenvolvido pelo Google e MySpace e outras
-redes sociais. a OpenSocial Foundation suporta várias outras tecnologias Web
-como OAuth, Activity Streams e Portable Contacts.
+e um conjunto de APIs para aplicações web de redes sociais, foi desenvolvido
+em conjunto pelo Google, MySpace e outras redes sociais. A OpenSocial
+Foundation suporta várias outras tecnologias Web como OAuth, Activity Streams
+e Portable Contacts.
 
 Foi lançado em Novembro de 2007, aplicações que implementam as APIs do
-OpenSocial potem interoperar com qualquer outra rede social que suporta ele.
+OpenSocial podem interoperar com qualquer outra rede social que suporta ele.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/OpenSocial
@@ -267,15 +262,15 @@ OpenSocial potem interoperar com qualquer outra rede social que suporta ele.
 
 \subsection{PubSubHubbub}
 
-PubSubHubbub é um protocolo aberto para comunicação distribuída de
-publicar/subscrever via Internet. Inicialmente projetado para extender os
-protocolos Atom (e RSS) para feed de dados, o protocolo pode ser aplicado para
-qualquer tipo de dado (texto, imagens, audio, vídeos) desde que estejam
-disponívels via HTTP.
+PubSubHubbub é um protocolo aberto para comunicação distribuída de publicação
+e inscrição, inicialmente projetado para extender os protocolos Atom (e RSS),
+o protocolo pode ser aplicado para qualquer tipo de dado (texto, imagens,
+audio, vídeos) desde que estejam disponívels via HTTP.
 
 O principal objetivo é prover notificações de mudanças em tempo real. É
-utulizado para empurrar conteúdo de muitos sites, como blogger.com,
-wordpress.com, CNN, Fox News, diaspora*, entre outros.
+utilizado para publicar conteúdo de uma única vez em diversos sites. Entre os
+sites suportados por este protocolo podemos citas: blogger.com, wordpress.com,
+CNN, Fox News, diaspora*, entre outros.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/PubSubHubbub
@@ -283,15 +278,16 @@ wordpress.com, CNN, Fox News, diaspora*, entre outros.
 
 \subsection{Pump.io}
 
-Pump.io é um motor de activity streams de propósito geral que pode ser usado
-como protocolo de rede social federada que "faz o que a maioria das pessoas
-realmente precisam de uma rede social". Iniciado por Evan Prodromou, é uma
-evolução do StatusNet. Identi.ca que foi um grande exemplo de uso do StatusNet
-foi migrado para usar o pump.io desde 2013. Entretanto, enquanto o StatusNet
-oferece serviço similar o Twitter, pump.io oferece recursos muito mais gerais
-de rede social, e tem sido aditado por outros tipode de aplicação, como o
-MediaGoblin.
+Pump.io é um motor de {\it streaming} de atividades de propósito geral que
+pode ser usado como protocolo de rede social federada. Seu criador afirma que
+"ele faz o que a maioria das pessoas realmente precisam de uma rede social", é
+uma evolução do StatusNet e hoje encontra-se em produção no serviço com nome
+de Identi.ca.
 
+Apesar de ter sido inicialmente baseado no StatusNet, que oferece serviço
+similar o Twitter, o pump.io oferece recursos muito mais gerais de rede
+social, e tem sido adotado por outros tipos de aplicação, como o MediaGoblin
+por exemplo.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Pump.io
@@ -300,17 +296,18 @@ MediaGoblin.
 \subsection{Salmon}
 
 O protocolo Salmon é um protocolo para troca de mensagens sob HTTP projetado
-para descentralizar comentários e anotações feitas em artigos como posts de
-blogues. Permite threads de discussões serem feitas entre a origem do artigo e
-o "agregador" que está inscrito e obtendo o conteúdo. De forma simples, um
-artigo que aparece em 3 sites A (fonte original), B e C, membros dos 3
-serviços podem contribuir com uma thread única de conversação.
+para descentralizar comentários e anotações feitas em artigos e posts de
+blogs. Permite discussões através de comentários vindos de diversos pontos
+distintos através de um "agregador" que está inscrito e obtendo o conteúdo
+destas fontes. De forma simples, um artigo que é apresentado em 3 sites A
+(fonte original), B e C, pessoas de cada um dos sites podem comentar e
+interagir entre sí através destes comentários.
 
-Redes sociais federadas como StatusNet e Diaspora usam Salmon como definido na
-especificação do OStatus para coordenar discussão entre membros de diferentes
-servidores. Um membro de um servidor pode publicar um artigo que será
-disseminado para outros usuários da rede via Salmon que em "turno" podem
-comentar de volta de maneira transparente.
+Redes sociais federadas como StatusNet e Diaspora usam Salmon para coordenar
+discussão entre usuários de diferentes servidores. Um usuário de um servidor
+pode publicar um artigo que será disseminado para outros usuários de outras
+redee via Salmon que em contrapartida podem comentar de volta de maneira
+transparente.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Salmon\_(protocol)
@@ -329,56 +326,48 @@ dados, desenvolvedores podem criar novos tipos de interação.
   \item http://en.wikipedia.org/wiki/Tent\_(protocol)
 \end{itemize}
 
-\subsection{Webfinger}
+\subsection{WebFinger}
 
-Protocolo especificado pelo IETF que permite descobrir informações sobre
-pessoas e coisas identificados por URI. Informações sobre uma pessoa pode ser
-descoberta via um endereço "acct:", por exemplo um endereço similar a um
-email.
+Protocolo especificado pelo IETF permite descobrir informações sobre pessoas e
+objetos identificados por URIs únicas. Informações sobre uma pessoa pode ser
+descoberta através de uma requisição "acct:", contendo um endereço similar a
+um email no formato "usuario@servidor".
 
 É usado por redes como StatusNet e Diaspora para descobrir usuário em nós
-federados e "pods" em protocolos de armazenamento remoto como ownCloud por
-exemplo.
-
-Historicamente foi derivado do Finger protocolo, mas é bem diferente por ser
-projetado sob o HTTP.
+federados e "pods", ou em protocolos de armazenamento remoto como ownCloud por
+exemplo. Foi derivado historicamente do protocolo Finger, mas possui muitas
+diferenças por ser projetado sob o HTTP.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/WebFinger
 \end{itemize}
 
-http://noosfero.org/Development/ActionItem1573
-This is the first real step to interact with diaspora and other federated networks.
-Working branch: https://gitlab.com/aurium/noosfero/commits/init-federation
-
 \section{Ferramentas de redes sociais federadas}
 
-Estes protocolos isoladamente não fornecem solução para descentralizar as
-redes e promover federação, é preciso ferramentas que implementem tais
-protocolos, comumente mais de um protocolo é implementado nas ferramentas
-atuais, cada protocolo atinge um problema específico, então a combinação deles
-resulta num produto abrangente que resolve o problema mencionado. Segue
-algumas ferramentas mais populares que implementam alguns dos protocolos
-acima.
+Estes protocolos isoladamente não fornecem a solução para descentralizar as
+redes e promover federação entre elas, é preciso ter ferramentas implementando
+tais protocolos. Cada protocolo resolve um problema específico, a combinação
+deles em uma implementação resulta num produto abrangente que resolve o
+problema de centralização das redes anteriormente mencionado. Nas próximas
+sessões serão apresentadas algumas ferramentas de rede social federada.
 
 \subsection{Diaspora}
 
 Diaspora é projetado para atacar problemas relacionados a privacidade em redes
-sociais centralizadas permitindo os usuários subirem seu próprio servidor
-(chamado "pod") para hospedar conteúdo. "pods" podem interagir para
-compartilhar atualização de status, fotos e outros tipos de conteúdo. Isto
-permite aos usuários hospedarem em um servidor dedicado ou compartilhado, é
-implementado em Ruby on Rails e é software livre.
+sociais centralizadas permitindo aos usuários subirem seu próprio servidor
+(chamado "pod") e desta forma hospedar seu próprio conteúdo. Estes "pods" podem
+interagir entre sí para compartilhar atualização de status, fotos e outros tipos de
+conteúdo.
 
-Uma parte central do software Diaspora é o conceito que ele deve agir como um
-"agregador social", permitindo posts serem facilmente importados do Facebook,
-Tumblr e Twitter. A ideia é que as barreiras legais para juntar as redes e
-quanto mais amigos entrarem, você nao mais precisará do Facebook para se
-comunicar. Ao invés disso, você poderá se comunicar, diretamente, de forma
-segura, sem intermediários inescupulosos.
+Uma parte central do software Diaspora é que ele deve funcionar como um
+"agregador social", permitindo posts serem facilmente importados e exportados
+entre os vários "pods", além de proporcionar interação com redes fechadas como
+Facebook, Tumblr e Twitter. A ideia é quebrar as barreiras legais para juntar as
+diversas redes sociais, e quanto mais pessoas entrarem, menos força e poder as
+redes sociais fechadas e proprietárias terão sob os seus usuários.
 
-O software Diaspora implementa seu proprio protocolo de mesmo nome chamado
-Diaspora, alem do WebFinger, Salmon, Activity Stream e o micro-formato h-card.
+O software Diaspora implementa um protocolo de mesmo nome, além do WebFinger,
+Salmon, Activity Stream e o micro-formato h-card.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Diaspora\_(software)
@@ -386,14 +375,14 @@ Diaspora, alem do WebFinger, Salmon, Activity Stream e o micro-formato h-card.
 
 \subsection{Friendica}
 
-Friendica é um software livre que implementa uma rede social distribuída.
-Possui enfase extensiva em configurações de privacidade e facilidade de
-instalação em servidores. Tem objetivo de suportar federação com quantas
-outras redes possível. Em novembro de 2014, o diretório global de usuários do
-Friendica contabiliza 10 mil registros. Este é o número de usuários que
-decidiram publicar seus perfis no diretório público global.
-
-Implementa quais protocolos exatamente?
+Friendica é um software livre que implementa uma rede social distribuída,
+possui grande preocupação com privacidade e facilidade de instalação em
+servidores. Tem como missão integrar de forma federada com quantas outras
+redes for possível, atualmente integra com:  Facebook, Twitter, Diaspora, GNU
+social, App.net, Pump.io, WordPress, Livejournal, Tumblr e Posterous. Em
+novembro de 2014, o diretório global de usuários do Friendica contabiliza 10
+mil registros, número de usuários que decidiram publicar seus perfis no
+diretório público global.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Friendica
@@ -401,13 +390,13 @@ Implementa quais protocolos exatamente?
 
 \subsection{StatusNet / GNU Social}
 
-GNU Social, também chamado de StatusNet, é um servidor de microblog livro
+GNU Social, chamado no passado de StatusNet, é um servidor de microblog livre
 escrito em PHP que implementa o padrão OStatus para interoperação entre
-instalações. Enquanto oferece funcionalidade similar ao Twitter, StatusNed
+instalações. Enquanto oferece funcionalidade similar ao Twitter, StatusNet
 tenta prover o potencial para promover comunicação entre comunidades de
 microblog abetras e distribuídas.
 
-Implementa quais protocolos exatamente?
+É baseado no protocolo OStatus, mas também suporta Salmon e OpenID.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/GNU\_social
@@ -416,17 +405,16 @@ Implementa quais protocolos exatamente?
 \section{Federação entre o Participa.br e Diaspora}
 
 Dentre os softwares citados anteriormente o Diaspora foi escolhido como um
-plano piloto para ser integrado ao Participa.br, será descrito como o Diaspora
-funciona em detalhes mais tecnicos, quais os passos para integrar o
-Participa.br a ele, e então como integrar outras redes similar ao Participa.br
-que também usem Noosfero, como por exemplo: Softwarelivre.org, Blogoosfero.cc,
-Participa.gov.br, Juventude, etc...
+plano piloto para ser integrado ao Participa.br, nas sessões que seguem será
+descrito como o Diaspora funciona em detalhes tecnicos, quais os passos para
+integrar o Participa.br a ele, e como integrar outras redes, que também usem
+o Noosfero, entre sí.
 
 \subsection{Diaspora em detalhes}
 
- * pesquisa o protocolo do diaspora
- * detalhes sobre este protocolo
- * nível de maturidade, aceitação e adoção
+% * pesquisa o protocolo do diaspora
+% * detalhes sobre este protocolo
+% * nível de maturidade, aceitação e adoção
 
 O Diaspora é tanto uma implamentação de uma ferramenta de rede social, quanto
 uma especificação de protocolo para federação de redes sociais.
@@ -495,14 +483,16 @@ Postando algo:
 
 Recebendo um post:
 
-* O usuário recebe um Salmon, desencripta os cabeçalhos
-* Se a assinatura do Salmon é válida ele é desempacotado e salvo no banco de dados
-* Este post é armazenado entre os posts visiveis
+\begin{itemize}
+  \item O usuário recebe um Salmon, desencripta os cabeçalhos
+  \item Se a assinatura do Salmon é válida ele é desempacotado e salvo no banco de dados
+  \item Este post é armazenado entre os posts visiveis
+\end{itemize}
 
 \subsection{Integração entre Participa.br e o Diaspora}
 
- * proposta de como integrar o Noosfero as redes existentes Diaspora*
- * propoe integração do noosfero com ele
+% * proposta de como integrar o Noosfero as redes existentes Diaspora*
+% * propoe integração do noosfero com ele
 
 Para possibilitar integração entre o Participa.br e o Diaspora é preciso
 implementar no Noosfero, software por trás do Participa.br, o suporte aos
@@ -630,13 +620,17 @@ estes componentes serão explícitos, mas eles podem ser imlicitos.
 O protocolo Diaspora descreve como deve ocorrer a comunicação entre servidores
 Dispora, está em versão Alpha e em constante evolução.
 
-* Compartilhar notificações
-* Des-compartilhar notificações
-* Atualização de status
-* Comentários em atualização de status
-* Curtir em atualizações de status
+\begin{itemize}
+  \item Compartilhar notificações
+  \item Des-compartilhar notificações
+  \item Atualização de status
+  \item Comentários em atualização de status
+  \item Curtir em atualizações de status
+\end{itemize}
 
-https://wiki.diasporafoundation.org/Federation\_message\_semantics
+\begin{itemize}
+  \item https://wiki.diasporafoundation.org/Federation\_message\_semantics
+\end{itemize}
 
 \subsubsection{h-card e Noosfero}
 
@@ -677,7 +671,7 @@ para que outras redes leiam e obtenham informações sobre o usuário.
 
 \subsection{Integração de redes Noosfero entre sí}
 
- * integração e entre os noosferos usando o mesmo protocolo
+% * integração e entre os noosferos usando o mesmo protocolo
 
 \section{Federação entre o Participa.br e Redes Sociais Proprietárias}
 
