@@ -723,7 +723,7 @@ federação através do protocolo Activity Stream.
 \subsubsection{Diaspora e Noosfero}
 
 O protocolo Diaspora descreve como deve ocorrer a comunicação entre servidores
-Dispora, está em versão Alpha e em constante evolução.
+Diaspora, com ele as seguintes acões podem ser tomadas:
 
 \begin{itemize}
   \item Compartilhar notificações
@@ -733,15 +733,77 @@ Dispora, está em versão Alpha e em constante evolução.
   \item Curtir em atualizações de status
 \end{itemize}
 
+Paralelo a cada uma dessas ações existem algumas diretivas importantes a serem
+consideradas, e que devem ficar em mente durante a implementação. Uma delas é
+a noção de usuários locais e usuarios remotos, alguns usuários estão no servidor
+"pod" local outros estão em um "pod" remoto. Eles são tratados de forma
+diferente pelo protocolo. Algumas vezes atividades afetam tanto pessoas no
+"pod" local quanto em "pods" remotos, nestas situações o Diaspora deve entregar
+primeiro localmente, em seguida tratar da entrega remota.
+
+Com isto em mente e de olho na especificação do protocolo implementar suporte ao protocolo
+Diaspora ao Noosfero, idealmente isto deve ser feito através da implementação
+de um plugin Noosfero, nos moldes do plugin para OAuth, mencionado em mais
+detalhes na sessão \ref{sessao-oauth}.
+
 \begin{itemize}
+  \item https://wiki.diasporafoundation.org/Federation\_protocol\_overview
+  \item https://wiki.diasporafoundation.org/Diaspora\_message\_passing
   \item https://wiki.diasporafoundation.org/Federation\_message\_semantics
 \end{itemize}
 
+Segue alguns exemplos de mensagens trocada entre "pods" Diaspora.
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo de notificação de compartilhamento]
+<XML>
+  <post>
+    <request>
+      <sender_handle>joao@participa.br</sender_handle>
+      <recipient_handle>maria@softwarelivre.org</sender_handle>
+    </request>
+  </post>
+</XML>
+\end{lstlisting}
+\end{framed}
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo de atualização de status]
+<XML>
+  <post>
+    <status_message>
+      <raw_message>((status message))</raw_message>
+      <guid>((guid))</guid>
+      <diaspora_handle>joao@participa.br</diaspora_handle>
+      <public>false</public>
+      <created_at>2011-07-20 01:36:07 UTC</created_at>
+    </status_message>
+  </post>
+</XML>
+\end{lstlisting}
+\end{framed}
+
+\begin{framed}
+\begin{lstlisting}[caption=Exemplo de comentário em uma atualização de status]
+<XML>
+  <post>
+    <comment>
+      <guid>((guid))</guid>
+      <parent_guid>((guid))</parent_guid>
+      <author_signature>((base64-encoded data))</author_signature>
+      <text>Eu estou aqui!</text>
+      <diaspora_handle>joao@participa.br</diaspora_handle>
+    </comment>
+  </post>
+</XML>
+\end{lstlisting}
+\end{framed}
+
 \subsubsection{h-card e Noosfero}
 
-h-card is a simple, open format for publishing people and organisations on the web. h-card is one of several open microformat draft standards suitable for embedding data in HTML/HTML5.
-
-h-card is the microformats2 update to hCard.
+h-card é um formato aberto para publicar pessoas e organizações na Web. Ele é
+um dentre inúmeros microformatos voltados para incluir dados em HTML/HTML5.
+h-card é uma atualização em cima do hCard.
 
 \begin{framed}
 \begin{lstlisting}[caption=Exemplo de h-card]
@@ -774,21 +836,34 @@ h-card são:
 O h-card é o formato onde os dados de cada perfil de usuário será publicado
 para que outras redes leiam e obtenham informações sobre o usuário.
 
-\subsection{Integração de redes Noosfero entre sí}
+\subsection{Integração entre redes Noosfero}
+\label{sessao-oauth}
 
-% * integração e entre os noosferos usando o mesmo protocolo
-
-\begin{figure}[h]
+\begin{figure}[h!]
 \center
 \includegraphics[scale=0.4]{ecosistema-noosfero-diaspora-v2.png}
 \caption{Diagrama sobre integração entre redes Noosfero entre sí}
 \label{ecosistema-v2}
 \end{figure}
 
-\section{Federação entre o Participa.br e Redes Sociais Proprietárias}
+A partir da implementação dos protocolos citados acima, o Noosfero ganha a
+capacidade de além de interagir de forma federada com o Diaspora, também a
+capacidade de interagir de forma federada entre sí, ou seja, redes distintas
+usando Noosfero poderão se comunicar de forma transparente através dos
+protocolos implementados, um diagrama na Figura \ref{ecosistema-v2} demonstra
+como fica essa integração entre as redes Noosfero.
 
-% Inclui especicações e códigos para conexão de contas e trocas de postagens do
-% portal com redes sociais proprietárias.
+\section{Federação entre o Participa.br e redes sociais proprietárias}
+
+Foi desenvolvido no Noosfero login via Google e Facebook através do
+desenvolvimento da issue abaixo:
+https://gitlab.com/participa/noosfero/issues/186
+
+O código-fonte desenvolvido está disponível em:
+https://gitlab.com/participa/noosfero/tree/oauth\_rails3
+
+Outra iniciativa em paralelo para oauth também foi desenvolvida aqui:
+https://gitlab.com/noosfero/noosfero/merge\_requests/342
 
 \section{Conclusão}
 
@@ -810,11 +885,11 @@ engajamento no uso e contribuição deste projeto de forma consistente e perene.
 \listoffigures
 \newpage
 \printindex
-\newpage
-\input{listadeanexos.tex}
-\newpage
-\appendix
-\appendixpage
-\input{appendix.tex}
+%\newpage
+%\input{listadeanexos.tex}
+%\newpage
+%\appendix
+%\appendixpage
+%\input{appendix.tex}
 
 \end{document}
