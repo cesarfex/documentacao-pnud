@@ -138,7 +138,9 @@ outros fornecedores (exemplo Hotmail).
 Chats Jabber por outro lado se baseiam no protocolo chamado XMPP\cite{xmpp},
 com ele usuários podem usar serviços distintos e conversarem entre sí de forma
 transparente. Chats IRC são implementados com base no protocolo de mesmo nome
-chamado IRC\cite{irc}, exemplo de rede IRC em Figura \ref{irc}.
+chamado IRC\cite{irc}, a Figura \ref{irc} traz um diagrama de rede IRC
+descentralizada e federada
+\footnote{fonte: https://pt.wikipedia.org/wiki/Ficheiro:Ircnetz-Schema.svg}.
 
 \begin{figure}[h]
 \center
@@ -146,13 +148,12 @@ chamado IRC\cite{irc}, exemplo de rede IRC em Figura \ref{irc}.
 \caption{Exemplo de rede federada IRC}
 \label{irc}
 \end{figure}
-% fonte: https://pt.wikipedia.org/wiki/Ficheiro:Ircnetz-Schema.svg
 
 Todos estes exemplos tem servido como inspiração para o desenvolveimento de
-protocolos para federação de redes sociais, as principais redes sociais
-modernas não são federadas, e são ainda extremamente centralizadas. Redes como
-Facebook e Google Plus por exemplo obrigam os usuários estarem cadastrados em
-sua base da dados para poderem interagir com os usuários e comunidades.
+protocolos de federação em redes sociais, as principais redes sociais modernas
+não são federadas, além de serem extremamente centralizadas. Redes como
+Facebook e Google Plus por exemplo obrigam os usuários a estarem cadastrados
+em sua base da dados para poder interagir com seus usuários e comunidades.
 
 Um movimento para quebrar este paradigma de redes sociais extremamente
 isoladas começou a surgir através do termo {\it redes sociais virtuais
@@ -203,9 +204,9 @@ com ele. O envio de postagens é feito através do protocolo Salmon.
 \subsection{FOAF}
 
 FOAF é uma ontologia para descrição de pessoas, suas ativiades e seus
-relacionamentos com foco em fácil leitura por máquinas. Qualquer um pode usar
-FOAF para descrever a sí mesmo, permite grupos de pessoas descrever redes
-sociais sem necessidade de um banco de dados centralizado.
+relacionamentos com foco na fácil leitura por máquinas. Qualquer um pode usar
+FOAF para descrever a sí mesmo, com ele é possível descrever redes sociais sem
+necessidade de um banco de dados centralizado.
 
 É um vocabulário descritivo expressado em RDF e OWL, computadores podem
 usar os perfis FOAF para encontrar, por exemplo, todas as pessoas vivendo na
@@ -226,8 +227,8 @@ usado no projeto chamado {\it Apache Wave}\cite{wave}, projetado para
 comunicação em tempo real através de servidores trabalhando de forma
 cooperativa.
 
-O protocolo é fortemente baseado no protocolo de email e as funcionalidades
-implementadas em cima dele são formetemte inspiradas nos sistemas de email.
+O protocolo é fortemente baseado nos protocolos de email e as funcionalidades
+implementadas são formetemte inspiradas nestes sistemas.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Google\_Wave\_Federation\_Protocol
@@ -237,7 +238,7 @@ implementadas em cima dele são formetemte inspiradas nos sistemas de email.
 
 OStatus é um padrão aberto para compartilhamento de atualizações, faz
 referencias a protocolos abertos como Atom, Activity Streams, PubSubHubbub,
-Salmon, Webfinger. Através dele são criados pontos de troca, roteamento de
+Salmon e Webfinger. Através dele são criados pontos de troca, roteamento de
 mensagens e atualizações de status entre usuários em tempo real.
 
 O OStatus foi inicialmente implementado no StatusNet e posterioemente em
@@ -266,7 +267,7 @@ podem interoperar com qualquer outra rede social que tenha suporte a ele.
 \subsection{PubSubHubbub}
 
 PubSubHubbub é um protocolo aberto para comunicação distribuída de publicação
-e inscrição, inicialmente projetado para extender os protocolos Atom e RSS,
+e inscrição, inicialmente projetado para estender os protocolos Atom e RSS,
 pode ser aplicado para qualquer tipo de dado (texto, imagens,
 audio, vídeos) desde que estejam disponívels via HTTP.
 
@@ -289,8 +290,8 @@ Identi.ca}.
 
 Apesar de ter sido inicialmente baseado no StatusNet, que oferece serviço
 similar o Twitter, o pump.io oferece recursos muito mais gerais de rede
-social, e tem sido adotado por outros tipos de aplicação, como o MediaGoblin
-por exemplo.
+social, e tem sido adotado por outros tipos de aplicação, como o
+MediaGoblin\footnote{http://www.mediagoblin.org} por exemplo.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Pump.io
@@ -302,11 +303,10 @@ O protocolo Salmon é um protocolo para troca de mensagens sob HTTP projetado
 para descentralizar comentários e anotações feitas em artigos e posts de
 blogs. Permite discussões através de comentários vindos de diversos pontos
 distintos através de um "agregador" que está inscrito e obtendo o conteúdo
-destas fontes. De forma simples, um artigo apresentado em 3 sites distintos A
-(fonte original), B e C podem receber comentários em qualquer um dos 3 de
-pessoas que cadastradas em qualquer um dos 3, estes comentários são
-sincronizados entre os 3 sites e todos os usuários podem interagir de forma
-transparente através destes comentários.
+destas fontes. De forma simples, um artigo apresentado em 3 sites distintos: A
+(fonte original), B e C podem receber comentários vindos de usuários de
+qualquer um dos 3 sites, estes comentários são sincronizados entre os 3
+e todos os usuários podem interagir de forma transparente através deles.
 
 Redes sociais federadas como StatusNet e Diaspora usam Salmon para coordenar
 discussão entre usuários de diferentes servidores. Um usuário de um servidor
@@ -353,8 +353,8 @@ Estes protocolos isoladamente não fornecem a solução para descentralizar as
 redes e promover federação entre elas, é preciso ter ferramentas implementando
 tais protocolos. Cada protocolo resolve um problema específico, a combinação
 deles em uma implementação resulta num produto abrangente que resolve o
-problema de centralização das redes anteriormente mencionado. Nas próximas
-sessões serão apresentadas algumas ferramentas de rede social federada.
+problema de centralização das redes. Nas próximas sessões serão apresentadas
+algumas ferramentas de rede social federada.
 
 \subsection{Diaspora}
 
@@ -383,12 +383,12 @@ Salmon, Activity Stream e o micro-formato h-card.
 
 Friendica é um software livre que implementa uma rede social distribuída,
 possui grande preocupação com privacidade e facilidade na instalação de
-servidores. Tem como missão integrar de forma federada quantas outras
-redes for possível, atualmente integra com: Facebook, Twitter, Diaspora, GNU
-social, App.net, Pump.io, WordPress, Livejournal, Tumblr e Posterous. Em
-novembro de 2014, o diretório global de usuários do Friendica contabiliza 10
-mil registros, número de usuários que decidiram publicar seus perfis no
-diretório público global.
+servidores. Tem como missão integrar de forma federada tantas redes quanto
+possível, atualmente integra com: Facebook, Twitter, Diaspora, GNU social,
+App.net, Pump.io, WordPress, Livejournal, Tumblr e Posterous. Em novembro de
+2014, o diretório global de usuários do Friendica contabiliza 10 mil
+registros, número de usuários que decidiram publicar seus perfis no diretório
+público global.
 
 \begin{itemize}
   \item http://en.wikipedia.org/wiki/Friendica
@@ -400,7 +400,7 @@ GNU Social, chamado no passado de StatusNet, é um servidor de microblog livre
 escrito em PHP que implementa o padrão OStatus para interoperação entre
 instalações. Enquanto oferece funcionalidade similar ao Twitter, StatusNet
 tenta prover o potencial para promover comunicação entre comunidades de
-microblog abetras e distribuídas.
+microblog abertas e distribuídas.
 
 É baseado no protocolo OStatus, mas também suporta Salmon e OpenID.
 
@@ -444,7 +444,7 @@ seguintes protocolos:
 \end{itemize}
 
 Além do Ruby on Rails depende de HAML, SASS, Backbone.js e Handlebars.js, o
-banco de dados possui a seguinte estrutuda:
+seu banco de dados possui a seguinte estrutuda:
 
 \begin{itemize}
   \item User - Representação de um usuário no banco de dados
@@ -498,8 +498,8 @@ Ao receber um post o fluxo é o seguinte:
 \end{itemize}
 
 De forma geral este é o funcionamento do Diaspora, mais detalhes sobre seu
-funcionamento deve ser consultado na wiki do projeto ou diretamente em seu
-código fonte:
+funcionamento e implementação deve ser consultado na wiki do projeto ou
+diretamente em seu código fonte:
 
 \begin{itemize}
   \item http://wiki.diasporafoundation.org
@@ -508,16 +508,13 @@ código fonte:
 
 \subsection{Integração entre Participa.br e o Diaspora}
 
-% * proposta de como integrar o Noosfero as redes existentes Diaspora*
-% * propoe integração do noosfero com ele
-
 Para possibilitar integração entre o Participa.br e o Diaspora é preciso
 implementar no Noosfero, software por trás do Participa.br, suporte aos
 protocolos utilizados no Diaspora, ou seja: Salmon, Activity
 Stream, WebFinger, h-card e o proprio protocolo Diaspora. Após esta
 implementação tanto o Participa.br, quanto outras redes utilizando o Noosfero
-poderão se comunicar com servidores Diaspora, um exemplo pode ser visto na
-Figura \ref{ecosistema}.
+poderão se comunicar com servidores Diaspora, um exemplo desta comunicação
+pode ser visto no diagrama representado na Figura \ref{ecosistema}.
 
 \begin{figure}[h]
 \center
@@ -533,8 +530,8 @@ objetos identificados por URIs únicas. Ele é o primeiro passo para ter
 interação real com o Diaspora e outras redes sociais federadas.
 
 O Noosfero não tem suporte a tal protocolo, mas houve uma iniciativa pessoal
-de um dos desenvolvedores do Noosfero em documentar algo sobre este protocolo
-e iniciar uma implementação:
+de um dos desenvolvedores do Noosfero em documentar algo sobre ele e iniciar
+uma implementação:
 
 \begin{itemize}
   \item Issue sobre WebFinger no tracker do Noosfero: \\
@@ -562,7 +559,6 @@ seguinte URI WebFinger:
 A partir desta URI um "pod" Diaspora poderá consultar e descobrir informações
 sobre "Joao" a partir de uma requisição do tipo "acct:joao@participa.br". Esta
 requisição deve retornar algo do tipo:
-
 
 \begin{framed}
 \begin{lstlisting}[caption=Exemplo resposta a consulta WebFinger]
@@ -594,10 +590,10 @@ Content-Type: application/jrd+json
 \end{lstlisting}
 \end{framed}
 
-De posse destas informações já é possível ter conhecimento sobre os recursos
-deste usuário, como: onde está seu perfil, onde encontrar seu avatar, h-card,
-e demais informações. Possibilitando aplicações externas obter informações
-sobre os usuários da rede.
+De posse destas informações será possível ter conhecimento sobre os recursos
+deste usuário: onde está seu perfil, onde encontrar seu avatar, seu h-card, e
+demais informações. Possibilitando aplicações externas obter informações sobre
+os usuários da rede.
 
 \subsubsection{Salmon e Noosfero}
 
@@ -606,8 +602,8 @@ para descentralizar comentários e anotações feitas em artigos, como posts de
 blogs, notícias, imagens, vídeos, eventos, entre outros.
 
 O Noosfero não tem qualquer implementação ou iniciativa de implementar Salmon,
-este protocolo é necessário para que o Noosfero ao menos se tornar um
-"aggregator" Salmon, ou seja quem lê uma feed de dados Salmon.
+este protocolo é necessário para que o Noosfero ao menos se torne um {\it
+aggregator} Salmon, ou seja quem lê uma feed de dados Salmon.
 
 O Noosfero deve ser capaz de ser um "aggregator" para ler um feed Salmon
 localizado no lado Diaspora. Quando um usuário do lado do Noosfero deixa um
@@ -642,13 +638,13 @@ Content-Type: application/atom+xml
 \end{lstlisting}
 \end{framed}
 
-Com o suporte ao Salmon completo no Noosfero, ele será capaz de ao
-receber comentários em posts de blogs, notícias e afins, que estes comentários
-sejam compartilhados com usuários em redes Diaspora.
+Com o suporte ao Salmon o Noosfero será capaz de ao receber comentários em
+posts de blogs, notícias e afins, compartilhar estes comentários com usuários
+em redes Diaspora.
 
 Para concretizar esta implementação será preciso avaliar as seguintes
-biblitecas abaixo, elas são implementações do protocolo Salmon para Ruby, após
-avaliação uma entre as 2 deve ser selecionada e implementadas no Noosfero.
+biblitecas abaixo, elas são implementações do protocolo Salmon para Ruby, uma
+entre elas deve ser implementada no Noosfero.
 
 \begin{itemize}
   \item https://github.com/sporkmonger/salmon
@@ -663,8 +659,8 @@ aplicações e serviços web. {\it Streaming} de atividades é algo similar a
 linha do tempo do Facebook. Com ele é possível ter um padrão comum de
 comunicação para troca de dados relacionados às atividades dos usuários.
 
-O Noosfero não tem suporte a este protocolo e precisa que seja implementado
-como sugere a especificação do mesmo, basicamente uma atividade consiste de um
+O Noosfero não tem suporte a este protocolo e precisa ser implementado
+conformo a especificação do mesmo, basicamente uma atividade consiste de um
 ator, um verbo, um objeto e um alvo. Ele conta a história de uma pessoa
 realizando ações em um objeto, exemplos\cite{streams}:
 
@@ -674,7 +670,7 @@ realizando ações em um objeto, exemplos\cite{streams}:
 \end{itemize}
 
 \begin{framed}
-\begin{lstlisting}[caption=Exemplo simples de atividade JSON serializada]
+\begin{lstlisting}[caption=Exemplo simples de atividade Activity Stream JSON serializada]
 {
   "published": "2011-02-10T15:04:55Z",
   "actor": {
@@ -682,7 +678,7 @@ realizando ações em um objeto, exemplos\cite{streams}:
     "objectType" : "person",
     "id": "tag:participa.br,2011:joao",
     "image": {
-      "url": "http://participa.br/profile/martin/image",
+      "url": "http://participa.br/profile/joao/image",
       "width": 250,
       "height": 250
     },
@@ -716,11 +712,12 @@ do suporte a este protocolo deve ser implementado nos arquivos citados acima,
 ou seja, o plugin Rails {\it action\_tracker} deve ser adaptado para suportar
 federação através do protocolo Activity Stream.
 
-%, este suporte pode ser implementado blah...
-%https://github.com/GetStream/stream-rails
-%This package helps you create activity streams & newsfeeds with Ruby on Rails and GetStream.io
-%https://github.com/GetStream/stream-ruby
-%stream-ruby is a Ruby client for Stream (getstream.io) https://getstream.io
+Exemplos de implementação podem ser consultados como forma de inspiração em:
+
+\begin{itemize}
+  \item https://github.com/GetStream/stream-rails
+  \item https://github.com/GetStream/stream-ruby
+\end{itemize}
 
 \subsubsection{Diaspora e Noosfero}
 
@@ -737,16 +734,18 @@ Diaspora, com ele as seguintes acões podem ser tomadas:
 
 Paralelo a cada uma dessas ações existem algumas diretivas importantes a serem
 consideradas, e que devem ficar em mente durante a implementação. Uma delas é
-a noção de usuários locais e usuarios remotos, alguns usuários estão no servidor
-"pod" local outros estão em um "pod" remoto. Eles são tratados de forma
-diferente pelo protocolo. Algumas vezes atividades afetam tanto pessoas no
-"pod" local quanto em "pods" remotos, nestas situações o Diaspora deve entregar
-primeiro localmente, em seguida tratar da entrega remota.
+a noção de usuários locais e usuarios remotos, alguns usuários estão no
+servidor "pod" local outros estão em um "pod" remoto. Eles são tratados de
+forma diferente pelo protocolo. Outra diretiva é que algumas vezes atividades
+afetam tanto pessoas no "pod" local quanto em "pods" remotos, nestas situações
+o Diaspora deve entregar primeiro localmente, em seguida tratar da entrega
+remota.
 
-Com isto em mente e de olho na especificação do protocolo implementar suporte ao protocolo
-Diaspora ao Noosfero, idealmente isto deve ser feito através da implementação
-de um plugin Noosfero, nos moldes do plugin para OAuth, mencionado em mais
-detalhes na sessão \ref{sessao-oauth}.
+Com isto em mente e de olho na especificação do protocolo o Noosfero deve ser
+extendido para adicionar tal protocolo, idealmente isto deve ser feito no
+formato de um plugin Noosfero, nos mesmos moldes do plugin OAuth mencionado em
+mais detalhes na sessão \ref{sessao-oauth}. Segue referências detalhadas
+sobre o protocolo Diaspora:
 
 \begin{itemize}
   \item https://wiki.diasporafoundation.org/Federation\_protocol\_overview
@@ -754,7 +753,7 @@ detalhes na sessão \ref{sessao-oauth}.
   \item https://wiki.diasporafoundation.org/Federation\_message\_semantics
 \end{itemize}
 
-Segue alguns exemplos de mensagens trocada entre "pods" Diaspora.
+Segue alguns exemplos de mensagens trocada entre "pods".
 
 \begin{framed}
 \begin{lstlisting}[caption=Exemplo de notificação de compartilhamento]
@@ -804,7 +803,7 @@ Segue alguns exemplos de mensagens trocada entre "pods" Diaspora.
 \subsubsection{h-card e Noosfero}
 
 h-card é um formato aberto para publicar pessoas e organizações na Web. Ele é
-um dentre inúmeros microformatos voltados para incluir dados em HTML/HTML5.
+um entre muitos microformatos voltados para incluir dados em HTML/HTML5.
 h-card é uma atualização em cima do hCard.
 
 \begin{framed}
@@ -848,38 +847,44 @@ para que outras redes leiam e obtenham informações sobre o usuário.
 \label{ecosistema-v2}
 \end{figure}
 
-A partir da implementação dos protocolos citados acima, o Noosfero ganha a
-capacidade de além de interagir de forma federada com o Diaspora, também a
-capacidade de interagir de forma federada entre sí, ou seja, redes distintas
-usando Noosfero poderão se comunicar de forma transparente através dos
-protocolos implementados, um diagrama na Figura \ref{ecosistema-v2} demonstra
-como fica essa integração entre as redes Noosfero.
+A partir da implementação dos protocolos citados acima, o Noosfero ganha
+também a capacidade de interagir de forma federada entre sí, ou seja, redes
+distintas usando o Noosfero poderão se comunicar de forma transparente através
+dos protocolos implementados, um diagrama na Figura \ref{ecosistema-v2}
+demonstra essa integração entre redes Noosfero.
 
 \section{Federação entre o Participa.br e redes sociais proprietárias}
 
-Foi desenvolvido no Noosfero login via Google e Facebook através do
-desenvolvimento da issue abaixo:
-https://gitlab.com/participa/noosfero/issues/186
+Foi desenvolvido no Noosfero através da parceiria entre SG/PR e Serpro um
+plugin para adicionar suporte a login via Google e Facebook através do
+protocolo OAuth, com isto o Participa.br atualmente já integra com estas duas
+redes proprietárias possibilitando seus usuários iniciar sessão através de
+seus usuários Google ou Facebook.
 
-O código-fonte desenvolvido está disponível em:
-https://gitlab.com/participa/noosfero/tree/oauth\_rails3
+O desenvolvimento e o código fonte desta funcionalidade estão documentados nos
+links abaixo:
 
-Outra iniciativa em paralelo para oauth também foi desenvolvida aqui:
-https://gitlab.com/noosfero/noosfero/merge\_requests/342
+\begin{itemize}
+  \item https://gitlab.com/participa/noosfero/issues/186
+  \item https://gitlab.com/participa/noosfero/tree/oauth\_rails3
+\end{itemize}
+
+%Outra iniciativa em paralelo para oauth também foi desenvolvida aqui:
+%https://gitlab.com/noosfero/noosfero/merge\_requests/342
 
 \section{Conclusão}
 
 Neste documento foi apresentado um \ProductDescription
 
 Na prática, este conjunto de informações irá possibilitar aos usuários do
-Participa.br se relacionar com usuários de outras redes sociais que usam o
+Participa.br se relacionar com usuários de outras redes sociais usamdo o
 protocolo Diaspora, além de proporcionar esta mesma capacidade entre usuários
 de outras redes usando o Noosfero. Ou seja, um certo usuário do Participa.br
-poderá enviar e receber notificações para um usuário localizado na rede
-Diaspora* Brazil\footnote{https://diasporabrazil.org} por exemplo, ou mesmo
-para a rede nerdpol.ch Diaspora*\footnote{https://nerdpol.ch}, ou qualquer
-outra rede Diaspora*. Será possível ainda que usuários do Participa.br se
-relacionem com usuários de outras redes Noosfero, como SoftwareLivre.org,
+poderá enviar e receber notificações para um usuário localizado na rede {\it
+Diaspora* Brazil}\footnote{https://diasporabrazil.org}, ou mesmo na rede {\it
+nerdpol.ch Diaspora*}\footnote{https://nerdpol.ch}, ou qualquer outra rede
+Diaspora*. Será possível ainda que usuários do Participa.br se relacionem com
+usuários de outras redes Noosfero, como por exemplo: SoftwareLivre.org,
 Blogoosfero, Cirandas.net, entre outras.
 
 Lembramos que para tornar o Portal de Consulta Pública realmente um canal de
